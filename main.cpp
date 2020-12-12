@@ -2,30 +2,35 @@
 #include <iostream>
 #include <cassert>
 
+constexpr size_t DIM = 10000;
+
 int main()
 {
 	{
 		std::cout << "-->> example ---------------------------------->> 1" << std::endl;
 		auto list = List();
 
-		list.Insert(1);
-		list.Insert(2);
-		list.Insert(3);
-		list.Insert(4);
+		for(size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(i));
+		}
 
-		assert(list.Size() == 4);
+		assert(list.Size() == DIM);
 		assert(list.Empty() == false);
 	}
 
 	{
 		std::cout << "-->> example ---------------------------------->> 2" << std::endl;
-		auto list = List({ 1, 2 });
+		auto list = List({ 1, 2, 3, 4, 5, 6 });
 
-		list.Insert(3);
-		list.Insert(4);
-		list.Append({ 5, 6 });
+		for(size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(i));
+		}
 
-		assert(list.Size() == 6);
+		list.Append({ 5, 6, 7, 8, 9, 10 });
+
+		assert(list.Size() == 6+DIM+6);
 		assert(list.Empty() == false);
 	}
 

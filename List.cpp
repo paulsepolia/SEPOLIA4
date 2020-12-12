@@ -5,13 +5,19 @@
 // Help Node //
 //===========//
 
+constexpr bool DEBUG = false;
+constexpr bool DEBUG_PRINT = false;
+
 Node::Node(double v) : value(v)
 {
 }
 
 Node::~Node()
 {
-	std::cout << "-->> ~Node() -->> " << value << std::endl;
+	if (DEBUG)
+	{
+		std::cout << "-->> ~Node() -->> " << value << std::endl;
+	}
 }
 
 //=====================//
@@ -168,12 +174,15 @@ void List::Insert(double v)
 
 void List::Print() const
 {
-	auto tmp = head;
-
-	while (tmp)
+	if (DEBUG_PRINT)
 	{
-		std::cout << "-->> Print() -->> " << tmp->value << std::endl;
-		tmp = tmp->next;
+		auto tmp = head;
+
+		while (tmp)
+		{
+			std::cout << "-->> Print() -->> " << tmp->value << std::endl;
+			tmp = tmp->next;
+		}
 	}
 }
 
@@ -287,7 +296,6 @@ void List::Reverse()
 
 	head = prev;
 }
-
 
 //============//
 // Destructor //

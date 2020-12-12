@@ -4,7 +4,6 @@
 
 int main()
 {
-
 	{
 		std::cout << "-->> example ---------------------------------->> 1" << std::endl;
 		auto list = List();

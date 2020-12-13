@@ -3,14 +3,15 @@
 #include <cassert>
 
 constexpr size_t DIM = 10000;
+constexpr size_t DO_MAX = 10;
 
 int main()
 {
 	{
-		std::cout << "-->> example ---------------------------------->> 1" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 1" << std::endl;
 		auto list = List();
 
-		for(size_t i = 0; i < DIM; i++)
+		for (size_t i = 0; i < DIM; i++)
 		{
 			list.Insert(static_cast<double>(i));
 		}
@@ -20,22 +21,22 @@ int main()
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 2" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 2" << std::endl;
 		auto list = List({ 1, 2, 3, 4, 5, 6 });
 
-		for(size_t i = 0; i < DIM; i++)
+		for (size_t i = 0; i < DIM; i++)
 		{
 			list.Insert(static_cast<double>(i));
 		}
 
 		list.Append({ 5, 6, 7, 8, 9, 10 });
 
-		assert(list.Size() == 6+DIM+6);
+		assert(list.Size() == 6 + DIM + 6);
 		assert(list.Empty() == false);
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 3" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 3" << std::endl;
 
 		auto list = List({ 1, 2 });
 
@@ -48,7 +49,7 @@ int main()
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 4" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 4" << std::endl;
 
 		std::vector<double> values{ 1, 2 };
 
@@ -63,7 +64,7 @@ int main()
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 5" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 5" << std::endl;
 
 		std::vector<double> values{ 1, 2 };
 
@@ -80,7 +81,7 @@ int main()
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 6" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 6" << std::endl;
 
 		std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 
@@ -94,15 +95,12 @@ int main()
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 7" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 7" << std::endl;
 
 		std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 
 		const auto list1 = List(values);
-		const auto list2 = list1;
-
-		std::cout << &list1 << std::endl;
-		std::cout << &list2 << std::endl;
+		const auto& list2 = list1;
 
 		assert(list1.Size() == 6);
 		assert(list2.Size() == 6);
@@ -111,7 +109,7 @@ int main()
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 8" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 8" << std::endl;
 
 		std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 
@@ -123,21 +121,19 @@ int main()
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 9" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 9" << std::endl;
 
 		std::vector<double> values{ 1, 2, 3, 4, 5, 6, 7 };
 
 		auto list1 = List(values);
 		const auto list2 = std::move(list1);
 
-		std::cout << &list2 << std::endl;
-
 		assert(list2.Size() == 7);
 		assert(list2.Empty() == false);
 	}
 
 	{
-		std::cout << "-->> example ---------------------------------->> 10" << std::endl;
+		std::cout << "-->> test ---------------------------------->> 10" << std::endl;
 
 		std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 
@@ -147,31 +143,28 @@ int main()
 		assert(list.Empty() == false);
 
 		int v = 1;
-		std::cout << "pgg -->> Erasing element: " << v << std::endl;
 		list.EraseOne(v);
 		list.Print();
 		assert(list.Size() == 5);
 		assert(list.Empty() == false);
 
 		v = 3;
-		std::cout << "pgg -->> Erasing element: " << v << std::endl;
 		list.EraseOne(v);
 		list.Print();
 		assert(list.Size() == 4);
 		assert(list.Empty() == false);
 
 		v = 6;
-		std::cout << "pgg -->> Erasing element: " << v << std::endl;
 		list.EraseOne(v);
 		list.Print();
 		assert(list.Size() == 3);
 		assert(list.Empty() == false);
 	}
 
-	for (size_t kk = 0; kk < 100; kk++)
-	{
-		std::cout << "-->> example ---------------------------------->> 11 -->> " << kk << std::endl;
+	std::cout << "-->> test ---------------------------------->> 11" << std::endl;
 
+	for (size_t kk = 0; kk < DO_MAX; kk++)
+	{
 		std::vector<double> values{ 1, 2, 5, 1, 2, 4, 5 };
 
 		auto list = List(values);
@@ -179,46 +172,41 @@ int main()
 		assert(list.Empty() == false);
 
 		int v = 1;
-		std::cout << "pgg -->> Erasing all elements: " << v << std::endl;
 		list.EraseAll(v);
 		list.Print();
 		assert(list.Size() == 5);
 		assert(list.Empty() == false);
 
 		v = 2;
-		std::cout << "pgg -->> Erasing all elements: " << v << std::endl;
 		list.EraseAll(v);
 		list.Print();
 		assert(list.Size() == 3);
 		assert(list.Empty() == false);
 
 		v = 5;
-		std::cout << "pgg -->> Erasing all elements: " << v << std::endl;
 		list.EraseAll(v);
 		list.Print();
 		assert(list.Size() == 1);
 		assert(list.Empty() == false);
 
 		v = 6;
-		std::cout << "pgg -->> Erasing all elements: " << v << std::endl;
 		list.EraseAll(v);
 		list.Print();
 		assert(list.Size() == 1);
 		assert(list.Empty() == false);
 
 		v = 4;
-		std::cout << "pgg -->> Erasing all elements: " << v << std::endl;
 		list.EraseAll(v);
 		list.Print();
 		assert(list.Size() == 0);
 		assert(list.Empty() == true);
 	}
 
-	for (size_t kk = 0; kk < 10; kk++)
-	{
-		std::cout << "-->> example ---------------------------------->> 12 -->> " << kk << std::endl;
+	std::cout << "-->> test ---------------------------------->> 12" << std::endl;
 
-		std::vector<double> values(10, 1);
+	for (size_t kk = 0; kk < DO_MAX; kk++)
+	{
+		std::vector<double> values(10, kk);
 
 		auto list = List(values);
 
@@ -232,20 +220,120 @@ int main()
 		assert(list.Empty() == true);
 	}
 
-	for (size_t kk = 0; kk < 10; kk++)
+	std::cout << "-->> test ---------------------------------->> 13" << std::endl;
+
 	{
-		std::cout << "-->> example ---------------------------------->> 13 -->> " << kk << std::endl;
+		for (size_t kk = 0; kk < DO_MAX; kk++)
+		{
+			std::vector<double> values({ 1, 2, 3, 4, 5 });
 
-		std::vector<double> values({ 1, 2, 3, 4, 5 });
+			auto list = List(values);
 
-		auto list = List(values);
+			list.Print();
+			list.Reverse();
 
-		list.Print();
+			assert(list.Size() == 5);
+
+			list.Print();
+		}
+	}
+
+	std::cout << "-->> test ---------------------------------->> 14" << std::endl;
+
+	for (size_t kk = 0; kk < DO_MAX; kk++)
+	{
+		auto list = List();
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(i));
+		}
+
+		assert(list.Size() == DIM);
+		assert(list.Empty() == false);
+		assert(list.FindOne(double(0)) == 0);
+		assert(list.FindOne(double(1)) == 1);
+		assert(list.FindOne(double(2)) == 2);
+		assert(list.FindOne(double(3)) == 3);
+	}
+
+	std::cout << "-->> test ---------------------------------->> 15" << std::endl;
+
+	for (size_t kk = 0; kk < DO_MAX; kk++)
+	{
+		auto list = List();
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(i));
+		}
+
+		assert(list.Size() == DIM);
+		assert(list.Empty() == false);
+		assert(list.FindAll(double(0)) == std::vector<int64_t>{ 0 });
+		assert(list.FindAll(double(1)) == std::vector<int64_t>{ 1 });
+		assert(list.FindAll(double(2)) == std::vector<int64_t>{ 2 });
+		assert(list.FindAll(double(DIM - 1)) == std::vector<int64_t>{ DIM - 1 });
+		assert(list.FindAll(double(DIM)).empty());
+	}
+
+	std::cout << "-->> test ---------------------------------->> 16" << std::endl;
+
+	for (size_t kk = 0; kk < DO_MAX; kk++)
+	{
+		auto list = List();
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(0));
+		}
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(1));
+		}
+
+		assert(list.Size() == 2 * DIM);
+		assert(list.Empty() == false);
+
+		std::vector<int64_t> res0;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			res0.push_back(i);
+		}
+		assert(list.FindAll(double(0)) == res0);
+
+		std::vector<int64_t> res1;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			res1.push_back(DIM + i);
+		}
+		assert(list.FindAll(double(1)) == res1);
+		assert(list.FindAll(double(2)).empty());
+		assert(list.FindAll(double(DIM - 1)).empty());
+		assert(list.FindAll(double(DIM)).empty());
 
 		list.Reverse();
+		assert(list.FindAll(double(0)) == res1);
+		assert(list.FindAll(double(1)) == res0);
 
-		assert(list.Size() == 5);
+		list.Clear();
+		assert(list.FindAll(double(0)).empty());
+		assert(list.FindAll(double(1)).empty());
 
-		list.Print();
+		for (size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(0));
+		}
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			list.Insert(static_cast<double>(1));
+		}
+
+		assert(list.Size() == 2 * DIM);
+		assert(list.Empty() == false);
+		assert(list.FindAll(double(0)) == res0);
+		assert(list.FindAll(double(1)) == res1);
 	}
 }

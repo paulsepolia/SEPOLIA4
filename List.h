@@ -52,9 +52,13 @@ public:
 
 	[[nodiscard]] bool Empty() const;
 
-	virtual ~List();
-
 	void Reverse();
+
+	[[nodiscard]] int64_t FindOne(double v) const;
+
+	[[nodiscard]] std::vector<int64_t> FindAll(double v) const;
+
+	virtual ~List();
 
 private:
 

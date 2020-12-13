@@ -297,6 +297,44 @@ void List::Reverse()
 	head = prev;
 }
 
+[[nodiscard]] int64_t List::FindOne(double v) const
+{
+	auto tmp = head;
+	int64_t pos = -1;
+
+	while (tmp)
+	{
+		pos++;
+		if(tmp->value == v)
+		{
+			return pos;
+		}
+		tmp = tmp->next;
+	}
+
+	return -1;
+}
+
+[[nodiscard]] std::vector<int64_t> List::FindAll(double v) const
+{
+	auto tmp = head;
+	int64_t pos = -1;
+	std::vector<int64_t> positions;
+
+	while (tmp)
+	{
+		pos++;
+		if(tmp->value == v)
+		{
+			positions.push_back(pos);
+		}
+		tmp = tmp->next;
+	}
+
+	return positions;
+}
+
+
 //============//
 // Destructor //
 //============//

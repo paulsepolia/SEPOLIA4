@@ -1,12 +1,39 @@
 #include "List.h"
 #include <iostream>
 #include <cassert>
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/io.hpp>
 
 constexpr size_t DIM = 10000;
 constexpr size_t DO_MAX = 10;
 
+using namespace boost::numeric::ublas;
+
 int main()
 {
+	{
+		std::cout << "-->> Example boost --> 1" << std::endl;
+
+		matrix<double> m1(3, 3);
+		matrix<double> m2(3, 3);
+
+		matrix<double> m3(3, 3);
+
+		for (unsigned i = 0; i < m1.size1(); ++i)
+		{
+			for (unsigned j = 0; j < m1.size2(); ++j)
+			{
+				m1(i, j) = 3 * i + j;
+				m2(i, j) = 4 * i + j;
+			}
+		}
+
+		std::cout << m1 << std::endl;
+		std::cout << m2 << std::endl;
+		m3 = m1 + m2;
+		std::cout << m3 << std::endl;
+	}
+
 	{
 		std::cout << "-->> test ---------------------------------->> 1" << std::endl;
 		auto list = List();

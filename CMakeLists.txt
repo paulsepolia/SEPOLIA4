@@ -12,4 +12,4 @@ IF (Boost_FOUND)
     ADD_DEFINITIONS( "-DHAS_BOOST" )
 ENDIF()
 
-add_executable(SEPOLIA4 main.cpp List.cpp)
+add_executable(SEPOLIA4 main.cpp List.cpp BoostUblasTests.cpp BoostUblasTests.h ListTests.cpp ListTests.h)

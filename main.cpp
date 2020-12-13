@@ -1,8 +1,9 @@
 #include "BoostUblasTests.h"
 #include "ListTests.h"
+#include "VectorTests.h"
 #include <iostream>
-#include <cblas.h>
 
+//#include <cblas.h>
 //int main()
 //{
 //	// Create arrays that represent the matrices A,B,C
@@ -41,13 +42,13 @@ int main()
 {
 	{
 		using namespace TESTS_BOOST_UBLAS;
-		std::cout << "-->> Tests -->> BOOST -->> UBLAS" << std::endl;
+		std::cout << "-->> Tests -->> Boost -->> Ublas" << std::endl;
 		TEST1();
 	}
 
 	{
 		using namespace TESTS_SEPOLIA4_LIST;
-		std::cout << "-->> Tests -->> List" << std::endl;
+		std::cout << "-->> Tests -->> SEPOLIA4 -->> List" << std::endl;
 		TEST1();
 		TEST2();
 		TEST3();
@@ -64,5 +65,14 @@ int main()
 		TEST14();
 		TEST15();
 		TEST16();
+	}
+
+	{
+		using namespace TESTS_SEPOLIA4_VECTOR;
+		std::cout << "-->> Tests -->> SEPOLIA4 -->> Vector" << std::endl;
+		TEST1();
+		TEST2();
+		TEST3();
+		TEST4();
 	}
 }

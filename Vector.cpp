@@ -99,12 +99,12 @@ size_t Vector::Size() const
 	return m_size;
 }
 
-double Vector::operator()(size_t idx) const
+double Vector::operator[](size_t idx) const
 {
 	return p[idx];
 }
 
-double& Vector::operator()(size_t idx)
+double& Vector::operator[](size_t idx)
 {
 	return p[idx];
 }
@@ -113,4 +113,5 @@ Vector::~Vector()
 {
 	delete[] p;
 	p = nullptr;
+	m_size = 0;
 }

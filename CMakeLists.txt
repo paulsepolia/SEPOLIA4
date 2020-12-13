@@ -46,6 +46,6 @@ ADD_EXECUTABLE(SEPOLIA4 main.cpp
         Vector.cpp
         Vector.h
         Matrix.cpp
-        Matrix.h)
+        Matrix.h VectorTests.cpp VectorTests.h)
 
 TARGET_LINK_LIBRARIES(SEPOLIA4 ${LAPACK_LIBRARIES} ${BLAS_LIBARIES})

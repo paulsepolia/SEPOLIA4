@@ -23,9 +23,9 @@ public:
 
 	[[nodiscard]] size_t Size() const;
 
-	double operator()(size_t idx) const;
+	double operator[](size_t idx) const;
 
-	double& operator()(size_t idx);
+	double& operator[](size_t idx);
 
 	~Vector();
 

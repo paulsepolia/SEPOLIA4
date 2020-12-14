@@ -299,7 +299,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v[i] = static_cast<double>(i+1);
+			v[i] = static_cast<double>(i + 1);
 		}
 
 		const auto res = val / v;
@@ -316,7 +316,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 		const double val = 10;
 		v1 = val;
 
-		for(size_t i = 0; i < v1.Size(); i++)
+		for (size_t i = 0; i < v1.Size(); i++)
 		{
 			assert(v1.At(i) == val);
 		}
@@ -333,7 +333,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		assert(v2.Size() == DIM);
 
-		for(size_t i = 0; i < v2.Size(); i++)
+		for (size_t i = 0; i < v2.Size(); i++)
 		{
 			assert(v2.At(i) == val);
 		}
@@ -351,7 +351,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		assert(v2.Size() == DIM);
 
-		for(size_t i = 0; i < v2.Size(); i++)
+		for (size_t i = 0; i < v2.Size(); i++)
 		{
 			assert(v2.At(i) == val);
 		}
@@ -395,7 +395,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 		Vector v3;
 		v3.Allocate(DIM);
 
-		for(size_t i = 0; i < DIM; i++)
+		for (size_t i = 0; i < DIM; i++)
 		{
 			v1[i] = std::sin(i);
 			v2[i] = std::sin(i);
@@ -409,7 +409,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 	void TEST21()
 	{
-		Vector v1{1,2,3,4};
+		Vector v1{ 1, 2, 3, 4 };
 		assert(v1.Size() == 4);
 		assert(v1[0] == 1);
 		assert(v1[1] == 2);
@@ -419,7 +419,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 	void TEST22()
 	{
-		std::vector<double> v1STL{1,2,3,4};
+		std::vector<double> v1STL{ 1, 2, 3, 4 };
 		Vector v1(v1STL);
 		assert(v1.Size() == 4);
 		assert(v1[0] == 1);
@@ -433,12 +433,43 @@ namespace TESTS_SEPOLIA4_VECTOR
 		Vector v1(DIM);
 		assert(v1.Size() == DIM);
 		const double val = 12.34;
-		for(size_t i = 0 ; i < DIM; i++)
+		for (size_t i = 0; i < DIM; i++)
 		{
 			v1[i] = static_cast<double>(val);
 		}
 
 		assert(v1 == val);
 		assert(val == v1);
+	}
+
+	void TEST24()
+	{
+		Vector v1(DIM);
+		Vector v2(DIM);
+		Vector v3(DIM);
+		Vector v4(DIM);
+		const double val1 = 1;
+		v1 = val1;
+		const double val2 = 2;
+		v2 = val2;
+		const double val3 = 3;
+		v3 = val3;
+		const double val4 = 4;
+		v4 = val4;
+
+		v4 = v1 + v2 + v3 + v4;
+		assert(v4 == val1 + val2 + val3 + val4);
+
+		v4 = val1;
+		assert(val1 == v4);
+
+		v4 = val1 + val2 + val3 - val1 - val2 - val3;
+		assert(v4 == 0);
+
+		v4 = val1;
+		assert(val1 == v4);
+
+		v4 = -v1 + val1 + v2 - val2;
+		assert(v4 == 0);
 	}
 }

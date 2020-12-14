@@ -93,5 +93,6 @@ int main()
 		TEST21();
 		TEST22();
 		TEST23();
+		TEST24();
 	}
 }

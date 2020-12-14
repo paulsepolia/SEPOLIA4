@@ -16,12 +16,12 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 #=====================#
 
 ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
-        ../List/List.cpp
-        ../List/List.h
-        ../Matrix/Matrix.cpp
-        ../Matrix/Matrix.h
-        ../Vector/Vector.cpp
-        ../Vector/Vector.h
+        ../Containers/List/List.cpp
+        ../Containers/List/List.h
+        ../Containers/Matrix/Matrix.cpp
+        ../Containers/Matrix/Matrix.h
+        ../Containers/Vector/Vector.cpp
+        ../Containers/Vector/Vector.h
         ListTests.cpp
         MatrixTests.cpp
         VectorTests.cpp)

@@ -46,11 +46,11 @@ ADD_EXECUTABLE(SEPOLIA4
         BoostUblas/BoostUblasTests.cpp
         BoostUblas/BoostUblasTests.h
         Common/CommonHeaders.h
-        List/List.cpp
-        Matrix/Matrix.cpp
-        Matrix/Matrix.h
-        Vector/Vector.cpp
-        Vector/Vector.h)
+        Containers/List/List.cpp
+        Containers/Matrix/Matrix.cpp
+        Containers/Matrix/Matrix.h
+        Containers/Vector/Vector.cpp
+        Containers/Vector/Vector.h)
 
 TARGET_LINK_LIBRARIES(SEPOLIA4 ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES} ${BOOST_LIBRARIES})
 

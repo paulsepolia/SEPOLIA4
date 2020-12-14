@@ -100,12 +100,12 @@ size_t Vector::Size() const
 	return m_size;
 }
 
-double Vector::operator()(size_t idx) const
+const double& Vector::At(size_t idx) const
 {
 	return m_data[idx];
 }
 
-double& Vector::operator()(size_t idx)
+double& Vector::operator[](size_t idx)
 {
 	return m_data[idx];
 }
@@ -146,7 +146,7 @@ Vector Vector::operator+(const Vector& other) const
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{
-		res(i) = m_data[i] + other.m_data[i];
+		res[i] = m_data[i] + other.m_data[i];
 	}
 
 	return std::move(res);
@@ -164,7 +164,7 @@ Vector Vector::operator-(const Vector& other) const
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{
-		res(i) = m_data[i] - other.m_data[i];
+		res[i] = m_data[i] - other.m_data[i];
 	}
 
 	return std::move(res);
@@ -182,7 +182,7 @@ Vector Vector::operator*(const Vector& other) const
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{
-		res(i) = m_data[i] * other.m_data[i];
+		res[i] = m_data[i] * other.m_data[i];
 	}
 
 	return std::move(res);
@@ -201,7 +201,7 @@ Vector Vector::operator/(const Vector& other) const
 	for (size_t i = 0; i < other.Size(); i++)
 	{
 		if constexpr (DEBUG_CHECK) assert(other.m_data[i]);
-		res(i) = m_data[i] / other.m_data[i];
+		res[i] = m_data[i] / other.m_data[i];
 	}
 
 	return std::move(res);
@@ -219,7 +219,7 @@ Vector Vector::operator+(double value) const
 
 	for (size_t i = 0; i < m_size; i++)
 	{
-		res(i) = m_data[i] + value;
+		res[i] = m_data[i] + value;
 	}
 	return std::move(res);
 }
@@ -232,7 +232,7 @@ Vector Vector::operator-(double value) const
 
 	for (size_t i = 0; i < m_size; i++)
 	{
-		res(i) = m_data[i] - value;
+		res[i] = m_data[i] - value;
 	}
 	return std::move(res);
 }
@@ -245,7 +245,7 @@ Vector Vector::operator*(double value) const
 
 	for (size_t i = 0; i < m_size; i++)
 	{
-		res(i) = m_data[i] * value;
+		res[i] = m_data[i] * value;
 	}
 	return std::move(res);
 }
@@ -259,7 +259,7 @@ Vector Vector::operator/(double value) const
 
 	for (size_t i = 0; i < m_size; i++)
 	{
-		res(i) = m_data[i] / value;
+		res[i] = m_data[i] / value;
 	}
 	return std::move(res);
 }
@@ -274,9 +274,9 @@ Vector operator+(double val, const Vector& rhs)
 	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
 	else res.Allocate(rhs.m_size);
 
-	for(size_t i = 0; i < rhs.m_size; i++)
+	for (size_t i = 0; i < rhs.m_size; i++)
 	{
-		res(i) = val + rhs(i);
+		res[i] = val + rhs.At(i);
 	}
 	return std::move(res);
 }
@@ -287,9 +287,9 @@ Vector operator-(double val, const Vector& rhs)
 	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
 	else res.Allocate(rhs.m_size);
 
-	for(size_t i = 0; i < rhs.m_size; i++)
+	for (size_t i = 0; i < rhs.m_size; i++)
 	{
-		res(i) = val - rhs(i);
+		res[i] = val - rhs.At(i);
 	}
 	return std::move(res);
 }
@@ -300,9 +300,9 @@ Vector operator*(double val, const Vector& rhs)
 	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
 	else res.Allocate(rhs.m_size);
 
-	for(size_t i = 0; i < rhs.m_size; i++)
+	for (size_t i = 0; i < rhs.m_size; i++)
 	{
-		res(i) = val * rhs(i);
+		res[i] = val * rhs.At(i);
 	}
 	return std::move(res);
 }
@@ -313,10 +313,25 @@ Vector operator/(double val, const Vector& rhs)
 	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
 	else res.Allocate(rhs.m_size);
 
-	for(size_t i = 0; i < rhs.m_size; i++)
+	for (size_t i = 0; i < rhs.m_size; i++)
 	{
-		if constexpr (DEBUG_CHECK) assert(rhs(i));
-		res(i) = val / rhs(i);
+		if constexpr (DEBUG_CHECK) assert(rhs.At(i));
+		res[i] = val / rhs.At(i);
 	}
 	return std::move(res);
+}
+
+//============================//
+// Assignment value operators //
+//============================//
+
+Vector& Vector::operator=(double val)
+{
+	if constexpr (DEBUG_CHECK) assert(m_data);
+
+	for(size_t i = 0; i < m_size; i++)
+	{
+		m_data[i] = val;
+	}
+	return *this;
 }

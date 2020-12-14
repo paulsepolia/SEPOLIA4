@@ -1,7 +1,5 @@
 #pragma once
 
-#include <cstdint>
-#include <cstdio>
 #include <memory>
 
 class Vector final
@@ -38,19 +36,21 @@ public:
 	// Operators to access and set elements //
 	//======================================//
 
-	double operator()(size_t idx) const;
+	[[nodiscard]] const double& At(size_t idx) const;
 
-	double& operator()(size_t idx);
+	double& operator[](size_t idx);
 
 	//================//
-	// Operators rest //
+	// Check equality //
 	//================//
 
 	bool operator==(const Vector& rhs) const;
 
 	bool operator!=(const Vector& rhs) const;
 
-	//  vector OPERATOR vector
+	//========================//
+	// vector OPERATOR vector //
+	//========================//
 
 	Vector operator+(const Vector& rhs) const;
 
@@ -60,7 +60,9 @@ public:
 
 	Vector operator/(const Vector& rhs) const;
 
-	//  vector OPERATOR double
+	//=======================//
+	// vector OPERATOR value //
+	//=======================//
 
 	Vector operator+(double val) const;
 
@@ -70,7 +72,9 @@ public:
 
 	Vector operator/(double val) const;
 
-	//  double OPERATOR type
+	//=======================//
+	// value OPERATOR Vector //
+	//=======================//
 
 	friend Vector operator*(double val, const Vector& vec);
 
@@ -79,6 +83,12 @@ public:
 	friend Vector operator+(double val, const Vector& vec);
 
 	friend Vector operator-(double val, const Vector& vec);
+
+	//============================//
+	// Assignment value operators //
+	//============================//
+
+	Vector& operator=(double val);
 
 private:
 

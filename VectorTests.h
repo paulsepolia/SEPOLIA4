@@ -16,4 +16,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 	void TEST12();
 	void TEST13();
 	void TEST14();
+	void TEST15();
+	void TEST16();
+	void TEST17();
 }

@@ -11,26 +11,26 @@ namespace TESTS_SEPOLIA4_VECTOR
 		Vector v1;
 
 		assert(v1.Size() == 0);
-		assert(&v1(0) == nullptr);
+		assert(&v1.At(0) == nullptr);
 
 		v1.Allocate(DIM);
 
 		assert(v1.Size() == DIM);
-		assert(&v1(0) != nullptr);
+		assert(&v1.At(0) != nullptr);
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v1(i) = static_cast<double>(i);
+			v1[i] = static_cast<double>(i);
 		}
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(v1(i) == static_cast<double>(i));
+			assert(v1.At(i) == static_cast<double>(i));
 		}
 
 		v1.Deallocate();
 		assert(v1.Size() == 0);
-		assert(&v1(0) == nullptr);
+		assert(&v1.At(0) == nullptr);
 	}
 
 	void TEST2()
@@ -40,33 +40,33 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		assert(v1.Size() == 0);
 		assert(v2.Size() == 0);
-		assert(&v1(0) == nullptr);
-		assert(&v2(0) == nullptr);
+		assert(&v1.At(0) == nullptr);
+		assert(&v2.At(0) == nullptr);
 
 		v1.Allocate(DIM);
 		v2.Allocate(DIM);
 
 		assert(v1.Size() == DIM);
 		assert(v2.Size() == DIM);
-		assert(&v1(0) != nullptr);
-		assert(&v2(0) != nullptr);
+		assert(&v1.At(0) != nullptr);
+		assert(&v2.At(0) != nullptr);
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v1(i) = static_cast<double>(i);
-			v2(i) = v1(i);
+			v1[i] = static_cast<double>(i);
+			v2[i] = v1.At(i);
 		}
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(v1(i) == static_cast<double>(i));
-			assert(v1(i) == v2(i));
+			assert(v1.At(i) == static_cast<double>(i));
+			assert(v1.At(i) == v2.At(i));
 		}
 
 		assert(v1 == v2);
 
-		v1(0) = 2;
-		v2(0) = 3;
+		v1[0] = 2;
+		v2[0] = 3;
 
 		assert(v1 != v2);
 
@@ -74,8 +74,8 @@ namespace TESTS_SEPOLIA4_VECTOR
 		v2.Deallocate();
 		assert(v1.Size() == 0);
 		assert(v2.Size() == 0);
-		assert(&v1(0) == nullptr);
-		assert(&v2(0) == nullptr);
+		assert(&v1.At(0) == nullptr);
+		assert(&v2.At(0) == nullptr);
 	}
 
 	void TEST3()
@@ -87,15 +87,15 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v1(i) = static_cast<double>(i);
-			v2(i) = static_cast<double>(i + 1);
+			v1[i] = static_cast<double>(i);
+			v2[i] = static_cast<double>(i + 1);
 		}
 
 		const auto v3 = v1 + v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(v3(i) == static_cast<double>(i) + static_cast<double>(i + 1));
+			assert(v3.At(i) == static_cast<double>(i) + static_cast<double>(i + 1));
 		}
 	}
 
@@ -108,15 +108,15 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v1(i) = static_cast<double>(i);
-			v2(i) = static_cast<double>(i + 1);
+			v1[i] = static_cast<double>(i);
+			v2[i] = static_cast<double>(i + 1);
 		}
 
 		const auto v3 = v1 - v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(v3(i) == static_cast<double>(i) - static_cast<double>(i + 1));
+			assert(v3.At(i) == static_cast<double>(i) - static_cast<double>(i + 1));
 		}
 	}
 
@@ -130,15 +130,15 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v1(i) = static_cast<double>(i);
-			v2(i) = static_cast<double>(i + 1);
+			v1[i] = static_cast<double>(i);
+			v2[i] = static_cast<double>(i + 1);
 		}
 
 		const auto v3 = v1 * v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(v3(i) == static_cast<double>(i) * static_cast<double>(i + 1));
+			assert(v3.At(i) == static_cast<double>(i) * static_cast<double>(i + 1));
 		}
 	}
 
@@ -151,15 +151,15 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v1(i) = static_cast<double>(i);
-			v2(i) = static_cast<double>(i + 1);
+			v1[i] = static_cast<double>(i);
+			v2[i] = static_cast<double>(i + 1);
 		}
 
 		const auto v3 = v1 / v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(v3(i) == static_cast<double>(i) / static_cast<double>(i + 1));
+			assert(v3.At(i) == static_cast<double>(i) / static_cast<double>(i + 1));
 		}
 	}
 
@@ -171,13 +171,13 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i);
+			v[i] = static_cast<double>(i);
 		}
 
 		const auto res = v + val;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == v(i) + val);
+			assert(res.At(i) == v.At(i) + val);
 		}
 	}
 
@@ -189,13 +189,13 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i);
+			v[i] = static_cast<double>(i);
 		}
 
 		const auto res = v - val;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == v(i) - val);
+			assert(res.At(i) == v.At(i) - val);
 		}
 	}
 
@@ -207,13 +207,13 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i);
+			v[i] = static_cast<double>(i);
 		}
 
 		const auto res = v * val;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == v(i) * val);
+			assert(res.At(i) == v.At(i) * val);
 		}
 	}
 
@@ -225,13 +225,13 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i);
+			v[i] = static_cast<double>(i);
 		}
 
 		const auto res = v / val;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == v(i) / val);
+			assert(res.At(i) == v.At(i) / val);
 		}
 	}
 
@@ -243,13 +243,13 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i);
+			v[i] = static_cast<double>(i);
 		}
 
 		const auto res = val + v;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == val + v(i));
+			assert(res.At(i) == val + v.At(i));
 		}
 	}
 
@@ -261,13 +261,13 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i);
+			v[i] = static_cast<double>(i);
 		}
 
 		const auto res = val - v;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == val - v(i));
+			assert(res.At(i) == val - v.At(i));
 		}
 	}
 
@@ -279,13 +279,13 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i);
+			v[i] = static_cast<double>(i);
 		}
 
 		const auto res = val * v;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == val * v(i));
+			assert(res.At(i) == val * v.At(i));
 		}
 	}
 
@@ -297,14 +297,61 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			v(i) = static_cast<double>(i+1);
+			v[i] = static_cast<double>(i+1);
 		}
 
 		const auto res = val / v;
 		for (size_t i = 0; i < DIM; i++)
 		{
-			assert(res(i) == val / v(i));
+			assert(res.At(i) == val / v.At(i));
+		}
+	}
+
+	void TEST15()
+	{
+		Vector v1;
+		v1.Allocate(DIM);
+		const double val = 10;
+		v1 = val;
+
+		for(size_t i = 0; i < v1.Size(); i++)
+		{
+			assert(v1.At(i) == val);
+		}
+	}
+
+	void TEST16()
+	{
+		Vector v1;
+		v1.Allocate(DIM);
+		const double val = 10;
+		v1 = val;
+
+		Vector v2(std::move(v1));
+
+		assert(v2.Size() == DIM);
+
+		for(size_t i = 0; i < v2.Size(); i++)
+		{
+			assert(v2.At(i) == val);
+		}
+	}
+
+	void TEST17()
+	{
+		Vector v1;
+		v1.Allocate(DIM);
+		const double val = 10;
+		v1 = val;
+
+		Vector v2;
+		v2 = std::move(v1);
+
+		assert(v2.Size() == DIM);
+
+		for(size_t i = 0; i < v2.Size(); i++)
+		{
+			assert(v2.At(i) == val);
 		}
 	}
 }
-

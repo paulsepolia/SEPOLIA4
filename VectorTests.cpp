@@ -82,8 +82,6 @@ namespace TESTS_SEPOLIA4_VECTOR
 	{
 		Vector v1;
 		Vector v2;
-		Vector v3;
-
 		v1.Allocate(DIM);
 		v2.Allocate(DIM);
 
@@ -93,7 +91,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 			v2(i) = static_cast<double>(i + 1);
 		}
 
-		v3 = v1 + v2;
+		const auto v3 = v1 + v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
@@ -105,8 +103,6 @@ namespace TESTS_SEPOLIA4_VECTOR
 	{
 		Vector v1;
 		Vector v2;
-		Vector v3;
-
 		v1.Allocate(DIM);
 		v2.Allocate(DIM);
 
@@ -116,7 +112,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 			v2(i) = static_cast<double>(i + 1);
 		}
 
-		v3 = v1 - v2;
+		const auto v3 = v1 - v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
@@ -128,7 +124,6 @@ namespace TESTS_SEPOLIA4_VECTOR
 	{
 		Vector v1;
 		Vector v2;
-		Vector v3;
 
 		v1.Allocate(DIM);
 		v2.Allocate(DIM);
@@ -139,7 +134,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 			v2(i) = static_cast<double>(i + 1);
 		}
 
-		v3 = v1 * v2;
+		const auto v3 = v1 * v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
@@ -151,8 +146,6 @@ namespace TESTS_SEPOLIA4_VECTOR
 	{
 		Vector v1;
 		Vector v2;
-		Vector v3;
-
 		v1.Allocate(DIM);
 		v2.Allocate(DIM);
 
@@ -162,7 +155,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 			v2(i) = static_cast<double>(i + 1);
 		}
 
-		v3 = v1 / v2;
+		const auto v3 = v1 / v2;
 
 		for (size_t i = 0; i < DIM; i++)
 		{
@@ -172,12 +165,38 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 	void TEST7()
 	{
-		assert(true);
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 11;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i);
+		}
+
+		const auto res = v + val;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == v(i) + val);
+		}
 	}
 
 	void TEST8()
 	{
-		assert(true);
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 12;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i);
+		}
+
+		const auto res = v - val;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == v(i) - val);
+		}
 	}
 
 	void TEST9()

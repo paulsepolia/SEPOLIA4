@@ -72,13 +72,13 @@ public:
 
 	//  double OPERATOR type
 
-	friend Vector operator*(const Vector& vec, double val);
+	friend Vector operator*(double val, const Vector& vec);
 
-	friend Vector operator/(const Vector& vec, double val);
+	friend Vector operator/(double val, const Vector& vec);
 
-	friend Vector operator+(const Vector& vec, double val);
+	friend Vector operator+(double val, const Vector& vec);
 
-	friend Vector operator-(const Vector& vec, double val);
+	friend Vector operator-(double val, const Vector& vec);
 
 private:
 

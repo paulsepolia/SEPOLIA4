@@ -221,7 +221,7 @@ Vector Vector::operator+(double value) const
 	{
 		res(i) = m_data[i] + value;
 	}
-	return *this;
+	return std::move(res);
 }
 
 Vector Vector::operator-(double value) const
@@ -234,7 +234,7 @@ Vector Vector::operator-(double value) const
 	{
 		res(i) = m_data[i] - value;
 	}
-	return *this;
+	return std::move(res);
 }
 
 Vector Vector::operator*(double value) const
@@ -247,7 +247,7 @@ Vector Vector::operator*(double value) const
 	{
 		res(i) = m_data[i] * value;
 	}
-	return *this;
+	return std::move(res);
 }
 
 Vector Vector::operator/(double value) const
@@ -261,29 +261,33 @@ Vector Vector::operator/(double value) const
 	{
 		res(i) = m_data[i] / value;
 	}
-	return *this;
+	return std::move(res);
 }
 
 //======================//
 // double OPERATOR type //
 //======================//
 
-Vector operator*(const Vector&, double)
+Vector operator*(double, const Vector&)
 {
-
+	Vector res;
+	return std::move(res);
 }
 
-Vector operator/(const Vector&, double)
+Vector operator/(double, const Vector&)
 {
-
+	Vector res;
+	return std::move(res);
 }
 
-Vector operator+(const Vector&, double)
+Vector operator+(double, const Vector&)
 {
-
+	Vector res;
+	return std::move(res);
 }
 
-Vector operator-(const Vector&, double)
+Vector operator-(double, const Vector&)
 {
-
+	Vector res;
+	return std::move(res);
 }

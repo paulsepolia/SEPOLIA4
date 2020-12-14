@@ -38,14 +38,14 @@ else(LAPACK_FOUND)
 endif(LAPACK_FOUND)
 
 ADD_EXECUTABLE(SEPOLIA4 main.cpp
-        List.cpp
-        BoostUblasTests.cpp
-        BoostUblasTests.h
-        ListTests.cpp
-        ListTests.h
-        Vector.cpp
-        Vector.h
-        Matrix.cpp
-        Matrix.h VectorTests.cpp VectorTests.h CommonHeaders.h)
+        List/List.cpp
+        BoostUblas/BoostUblasTests.cpp
+        BoostUblas/BoostUblasTests.h
+        List/ListTests.cpp
+        List/ListTests.h
+        Vector/Vector.cpp
+        Vector/Vector.h
+        Matrix/Matrix.cpp
+        Matrix/Matrix.h Vector/VectorTests.cpp Vector/VectorTests.h Common/CommonHeaders.h)
 
 TARGET_LINK_LIBRARIES(SEPOLIA4 ${LAPACK_LIBRARIES} ${BLAS_LIBARIES})

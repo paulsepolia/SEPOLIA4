@@ -1,6 +1,6 @@
-#include "BoostUblasTests.h"
-#include "ListTests.h"
-#include "VectorTests.h"
+#include "BoostUblas/BoostUblasTests.h"
+#include "List/ListTests.h"
+#include "Vector/VectorTests.h"
 #include <iostream>
 
 //#include <cblas.h>

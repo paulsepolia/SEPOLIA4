@@ -1,6 +1,8 @@
 #include "VectorTests.h"
 #include "Vector.h"
 #include <cassert>
+#include <cmath>
+#include <vector>
 
 namespace TESTS_SEPOLIA4_VECTOR
 {
@@ -382,5 +384,61 @@ namespace TESTS_SEPOLIA4_VECTOR
 		assert(val == v1);
 		assert(v2 == v1);
 		assert(v2 == val);
+	}
+
+	void TEST20()
+	{
+		Vector v1;
+		v1.Allocate(DIM);
+		Vector v2;
+		v2.Allocate(DIM);
+		Vector v3;
+		v3.Allocate(DIM);
+
+		for(size_t i = 0; i < DIM; i++)
+		{
+			v1[i] = std::sin(i);
+			v2[i] = std::sin(i);
+			v3[i] = std::sin(i);
+		}
+
+		assert(v1 == v2);
+		assert(v2 == v3);
+		assert(v1 == v3);
+	}
+
+	void TEST21()
+	{
+		Vector v1{1,2,3,4};
+		assert(v1.Size() == 4);
+		assert(v1[0] == 1);
+		assert(v1[1] == 2);
+		assert(v1[2] == 3);
+		assert(v1[3] == 4);
+	}
+
+	void TEST22()
+	{
+		std::vector<double> v1STL{1,2,3,4};
+		Vector v1(v1STL);
+		assert(v1.Size() == 4);
+		assert(v1[0] == 1);
+		assert(v1[1] == 2);
+		assert(v1[2] == 3);
+		assert(v1[3] == 4);
+	}
+
+	void TEST23()
+	{
+		Vector v1(DIM);
+		assert(v1.Size() == DIM);
+		const double val = 12.34;
+		for(size_t i = 0 ; i < DIM; i++)
+		{
+			v1[i] = static_cast<double>(val);
+		}
+
+		assert(v1 == val);
+		assert(val == v1);
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 class Vector final
 {
@@ -11,6 +12,12 @@ public:
 	//==============//
 
 	Vector() = default;
+
+	explicit Vector(size_t size);
+
+	explicit Vector(const std::vector<double>& vec);
+
+	Vector(const std::initializer_list<double>& initList);
 
 	Vector(const Vector& other);
 

@@ -4,6 +4,36 @@
 #include <iostream>
 #include <cassert>
 
+Vector::Vector(size_t size)
+{
+	if constexpr (DEBUG_CHECK) assert(Allocate(size));
+	else Allocate(size);
+}
+
+Vector::Vector(const std::vector<double>& vec)
+{
+	if constexpr (DEBUG_CHECK) assert(Allocate(vec.size()));
+	else Allocate(vec.size());
+
+	for(size_t i = 0; i < vec.size(); i++)
+	{
+		operator[](i) = vec[i];
+	}
+}
+
+Vector::Vector(const std::initializer_list<double>& initList)
+{
+	if constexpr (DEBUG_CHECK) assert(Allocate(initList.size()));
+	else Allocate(initList.size());
+
+	size_t idx = 0;
+	for(const auto&el : initList)
+	{
+		operator[](idx) = el;
+		idx++;
+	}
+}
+
 //==================//
 // Copy constructor //
 //==================//
@@ -156,7 +186,6 @@ bool operator!=(double val, const Vector& rhs)
 {
 	return rhs != val;
 }
-
 
 //========================//
 // vector OPERATOR vector //

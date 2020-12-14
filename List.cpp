@@ -1,12 +1,10 @@
 #include "List.h"
+#include "CommonHeaders.h"
 #include <iostream>
 
 //===========//
 // Help Node //
 //===========//
-
-constexpr bool DEBUG = false;
-constexpr bool DEBUG_PRINT = false;
 
 Node::Node(double v) : value(v)
 {
@@ -14,7 +12,7 @@ Node::Node(double v) : value(v)
 
 Node::~Node()
 {
-	if (DEBUG)
+	if (DEBUG_PRINT)
 	{
 		std::cout << "-->> ~Node() -->> " << value << std::endl;
 	}

@@ -1,6 +1,8 @@
 #include "Vector.h"
+#include "CommonHeaders.h"
 #include <exception>
 #include <iostream>
+#include <cassert>
 
 //==================//
 // Copy constructor //
@@ -14,7 +16,7 @@ Vector::Vector(const Vector& other)
 		m_size = other.m_size;
 		for (size_t i = 0; i < m_size; i++)
 		{
-			p[i] = other.p[i];
+			m_data[i] = other.m_data[i];
 		}
 	}
 }
@@ -30,7 +32,7 @@ Vector& Vector::operator=(const Vector& other)
 		Allocate(other.m_size);
 		for (size_t i = 0; i < m_size; i++)
 		{
-			p[i] = other.p[i];
+			m_data[i] = other.m_data[i];
 		}
 	}
 	return *this;
@@ -42,12 +44,12 @@ Vector& Vector::operator=(const Vector& other)
 
 Vector::Vector(Vector&& other) noexcept
 {
-	if(this != &other)
+	if (this != &other)
 	{
-		if (p) Deallocate();
-		p = other.p;
+		if (m_data) Deallocate();
+		m_data = std::move(other.m_data);
 		m_size = other.m_size;
-		other.p = nullptr;
+		other.m_data = nullptr;
 		other.m_size = 0;
 	}
 }
@@ -58,12 +60,12 @@ Vector::Vector(Vector&& other) noexcept
 
 Vector& Vector::operator=(Vector&& other) noexcept
 {
-	if(this != &other)
+	if (this != &other)
 	{
-		if (p) Deallocate();
-		p = other.p;
+		if (m_data) Deallocate();
+		m_data = std::move(other.m_data);
 		m_size = other.m_size;
-		other.p = nullptr;
+		other.m_data = nullptr;
 		other.m_size = 0;
 	}
 	return *this;
@@ -73,14 +75,14 @@ bool Vector::Allocate(size_t size)
 {
 	try
 	{
-		if (p) Deallocate();
-		p = new double[size];
+		if (m_data) Deallocate();
+		m_data = std::make_unique<double[]>(size);
 		m_size = size;
 		return true;
 	}
 	catch (std::exception& e)
 	{
-		p = nullptr;
+		m_data.reset(nullptr);
 		std::cout << e.what() << std::endl;
 	}
 	return false;
@@ -88,8 +90,7 @@ bool Vector::Allocate(size_t size)
 
 bool Vector::Deallocate()
 {
-	delete[] p;
-	p = nullptr;
+	m_data.reset(nullptr);
 	m_size = 0;
 	return true;
 }
@@ -99,19 +100,189 @@ size_t Vector::Size() const
 	return m_size;
 }
 
-double Vector::operator[](size_t idx) const
+double Vector::operator()(size_t idx) const
 {
-	return p[idx];
+	return m_data[idx];
 }
 
-double& Vector::operator[](size_t idx)
+double& Vector::operator()(size_t idx)
 {
-	return p[idx];
+	return m_data[idx];
 }
 
-Vector::~Vector()
+bool Vector::operator==(const Vector& other) const
 {
-	delete[] p;
-	p = nullptr;
-	m_size = 0;
+	assert(m_data);
+	assert(other.m_data);
+
+	if (m_size != other.Size()) return false;
+
+	for (size_t i = 0; i < other.Size(); i++)
+	{
+		if (m_data[i] != other.m_data[i]) return false;
+	}
+
+	return true;
+}
+
+bool Vector::operator!=(const Vector& other) const
+{
+	return !(*this == other);
+}
+
+//========================//
+// vector OPERATOR vector //
+//========================//
+
+Vector Vector::operator+(const Vector& other) const
+{
+	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
+	if constexpr (DEBUG_CHECK) assert(m_data);
+	if constexpr (DEBUG_CHECK) assert(other.m_data);
+
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
+
+	for (size_t i = 0; i < other.Size(); i++)
+	{
+		res(i) = m_data[i] + other.m_data[i];
+	}
+
+	return std::move(res);
+}
+
+Vector Vector::operator-(const Vector& other) const
+{
+	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
+	if constexpr (DEBUG_CHECK) assert(m_data);
+	if constexpr (DEBUG_CHECK) assert(other.m_data);
+
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
+
+	for (size_t i = 0; i < other.Size(); i++)
+	{
+		res(i) = m_data[i] - other.m_data[i];
+	}
+
+	return std::move(res);
+}
+
+Vector Vector::operator*(const Vector& other) const
+{
+	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
+	if constexpr (DEBUG_CHECK) assert(m_data);
+	if constexpr (DEBUG_CHECK) assert(other.m_data);
+
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
+
+	for (size_t i = 0; i < other.Size(); i++)
+	{
+		res(i) = m_data[i] * other.m_data[i];
+	}
+
+	return std::move(res);
+}
+
+Vector Vector::operator/(const Vector& other) const
+{
+	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
+	if constexpr (DEBUG_CHECK) assert(m_data);
+	if constexpr (DEBUG_CHECK) assert(other.m_data);
+
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+
+	for (size_t i = 0; i < other.Size(); i++)
+	{
+		if constexpr (DEBUG_CHECK) assert(other.m_data[i]);
+		res(i) = m_data[i] / other.m_data[i];
+	}
+
+	return std::move(res);
+}
+
+//========================//
+// vector OPERATOR double //
+//========================//
+
+Vector Vector::operator+(double value) const
+{
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
+
+	for (size_t i = 0; i < m_size; i++)
+	{
+		res(i) = m_data[i] + value;
+	}
+	return *this;
+}
+
+Vector Vector::operator-(double value) const
+{
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
+
+	for (size_t i = 0; i < m_size; i++)
+	{
+		res(i) = m_data[i] - value;
+	}
+	return *this;
+}
+
+Vector Vector::operator*(double value) const
+{
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
+
+	for (size_t i = 0; i < m_size; i++)
+	{
+		res(i) = m_data[i] * value;
+	}
+	return *this;
+}
+
+Vector Vector::operator/(double value) const
+{
+	if constexpr (DEBUG_CHECK) assert(value);
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
+
+	for (size_t i = 0; i < m_size; i++)
+	{
+		res(i) = m_data[i] / value;
+	}
+	return *this;
+}
+
+//======================//
+// double OPERATOR type //
+//======================//
+
+Vector operator*(const Vector&, double)
+{
+
+}
+
+Vector operator/(const Vector&, double)
+{
+
+}
+
+Vector operator+(const Vector&, double)
+{
+
+}
+
+Vector operator-(const Vector&, double)
+{
+
 }

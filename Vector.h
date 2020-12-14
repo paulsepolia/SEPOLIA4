@@ -2,10 +2,15 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <memory>
 
 class Vector final
 {
 public:
+
+	//==============//
+	// Constructors //
+	//==============//
 
 	Vector() = default;
 
@@ -17,21 +22,66 @@ public:
 
 	Vector& operator=(Vector&& other) noexcept;
 
+	~Vector() = default;
+
+	//===================//
+	// Memory management //
+	//===================//
+
 	bool Allocate(size_t size);
 
 	bool Deallocate();
 
 	[[nodiscard]] size_t Size() const;
 
-	double operator[](size_t idx) const;
+	//======================================//
+	// Operators to access and set elements //
+	//======================================//
 
-	double& operator[](size_t idx);
+	double operator()(size_t idx) const;
 
-	~Vector();
+	double& operator()(size_t idx);
+
+	//================//
+	// Operators rest //
+	//================//
+
+	bool operator==(const Vector& rhs) const;
+
+	bool operator!=(const Vector& rhs) const;
+
+	//  vector OPERATOR vector
+
+	Vector operator+(const Vector& rhs) const;
+
+	Vector operator-(const Vector& rhs) const;
+
+	Vector operator*(const Vector& rhs) const;
+
+	Vector operator/(const Vector& rhs) const;
+
+	//  vector OPERATOR double
+
+	Vector operator+(double value) const;
+
+	Vector operator-(double value) const;
+
+	Vector operator*(double value) const;
+
+	Vector operator/(double value) const;
+
+	//  double OPERATOR type
+
+	friend Vector operator*(const Vector& vector, double value);
+
+	friend Vector operator/(const Vector& vector, double value);
+
+	friend Vector operator+(const Vector& vector, double value);
+
+	friend Vector operator-(const Vector& vector, double value);
 
 private:
 
-	double* p = nullptr;
+	std::unique_ptr<double[]> m_data;
 	size_t m_size = 0;
 };
-

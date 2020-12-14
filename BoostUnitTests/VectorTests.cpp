@@ -1,58 +1,22 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN  // in only one cpp file
+
 #include "../Vector/Vector.h"
-#include <boost/test/unit_test.hpp>
-
-//#include <cblas.h>
-//int main()
-//{
-//	// Create arrays that represent the matrices A,B,C
-//	const int n = 20;
-//	auto* A = new double[n * n];
-//	auto* B = new double[n * n];
-//	auto* C = new double[n * n];
-//
-//	// Fill A and B with random numbers
-//	for (uint32_t i = 0; i < n; i++)
-//	{
-//		for (uint32_t j = 0; j < n; j++)
-//		{
-//			A[i * n + j] = 1;
-//			B[i * n + j] = 1;
-//		}
-//	}
-//
-//	// Calculate A*B=C
-//	cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, n, n, n, 1.0, A, n, B, n, 0.0, C, n);
-//
-//	std::cout << C[0] << std::endl;
-//	std::cout << C[1] << std::endl;
-//	std::cout << C[2] << std::endl;
-//
-//	// Clean up
-//	delete[] A;
-//	delete[] B;
-//	delete[] C;
-//
-//	return 0;
-//}
-
-namespace bt = boost::unit_test;
-
-#include <cassert>
 #include <cmath>
 #include <vector>
-#include <iostream>
+#include <boost/test/unit_test.hpp>
+
+using namespace SEPOLIA4::CONTAINERS;
 
 namespace std
 {
-	ostream& operator<<(ostream& stream, Vector const& term)
+	ostream& operator<<(ostream& stream, const Vector& term)
 	{
 		return stream;
 	}
 }
 
-namespace TESTS_SEPOLIA4_VECTOR
+namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 {
 	constexpr size_t DIM = 10;
 
@@ -142,7 +106,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		for (size_t i = 0; i < DIM; i++)
 		{
-			//BOOST_TEST(v3.At(i) == static_cast<double>(i) + static_cast<double>(i + 1));
+			BOOST_TEST(v3.At(i) == static_cast<double>(i) + static_cast<double>(i + 1));
 		}
 	}
 
@@ -600,4 +564,3 @@ namespace TESTS_SEPOLIA4_VECTOR
 		BOOST_TEST(1.0 == v1);
 	}
 }
-

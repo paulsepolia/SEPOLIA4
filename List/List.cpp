@@ -12,7 +12,7 @@ Node::Node(double v) : value(v)
 
 Node::~Node()
 {
-	if (DEBUG_PRINT)
+	if (SEPOLIA4::DEBUG_PRINT)
 	{
 		std::cout << "-->> ~Node() -->> " << value << std::endl;
 	}
@@ -172,7 +172,7 @@ void List::Insert(double v)
 
 void List::Print() const
 {
-	if (DEBUG_PRINT)
+	if (SEPOLIA4::DEBUG_PRINT)
 	{
 		auto tmp = head;
 

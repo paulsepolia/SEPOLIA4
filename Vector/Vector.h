@@ -3,148 +3,151 @@
 #include <memory>
 #include <vector>
 
-class Vector final
+namespace SEPOLIA4::CONTAINERS
 {
-public:
+	class Vector final
+	{
+	public:
 
-	//==============//
-	// Constructors //
-	//==============//
+		//==============//
+		// Constructors //
+		//==============//
 
-	Vector() = default;
+		Vector() = default;
 
-	explicit Vector(size_t size);
+		explicit Vector(size_t size);
 
-	explicit Vector(const std::vector<double>& vec);
+		explicit Vector(const std::vector<double>& vec);
 
-	Vector(const std::initializer_list<double>& initList);
+		Vector(const std::initializer_list<double>& initList);
 
-	Vector(const Vector& other);
+		Vector(const Vector& other);
 
-	Vector& operator=(const Vector& other);
+		Vector& operator=(const Vector& other);
 
-	Vector(Vector&& other) noexcept;
+		Vector(Vector&& other) noexcept;
 
-	Vector& operator=(Vector&& other) noexcept;
+		Vector& operator=(Vector&& other) noexcept;
 
-	~Vector() = default;
+		~Vector() = default;
 
-	//===================//
-	// Memory management //
-	//===================//
+		//===================//
+		// Memory management //
+		//===================//
 
-	bool Allocate(size_t size);
+		bool Allocate(size_t size);
 
-	bool Deallocate();
+		bool Deallocate();
 
-	[[nodiscard]] bool IsAllocated() const;
+		[[nodiscard]] bool IsAllocated() const;
 
-	[[nodiscard]] bool IsDeallocated() const;
+		[[nodiscard]] bool IsDeallocated() const;
 
-	[[nodiscard]] size_t Size() const;
+		[[nodiscard]] size_t Size() const;
 
-	//======================================//
-	// Operators to access and set elements //
-	//======================================//
+		//======================================//
+		// Operators to access and set elements //
+		//======================================//
 
-	[[nodiscard]] const double& At(size_t idx) const;
+		[[nodiscard]] const double& At(size_t idx) const;
 
-	double& operator[](size_t idx);
+		double& operator[](size_t idx);
 
-	//================//
-	// Check equality //
-	//================//
+		//================//
+		// Check equality //
+		//================//
 
-	bool operator==(const Vector& rhs) const;
+		bool operator==(const Vector& rhs) const;
 
-	bool operator==(double val) const;
+		bool operator==(double val) const;
 
-	friend bool operator==(double val, const Vector& rhs);
+		friend bool operator==(double val, const Vector& rhs);
 
-	bool operator!=(const Vector& rhs) const;
+		bool operator!=(const Vector& rhs) const;
 
-	bool operator!=(double val) const;
+		bool operator!=(double val) const;
 
-	friend bool operator!=(double val, const Vector& rhs);
+		friend bool operator!=(double val, const Vector& rhs);
 
-	//======================//
-	// arithmetic operators //
-	//======================//
+		//======================//
+		// arithmetic operators //
+		//======================//
 
-	//=============//
-	// operator: + //
-	//=============//
+		//=============//
+		// operator: + //
+		//=============//
 
-	Vector operator+(const Vector& rhs) const;
+		Vector operator+(const Vector& rhs) const;
 
-	Vector operator+(double val) const;
+		Vector operator+(double val) const;
 
-	friend Vector operator+(double val, const Vector& vec);
+		friend Vector operator+(double val, const Vector& vec);
 
-	void operator++();
+		void operator++();
 
-	void operator++(int);
+		void operator++(int);
 
-	Vector& operator+=(const Vector& rhs);
+		Vector& operator+=(const Vector& rhs);
 
-	Vector& operator+=(double);
+		Vector& operator+=(double);
 
-	//=============//
-	// operator: - //
-	//=============//
+		//=============//
+		// operator: - //
+		//=============//
 
-	Vector operator-(const Vector& rhs) const;
+		Vector operator-(const Vector& rhs) const;
 
-	Vector operator-(double val) const;
+		Vector operator-(double val) const;
 
-	friend Vector operator-(double val, const Vector& vec);
+		friend Vector operator-(double val, const Vector& vec);
 
-	friend Vector operator-(const Vector& vec);
+		friend Vector operator-(const Vector& vec);
 
-	void operator--();
+		void operator--();
 
-	void operator--(int);
+		void operator--(int);
 
-	Vector& operator-=(const Vector& rhs);
+		Vector& operator-=(const Vector& rhs);
 
-	Vector& operator-=(double);
+		Vector& operator-=(double);
 
-	//=============//
-	// operator: * //
-	//=============//
+		//=============//
+		// operator: * //
+		//=============//
 
-	Vector operator*(const Vector& rhs) const;
+		Vector operator*(const Vector& rhs) const;
 
-	Vector operator*(double val) const;
+		Vector operator*(double val) const;
 
-	friend Vector operator*(double val, const Vector& vec);
+		friend Vector operator*(double val, const Vector& vec);
 
-	Vector& operator*=(const Vector& rhs);
+		Vector& operator*=(const Vector& rhs);
 
-	Vector& operator*=(double);
+		Vector& operator*=(double);
 
-	//=============//
-	// operator: / //
-	//=============//
+		//=============//
+		// operator: / //
+		//=============//
 
-	Vector operator/(const Vector& rhs) const;
+		Vector operator/(const Vector& rhs) const;
 
-	Vector operator/(double val) const;
+		Vector operator/(double val) const;
 
-	friend Vector operator/(double val, const Vector& vec);
+		friend Vector operator/(double val, const Vector& vec);
 
-	Vector& operator/=(const Vector& rhs);
+		Vector& operator/=(const Vector& rhs);
 
-	Vector& operator/=(double);
+		Vector& operator/=(double);
 
-	//============================//
-	// Assignment value operators //
-	//============================//
+		//============================//
+		// Assignment value operators //
+		//============================//
 
-	Vector& operator=(double val);
+		Vector& operator=(double val);
 
-private:
+	private:
 
-	std::unique_ptr<double[]> m_data;
-	size_t m_size = 0;
-};
+		std::unique_ptr<double[]> m_data;
+		size_t m_size = 0;
+	};
+}

@@ -110,6 +110,10 @@ double& Vector::operator[](size_t idx)
 	return m_data[idx];
 }
 
+//================//
+// Check equality //
+//================//
+
 bool Vector::operator==(const Vector& other) const
 {
 	assert(m_data);
@@ -121,14 +125,38 @@ bool Vector::operator==(const Vector& other) const
 	{
 		if (m_data[i] != other.m_data[i]) return false;
 	}
-
 	return true;
+}
+
+bool Vector::operator==(double val) const
+{
+	for (size_t i = 0; i < Size(); i++)
+	{
+		if (m_data[i] != val) return false;
+	}
+	return true;
+}
+
+bool operator==(double val, const Vector& rhs)
+{
+	return rhs == val;
 }
 
 bool Vector::operator!=(const Vector& other) const
 {
 	return !(*this == other);
 }
+
+bool Vector::operator!=(double val) const
+{
+	return !(*this == val);
+}
+
+bool operator!=(double val, const Vector& rhs)
+{
+	return rhs != val;
+}
+
 
 //========================//
 // vector OPERATOR vector //
@@ -264,6 +292,25 @@ Vector Vector::operator/(double value) const
 	return std::move(res);
 }
 
+//============================//
+// Assignment value operators //
+//============================//
+
+Vector& Vector::operator=(double val)
+{
+	if constexpr (DEBUG_CHECK) assert(m_data);
+
+	for (size_t i = 0; i < m_size; i++)
+	{
+		m_data[i] = val;
+	}
+	return *this;
+}
+
+//==================//
+// FRIEND OPERATORS //
+//==================//
+
 //========================//
 // double OPERATOR vector //
 //========================//
@@ -321,17 +368,16 @@ Vector operator/(double val, const Vector& rhs)
 	return std::move(res);
 }
 
-//============================//
-// Assignment value operators //
-//============================//
-
-Vector& Vector::operator=(double val)
+Vector operator-(const Vector& rhs)
 {
-	if constexpr (DEBUG_CHECK) assert(m_data);
+	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
+	else res.Allocate(rhs.m_size);
 
-	for(size_t i = 0; i < m_size; i++)
+	for (size_t i = 0; i < rhs.m_size; i++)
 	{
-		m_data[i] = val;
+		if constexpr (DEBUG_CHECK) assert(rhs.At(i));
+		res[i] = -rhs.At(i);
 	}
-	return *this;
+	return std::move(res);
 }

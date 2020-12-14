@@ -87,5 +87,7 @@ int main()
 		TEST15();
 		TEST16();
 		TEST17();
+		TEST18();
+		TEST19();
 	}
 }

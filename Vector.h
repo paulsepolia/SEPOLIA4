@@ -46,7 +46,15 @@ public:
 
 	bool operator==(const Vector& rhs) const;
 
+	bool operator==(double val) const;
+
+	friend bool operator==(double val, const Vector& rhs);
+
 	bool operator!=(const Vector& rhs) const;
+
+	bool operator!=(double val) const;
+
+	friend bool operator!=(double val, const Vector& rhs);
 
 	//========================//
 	// vector OPERATOR vector //
@@ -72,9 +80,15 @@ public:
 
 	Vector operator/(double val) const;
 
-	//=======================//
-	// value OPERATOR Vector //
-	//=======================//
+	//============================//
+	// Assignment value operators //
+	//============================//
+
+	Vector& operator=(double val);
+
+	//==================//
+	// FRIEND OPERATORS //
+	//==================//
 
 	friend Vector operator*(double val, const Vector& vec);
 
@@ -84,11 +98,7 @@ public:
 
 	friend Vector operator-(double val, const Vector& vec);
 
-	//============================//
-	// Assignment value operators //
-	//============================//
-
-	Vector& operator=(double val);
+	friend Vector operator-(const Vector& vec);
 
 private:
 

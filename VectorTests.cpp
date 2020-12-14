@@ -354,4 +354,33 @@ namespace TESTS_SEPOLIA4_VECTOR
 			assert(v2.At(i) == val);
 		}
 	}
+
+	void TEST18()
+	{
+		Vector v1;
+		v1.Allocate(DIM);
+		v1 = 10;
+		auto v2 = -v1;
+		assert(v1 == 10);
+		assert(10 == v1);
+		assert(v2 == -v1);
+		assert(-v1 == v2);
+		assert(v1 != 11);
+		assert(v2 != v1);
+		assert(11 != v1);
+	}
+
+	void TEST19()
+	{
+		Vector v1;
+		v1.Allocate(DIM);
+		const double val = 10;
+		v1 = val;
+		Vector v2(v1);
+
+		assert(v1 == val);
+		assert(val == v1);
+		assert(v2 == v1);
+		assert(v2 == val);
+	}
 }

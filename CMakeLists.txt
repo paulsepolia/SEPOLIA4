@@ -45,7 +45,14 @@ ADD_EXECUTABLE(SEPOLIA4 main.cpp
         List/ListTests.h
         Vector/Vector.cpp
         Vector/Vector.h
+        Vector/VectorTests.cpp
+        Vector/VectorTests.h
         Matrix/Matrix.cpp
-        Matrix/Matrix.h Vector/VectorTests.cpp Vector/VectorTests.h Common/CommonHeaders.h)
+        Matrix/Matrix.h
+        Common/CommonHeaders.h
+        BoostUnitTests/VectorBoostUnitTests.cpp
+        BoostUnitTests/MatrixBoostUnitTests.cpp)
 
-TARGET_LINK_LIBRARIES(SEPOLIA4 ${LAPACK_LIBRARIES} ${BLAS_LIBARIES})
+TARGET_LINK_LIBRARIES(SEPOLIA4 ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES} ${BOOST_LIBRARIES})
+
+ADD_SUBDIRECTORY(BoostUnitTests)

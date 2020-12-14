@@ -1,0 +1,15 @@
+#define BOOST_TEST_DYN_LINK
+
+#include <boost/test/unit_test.hpp>
+
+namespace SEPOLIA4::BOOST_UNIT_TEST_LAPACK
+{
+
+	BOOST_AUTO_TEST_SUITE(LAPACK_TESTS)
+
+		BOOST_AUTO_TEST_CASE(TEST1)
+		{
+		}
+
+	BOOST_AUTO_TEST_SUITE_END()
+}

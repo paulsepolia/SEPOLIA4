@@ -1,57 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.17)
 PROJECT(SEPOLIA4)
 SET(CMAKE_CXX_STANDARD 20)
-
-#========================#
-# BOOST library settings #
-#========================#
-
-SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/mnt/xdata/opt/boost/1.75.0/include")
-SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "/mnt/xdata/opt/boost/1.75.0/lib")
-
-FIND_PACKAGE(Boost)
-
-IF (Boost_FOUND)
-    INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
-    ADD_DEFINITIONS( "-DHAS_BOOST" )
-ENDIF()
-
-#===============#
-# BLAS settings #
-#===============#
-
-FIND_PACKAGE(BLAS REQUIRED)
-
-if(BLAS_FOUND)
-    INCLUDE_DIRECTORIES(${BLAS_INCLUDE_DIR})
-    LINK_DIRECTORIES(${BLAS_LIBRARIES})
-else(BLAS_FOUND)
-    MESSAGE(FATAL_ERROR "BLAS NOT FOUND")
-endif(BLAS_FOUND)
-
-#=================#
-# LAPACK settings #
-#=================#
-
-FIND_PACKAGE(LAPACK REQUIRED)
-if(LAPACK_FOUND)
-    INCLUDE_DIRECTORIES(${LAPACK_INCLUDE_DIR})
-    LINK_DIRECTORIES(${LAPACK_LIBRARIES})
-else(LAPACK_FOUND)
-    MESSAGE(FATAL_ERROR "LAPACK NOT FOUND")
-endif(LAPACK_FOUND)
-
-ADD_EXECUTABLE(SEPOLIA4
-        main.cpp
-        BoostUblas/BoostUblasTests.cpp
-        BoostUblas/BoostUblasTests.h
-        Common/CommonHeaders.h
-        Containers/List/List.cpp
-        Containers/Matrix/Matrix.cpp
-        Containers/Matrix/Matrix.h
-        Containers/Vector/Vector.cpp
-        Containers/Vector/Vector.h)
-
-TARGET_LINK_LIBRARIES(SEPOLIA4 ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES} ${BOOST_LIBRARIES})
-
+ADD_EXECUTABLE(SEPOLIA4 main.cpp)
 ADD_SUBDIRECTORY(BoostUnitTests)

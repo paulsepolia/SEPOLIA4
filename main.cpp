@@ -80,5 +80,9 @@ int main()
 		TEST8();
 		TEST9();
 		TEST10();
+		TEST11();
+		TEST12();
+		TEST13();
+		TEST14();
 	}
 }

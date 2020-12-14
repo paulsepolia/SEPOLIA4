@@ -201,12 +201,110 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 	void TEST9()
 	{
-		assert(true);
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 12;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i);
+		}
+
+		const auto res = v * val;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == v(i) * val);
+		}
 	}
 
 	void TEST10()
 	{
-		assert(true);
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 12;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i);
+		}
+
+		const auto res = v / val;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == v(i) / val);
+		}
+	}
+
+	void TEST11()
+	{
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 11;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i);
+		}
+
+		const auto res = val + v;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == val + v(i));
+		}
+	}
+
+	void TEST12()
+	{
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 12;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i);
+		}
+
+		const auto res = val - v;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == val - v(i));
+		}
+	}
+
+	void TEST13()
+	{
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 13;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i);
+		}
+
+		const auto res = val * v;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == val * v(i));
+		}
+	}
+
+	void TEST14()
+	{
+		Vector v;
+		v.Allocate(DIM);
+		const double val = 14;
+
+		for (size_t i = 0; i < DIM; i++)
+		{
+			v(i) = static_cast<double>(i+1);
+		}
+
+		const auto res = val / v;
+		for (size_t i = 0; i < DIM; i++)
+		{
+			assert(res(i) == val / v(i));
+		}
 	}
 }
 

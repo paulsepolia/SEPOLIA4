@@ -264,30 +264,59 @@ Vector Vector::operator/(double value) const
 	return std::move(res);
 }
 
-//======================//
-// double OPERATOR type //
-//======================//
+//========================//
+// double OPERATOR vector //
+//========================//
 
-Vector operator*(double, const Vector&)
+Vector operator+(double val, const Vector& rhs)
 {
 	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
+	else res.Allocate(rhs.m_size);
+
+	for(size_t i = 0; i < rhs.m_size; i++)
+	{
+		res(i) = val + rhs(i);
+	}
 	return std::move(res);
 }
 
-Vector operator/(double, const Vector&)
+Vector operator-(double val, const Vector& rhs)
 {
 	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
+	else res.Allocate(rhs.m_size);
+
+	for(size_t i = 0; i < rhs.m_size; i++)
+	{
+		res(i) = val - rhs(i);
+	}
 	return std::move(res);
 }
 
-Vector operator+(double, const Vector&)
+Vector operator*(double val, const Vector& rhs)
 {
 	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
+	else res.Allocate(rhs.m_size);
+
+	for(size_t i = 0; i < rhs.m_size; i++)
+	{
+		res(i) = val * rhs(i);
+	}
 	return std::move(res);
 }
 
-Vector operator-(double, const Vector&)
+Vector operator/(double val, const Vector& rhs)
 {
 	Vector res;
+	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
+	else res.Allocate(rhs.m_size);
+
+	for(size_t i = 0; i < rhs.m_size; i++)
+	{
+		if constexpr (DEBUG_CHECK) assert(rhs(i));
+		res(i) = val / rhs(i);
+	}
 	return std::move(res);
 }

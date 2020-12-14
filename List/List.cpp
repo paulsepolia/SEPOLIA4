@@ -2,59 +2,39 @@
 #include "../Common/CommonHeaders.h"
 #include <iostream>
 
-//===========//
-// Help Node //
-//===========//
-
-Node::Node(double v) : value(v)
+namespace SEPOLIA4::CONTAINERS
 {
-}
+	//===========//
+	// Help Node //
+	//===========//
 
-Node::~Node()
-{
-	if (SEPOLIA4::DEBUG_PRINT)
+	Node::Node(double v) : value(v)
 	{
-		std::cout << "-->> ~Node() -->> " << value << std::endl;
-	}
-}
-
-//=====================//
-// Default constructor //
-//=====================//
-
-List::List() = default;
-
-//==================//
-// Copy constructor //
-//==================//
-
-List::List(const List& other)
-{
-	List list;
-
-	auto tmp = other.head;
-	while (tmp)
-	{
-		list.Insert(tmp->value);
-		tmp = tmp->next;
 	}
 
-	head = list.head;
-	size = other.size;
-	list.head = nullptr;
-}
+	Node::~Node()
+	{
+		if (SEPOLIA4::DEBUG_PRINT)
+		{
+			std::cout << "-->> ~Node() -->> " << value << std::endl;
+		}
+	}
 
-//=============================//
-// Copy assignment constructor //
-//=============================//
+	//=====================//
+	// Default constructor //
+	//=====================//
 
-List& List::operator=(const List& other)
-{
-	if (&other != this)
+	List::List() = default;
+
+	//==================//
+	// Copy constructor //
+	//==================//
+
+	List::List(const List& other)
 	{
 		List list;
 
-		Node* tmp = other.head;
+		auto tmp = other.head;
 		while (tmp)
 		{
 			list.Insert(tmp->value);
@@ -66,278 +46,301 @@ List& List::operator=(const List& other)
 		list.head = nullptr;
 	}
 
-	return *this;
-}
+	//=============================//
+	// Copy assignment constructor //
+	//=============================//
 
-//==================//
-// Move constructor //
-//==================//
-
-List::List(List&& other) noexcept
-{
-	if (&other != this)
+	List& List::operator=(const List& other)
 	{
-		head = other.head;
-		size = other.size;
-		other.head = nullptr;
-		other.size = 0;
+		if (&other != this)
+		{
+			List list;
+
+			Node* tmp = other.head;
+			while (tmp)
+			{
+				list.Insert(tmp->value);
+				tmp = tmp->next;
+			}
+
+			head = list.head;
+			size = other.size;
+			list.head = nullptr;
+		}
+
+		return *this;
 	}
-}
 
-//=============================//
-// Move assignment constructor //
-//=============================//
+	//==================//
+	// Move constructor //
+	//==================//
 
-List& List::operator=(List&& other) noexcept
-{
-	if (&other != this)
+	List::List(List&& other) noexcept
 	{
-		head = other.head;
-		size = other.size;
-		other.head = nullptr;
-		other.size = 0;
+		if (&other != this)
+		{
+			head = other.head;
+			size = other.size;
+			other.head = nullptr;
+			other.size = 0;
+		}
 	}
-	return *this;
-}
 
-//============================//
-// Several constructors below //
-//============================//
+	//=============================//
+	// Move assignment constructor //
+	//=============================//
 
-List::List(const std::initializer_list<double>& l)
-{
-	for (const auto& el: l)
+	List& List::operator=(List&& other) noexcept
 	{
-		Insert(el);
+		if (&other != this)
+		{
+			head = other.head;
+			size = other.size;
+			other.head = nullptr;
+			other.size = 0;
+		}
+		return *this;
 	}
-}
 
-List::List(const std::vector<double>& v)
-{
-	for (const auto& el: v)
+	//============================//
+	// Several constructors below //
+	//============================//
+
+	List::List(const std::initializer_list<double>& l)
 	{
-		Insert(el);
+		for (const auto& el: l)
+		{
+			Insert(el);
+		}
 	}
-}
 
-//===========================================//
-// Append list of nodes via initializer list //
-//===========================================//
-
-void List::Append(const std::initializer_list<double>& l)
-{
-	for (const auto& el: l)
+	List::List(const std::vector<double>& v)
 	{
-		Insert(el);
+		for (const auto& el: v)
+		{
+			Insert(el);
+		}
 	}
-}
 
-//=================================//
-// Append list of nodes via vector //
-//=================================//
+	//===========================================//
+	// Append list of nodes via initializer list //
+	//===========================================//
 
-void List::Append(const std::vector<double>& l)
-{
-	for (const auto& el: l)
+	void List::Append(const std::initializer_list<double>& l)
 	{
-		Insert(el);
+		for (const auto& el: l)
+		{
+			Insert(el);
+		}
 	}
-}
 
-//===============//
-// Insert a node //
-//===============//
+	//=================================//
+	// Append list of nodes via vector //
+	//=================================//
 
-void List::Insert(double v)
-{
-	auto newNode = new Node(v);
-
-	if (head == nullptr)
+	void List::Append(const std::vector<double>& l)
 	{
-		lastNode = newNode;
-		head = newNode;
-		size++;
+		for (const auto& el: l)
+		{
+			Insert(el);
+		}
 	}
-	else
+
+	//===============//
+	// Insert a node //
+	//===============//
+
+	void List::Insert(double v)
 	{
-		lastNode->next = newNode;
-		lastNode = newNode;
-		size++;
+		auto newNode = new Node(v);
+
+		if (head == nullptr)
+		{
+			lastNode = newNode;
+			head = newNode;
+			size++;
+		}
+		else
+		{
+			lastNode->next = newNode;
+			lastNode = newNode;
+			size++;
+		}
 	}
-}
 
-//============//
-// Print list //
-//============//
+	//============//
+	// Print list //
+	//============//
 
-void List::Print() const
-{
-	if (SEPOLIA4::DEBUG_PRINT)
+	void List::Print() const
+	{
+		if (SEPOLIA4::DEBUG_PRINT)
+		{
+			auto tmp = head;
+
+			while (tmp)
+			{
+				std::cout << "-->> Print() -->> " << tmp->value << std::endl;
+				tmp = tmp->next;
+			}
+		}
+	}
+
+	//==========================================//
+	// Erase a node in list with specific value //
+	//==========================================//
+
+	int List::EraseOne(double value)
 	{
 		auto tmp = head;
+
+		// check the first element
+		if (tmp && tmp->value == value)
+		{
+			head = head->next;
+			delete tmp;
+			size--;
+			return 0;
+		}
+
+		// check the rest elements
+		while (tmp)
+		{
+			if (tmp->next && tmp->next->value == value)
+			{
+				auto tmp2 = tmp->next->next;
+				delete tmp->next;
+				size--;
+				tmp->next = tmp2;
+				return 0;
+			}
+			tmp = tmp->next;
+		}
+
+		return -1;
+	}
+
+	//=============================================//
+	// Erase all nodes in list with specific value //
+	//=============================================//
+
+	int List::EraseAll(double value)
+	{
+		int errorCode = 0;
+
+		while (errorCode == 0)
+		{
+			errorCode = EraseOne(value);
+		}
+
+		return errorCode;
+	}
+
+	//=============================================//
+	// Erase all nodes in list with specific value //
+	//=============================================//
+
+	void List::Clear()
+	{
+		while (head)
+		{
+			auto tmp = head;
+			head = head->next;
+			delete tmp;
+			size--;
+		}
+
+		head = nullptr;
+	}
+
+	//=======================================//
+	// Get the number of element in the list //
+	//=======================================//
+
+	size_t List::Size() const
+	{
+		return size;
+	}
+
+	//============================//
+	// Check if the list is empty //
+	//============================//
+
+	bool List::Empty() const
+	{
+		return size == 0;
+	}
+
+	//===================//
+	// Reverses the list //
+	//===================//
+
+	void List::Reverse()
+	{
+		auto current = head;
+		Node* prev = nullptr;
+		Node* next;
+
+		while (current)
+		{
+			// Store next
+			next = current->next;
+
+			// Reverse current node's pointer
+			current->next = prev;
+
+			// Move pointers one position ahead.
+			prev = current;
+			current = next;
+		}
+
+		head = prev;
+	}
+
+	[[nodiscard]] int64_t List::FindOne(double v) const
+	{
+		auto tmp = head;
+		int64_t pos = -1;
 
 		while (tmp)
 		{
-			std::cout << "-->> Print() -->> " << tmp->value << std::endl;
+			pos++;
+			if (tmp->value == v)
+			{
+				return pos;
+			}
 			tmp = tmp->next;
 		}
-	}
-}
 
-//==========================================//
-// Erase a node in list with specific value //
-//==========================================//
-
-int List::EraseOne(double value)
-{
-	auto tmp = head;
-
-	// check the first element
-	if (tmp && tmp->value == value)
-	{
-		head = head->next;
-		delete tmp;
-		size--;
-		return 0;
+		return -1;
 	}
 
-	// check the rest elements
-	while (tmp)
-	{
-		if (tmp->next && tmp->next->value == value)
-		{
-			auto tmp2 = tmp->next->next;
-			delete tmp->next;
-			size--;
-			tmp->next = tmp2;
-			return 0;
-		}
-		tmp = tmp->next;
-	}
-
-	return -1;
-}
-
-//=============================================//
-// Erase all nodes in list with specific value //
-//=============================================//
-
-int List::EraseAll(double value)
-{
-	int errorCode = 0;
-
-	while (errorCode == 0)
-	{
-		errorCode = EraseOne(value);
-	}
-
-	return errorCode;
-}
-
-//=============================================//
-// Erase all nodes in list with specific value //
-//=============================================//
-
-void List::Clear()
-{
-	while (head)
+	[[nodiscard]] std::vector<int64_t> List::FindAll(double v) const
 	{
 		auto tmp = head;
-		head = head->next;
-		delete tmp;
-		size--;
-	}
+		int64_t pos = -1;
+		std::vector<int64_t> positions;
 
-	head = nullptr;
-}
-
-//=======================================//
-// Get the number of element in the list //
-//=======================================//
-
-size_t List::Size() const
-{
-	return size;
-}
-
-//============================//
-// Check if the list is empty //
-//============================//
-
-bool List::Empty() const
-{
-	return size == 0;
-}
-
-//===================//
-// Reverses the list //
-//===================//
-
-void List::Reverse()
-{
-	auto current = head;
-	Node* prev = nullptr;
-	Node* next;
-
-	while (current)
-	{
-		// Store next
-		next = current->next;
-
-		// Reverse current node's pointer
-		current->next = prev;
-
-		// Move pointers one position ahead.
-		prev = current;
-		current = next;
-	}
-
-	head = prev;
-}
-
-[[nodiscard]] int64_t List::FindOne(double v) const
-{
-	auto tmp = head;
-	int64_t pos = -1;
-
-	while (tmp)
-	{
-		pos++;
-		if(tmp->value == v)
+		while (tmp)
 		{
-			return pos;
+			pos++;
+			if (tmp->value == v)
+			{
+				positions.push_back(pos);
+			}
+			tmp = tmp->next;
 		}
-		tmp = tmp->next;
+
+		return positions;
 	}
 
-	return -1;
-}
 
-[[nodiscard]] std::vector<int64_t> List::FindAll(double v) const
-{
-	auto tmp = head;
-	int64_t pos = -1;
-	std::vector<int64_t> positions;
+	//============//
+	// Destructor //
+	//============//
 
-	while (tmp)
+	List::~List()
 	{
-		pos++;
-		if(tmp->value == v)
-		{
-			positions.push_back(pos);
-		}
-		tmp = tmp->next;
+		Clear();
 	}
-
-	return positions;
-}
-
-
-//============//
-// Destructor //
-//============//
-
-List::~List()
-{
-	Clear();
 }

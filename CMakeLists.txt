@@ -47,8 +47,6 @@ ADD_EXECUTABLE(SEPOLIA4
         BoostUblas/BoostUblasTests.h
         Common/CommonHeaders.h
         List/List.cpp
-        List/ListTests.cpp
-        List/ListTests.h
         Matrix/Matrix.cpp
         Matrix/Matrix.h
         Vector/Vector.cpp

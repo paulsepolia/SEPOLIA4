@@ -4,65 +4,68 @@
 #include <vector>
 #include <initializer_list>
 
-class Node
+namespace SEPOLIA4::CONTAINERS
 {
-public:
+	class Node
+	{
+	public:
 
-	explicit Node(double v);
+		explicit Node(double v);
 
-	double value = -1;
-	Node* next = nullptr;
+		double value = -1;
+		Node* next = nullptr;
 
-	virtual ~Node();
-};
+		virtual ~Node();
+	};
 
-class List
-{
-public:
+	class List
+	{
+	public:
 
-	List();
+		List();
 
-	List(const List& other);
+		List(const List& other);
 
-	List& operator=(const List& other);
+		List& operator=(const List& other);
 
-	List(List&& other) noexcept;
+		List(List&& other) noexcept;
 
-	List& operator=(List&& other) noexcept;
+		List& operator=(List&& other) noexcept;
 
-	List(const std::initializer_list<double>& l);
+		List(const std::initializer_list<double>& l);
 
-	explicit List(const std::vector<double>& v);
+		explicit List(const std::vector<double>& v);
 
-	void Append(const std::initializer_list<double>& l);
+		void Append(const std::initializer_list<double>& l);
 
-	void Append(const std::vector<double>& l);
+		void Append(const std::vector<double>& l);
 
-	void Insert(double v);
+		void Insert(double v);
 
-	void Print() const;
+		void Print() const;
 
-	int EraseOne(double value);
+		int EraseOne(double value);
 
-	int EraseAll(double value);
+		int EraseAll(double value);
 
-	void Clear();
+		void Clear();
 
-	[[nodiscard]] size_t Size() const;
+		[[nodiscard]] size_t Size() const;
 
-	[[nodiscard]] bool Empty() const;
+		[[nodiscard]] bool Empty() const;
 
-	void Reverse();
+		void Reverse();
 
-	[[nodiscard]] int64_t FindOne(double v) const;
+		[[nodiscard]] int64_t FindOne(double v) const;
 
-	[[nodiscard]] std::vector<int64_t> FindAll(double v) const;
+		[[nodiscard]] std::vector<int64_t> FindAll(double v) const;
 
-	virtual ~List();
+		virtual ~List();
 
-private:
+	private:
 
-	Node* lastNode = nullptr;
-	Node* head = nullptr;
-	size_t size = 0;
-};
+		Node* lastNode = nullptr;
+		Node* head = nullptr;
+		size_t size = 0;
+	};
+}

@@ -472,4 +472,18 @@ namespace TESTS_SEPOLIA4_VECTOR
 		v4 = -v1 + val1 + v2 - val2;
 		assert(v4 == 0);
 	}
+
+	void TEST25()
+	{
+		Vector v1(DIM);
+		Vector v2(DIM);
+		Vector v3(DIM);
+		const double val1 = 1;
+		v1 = val1;
+		const double val2 = 2;
+		v2 = val2;
+
+		v3 = (v1 / v2) * (v2 / v1);
+		assert(v3 == 1.0);
+	}
 }

@@ -94,5 +94,6 @@ int main()
 		TEST22();
 		TEST23();
 		TEST24();
+		TEST25();
 	}
 }

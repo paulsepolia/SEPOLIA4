@@ -63,49 +63,57 @@ public:
 
 	friend bool operator!=(double val, const Vector& rhs);
 
-	//========================//
-	// vector OPERATOR vector //
-	//========================//
+	//======================//
+	// arithmetic operators //
+	//======================//
+
+	//=============//
+	// operator: + //
+	//=============//
 
 	Vector operator+(const Vector& rhs) const;
 
-	Vector operator-(const Vector& rhs) const;
-
-	Vector operator*(const Vector& rhs) const;
-
-	Vector operator/(const Vector& rhs) const;
-
-	//=======================//
-	// vector OPERATOR value //
-	//=======================//
-
 	Vector operator+(double val) const;
+
+	friend Vector operator+(double val, const Vector& vec);
+
+	//=============//
+	// operator: - //
+	//=============//
+
+	Vector operator-(const Vector& rhs) const;
 
 	Vector operator-(double val) const;
 
+	friend Vector operator-(double val, const Vector& vec);
+
+	friend Vector operator-(const Vector& vec);
+
+	//=============//
+	// operator: * //
+	//=============//
+
+	Vector operator*(const Vector& rhs) const;
+
 	Vector operator*(double val) const;
 
+	friend Vector operator*(double val, const Vector& vec);
+
+	//=============//
+	// operator: / //
+	//=============//
+
+	Vector operator/(const Vector& rhs) const;
+
 	Vector operator/(double val) const;
+
+	friend Vector operator/(double val, const Vector& vec);
 
 	//============================//
 	// Assignment value operators //
 	//============================//
 
 	Vector& operator=(double val);
-
-	//==================//
-	// FRIEND OPERATORS //
-	//==================//
-
-	friend Vector operator*(double val, const Vector& vec);
-
-	friend Vector operator/(double val, const Vector& vec);
-
-	friend Vector operator+(double val, const Vector& vec);
-
-	friend Vector operator-(double val, const Vector& vec);
-
-	friend Vector operator-(const Vector& vec);
 
 private:
 

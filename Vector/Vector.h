@@ -37,6 +37,10 @@ public:
 
 	bool Deallocate();
 
+	[[nodiscard]] bool IsAllocated() const;
+
+	[[nodiscard]] bool IsDeallocated() const;
+
 	[[nodiscard]] size_t Size() const;
 
 	//======================================//

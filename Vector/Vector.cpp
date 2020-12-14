@@ -125,6 +125,17 @@ bool Vector::Deallocate()
 	return true;
 }
 
+bool Vector::IsAllocated() const
+{
+	if(m_data) return true;
+	return false;
+}
+
+bool Vector::IsDeallocated() const
+{
+	return !IsAllocated();
+}
+
 size_t Vector::Size() const
 {
 	return m_size;

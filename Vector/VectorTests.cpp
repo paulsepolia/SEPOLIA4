@@ -13,12 +13,12 @@ namespace TESTS_SEPOLIA4_VECTOR
 		Vector v1;
 
 		assert(v1.Size() == 0);
-		assert(&v1.At(0) == nullptr);
+		assert(v1.IsDeallocated());
 
 		v1.Allocate(DIM);
 
 		assert(v1.Size() == DIM);
-		assert(&v1.At(0) != nullptr);
+		assert(v1.IsAllocated());
 
 		for (size_t i = 0; i < DIM; i++)
 		{
@@ -32,7 +32,7 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		v1.Deallocate();
 		assert(v1.Size() == 0);
-		assert(&v1.At(0) == nullptr);
+		assert(v1.IsDeallocated());
 	}
 
 	void TEST2()
@@ -42,16 +42,16 @@ namespace TESTS_SEPOLIA4_VECTOR
 
 		assert(v1.Size() == 0);
 		assert(v2.Size() == 0);
-		assert(&v1.At(0) == nullptr);
-		assert(&v2.At(0) == nullptr);
+		assert(v1.IsDeallocated());
+		assert(v2.IsDeallocated());
 
 		v1.Allocate(DIM);
 		v2.Allocate(DIM);
 
 		assert(v1.Size() == DIM);
 		assert(v2.Size() == DIM);
-		assert(&v1.At(0) != nullptr);
-		assert(&v2.At(0) != nullptr);
+		assert(v1.IsAllocated());
+		assert(v2.IsAllocated());
 
 		for (size_t i = 0; i < DIM; i++)
 		{
@@ -76,8 +76,8 @@ namespace TESTS_SEPOLIA4_VECTOR
 		v2.Deallocate();
 		assert(v1.Size() == 0);
 		assert(v2.Size() == 0);
-		assert(&v1.At(0) == nullptr);
-		assert(&v2.At(0) == nullptr);
+		assert(v1.IsDeallocated());
+		assert(v2.IsDeallocated());
 	}
 
 	void TEST3()

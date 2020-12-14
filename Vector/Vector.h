@@ -77,6 +77,10 @@ public:
 
 	friend Vector operator+(double val, const Vector& vec);
 
+	void operator++();
+
+	void operator++(int);
+
 	//=============//
 	// operator: - //
 	//=============//
@@ -88,6 +92,10 @@ public:
 	friend Vector operator-(double val, const Vector& vec);
 
 	friend Vector operator-(const Vector& vec);
+
+	void operator--();
+
+	void operator--(int);
 
 	//=============//
 	// operator: * //

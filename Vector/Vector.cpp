@@ -239,6 +239,19 @@ Vector operator+(double val, const Vector& rhs)
 	return std::move(res);
 }
 
+void Vector::operator++()
+{
+	for (size_t i = 0; i < m_size; i++)
+	{
+		operator[](i)++;
+	}
+}
+
+void Vector::operator++(int)
+{
+	++(*this);
+}
+
 //=============//
 // operator: - //
 //=============//
@@ -299,6 +312,19 @@ Vector operator-(const Vector& rhs)
 		res[i] = -rhs.At(i);
 	}
 	return std::move(res);
+}
+
+void Vector::operator--()
+{
+	for (size_t i = 0; i < m_size; i++)
+	{
+		operator[](i)--;
+	}
+}
+
+void Vector::operator--(int)
+{
+	--(*this);
 }
 
 //=============//

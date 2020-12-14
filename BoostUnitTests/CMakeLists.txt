@@ -12,15 +12,12 @@ FIND_PACKAGE(Boost REQUIRED COMPONENTS unit_test_framework)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
 ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
-        VectorBoostUnitTests.cpp
-        MatrixBoostUnitTests.cpp
         ../Vector/Vector.cpp
         ../Vector/Vector.h
         ../Matrix/Matrix.cpp
         ../Matrix/Matrix.h
         ../Common/CommonHeaders.h
-        ../BoostUnitTests/VectorBoostUnitTests.cpp
-        ../BoostUnitTests/MatrixBoostUnitTests.cpp)
-
+        VectorTests.cpp
+        MatrixTests.cpp)
 
 TARGET_LINK_LIBRARIES(BOOST_UNIT_TESTS_RUN ${Boost_LIBRARIES})

@@ -6,14 +6,12 @@
 
 Vector::Vector(size_t size)
 {
-	if constexpr (DEBUG_CHECK) assert(Allocate(size));
-	else Allocate(size);
+	Allocate(size);
 }
 
 Vector::Vector(const std::vector<double>& vec)
 {
-	if constexpr (DEBUG_CHECK) assert(Allocate(vec.size()));
-	else Allocate(vec.size());
+	Allocate(vec.size());
 
 	for(size_t i = 0; i < vec.size(); i++)
 	{
@@ -23,8 +21,7 @@ Vector::Vector(const std::vector<double>& vec)
 
 Vector::Vector(const std::initializer_list<double>& initList)
 {
-	if constexpr (DEBUG_CHECK) assert(Allocate(initList.size()));
-	else Allocate(initList.size());
+	Allocate(initList.size());
 
 	size_t idx = 0;
 	for(const auto&el : initList)
@@ -208,13 +205,8 @@ bool operator!=(double val, const Vector& rhs)
 
 Vector Vector::operator+(const Vector& other) const
 {
-	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
-	if constexpr (DEBUG_CHECK) assert(m_data);
-	if constexpr (DEBUG_CHECK) assert(other.m_data);
-
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{
@@ -227,8 +219,7 @@ Vector Vector::operator+(const Vector& other) const
 Vector Vector::operator+(double value) const
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < m_size; i++)
 	{
@@ -240,8 +231,7 @@ Vector Vector::operator+(double value) const
 Vector operator+(double val, const Vector& rhs)
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
-	else res.Allocate(rhs.m_size);
+	res.Allocate(rhs.m_size);
 
 	for (size_t i = 0; i < rhs.m_size; i++)
 	{
@@ -281,13 +271,8 @@ Vector& Vector::operator+=(double val)
 
 Vector Vector::operator-(const Vector& other) const
 {
-	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
-	if constexpr (DEBUG_CHECK) assert(m_data);
-	if constexpr (DEBUG_CHECK) assert(other.m_data);
-
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{
@@ -300,8 +285,7 @@ Vector Vector::operator-(const Vector& other) const
 Vector Vector::operator-(double value) const
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < m_size; i++)
 	{
@@ -313,8 +297,7 @@ Vector Vector::operator-(double value) const
 Vector operator-(double val, const Vector& rhs)
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
-	else res.Allocate(rhs.m_size);
+	res.Allocate(rhs.m_size);
 
 	for (size_t i = 0; i < rhs.m_size; i++)
 	{
@@ -326,12 +309,10 @@ Vector operator-(double val, const Vector& rhs)
 Vector operator-(const Vector& rhs)
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
-	else res.Allocate(rhs.m_size);
+	res.Allocate(rhs.m_size);
 
 	for (size_t i = 0; i < rhs.m_size; i++)
 	{
-		if constexpr (DEBUG_CHECK) assert(rhs.At(i));
 		res[i] = -rhs.At(i);
 	}
 	return std::move(res);
@@ -368,13 +349,8 @@ Vector& Vector::operator-=(double val)
 
 Vector Vector::operator*(const Vector& other) const
 {
-	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
-	if constexpr (DEBUG_CHECK) assert(m_data);
-	if constexpr (DEBUG_CHECK) assert(other.m_data);
-
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{
@@ -387,8 +363,7 @@ Vector Vector::operator*(const Vector& other) const
 Vector Vector::operator*(double value) const
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < m_size; i++)
 	{
@@ -400,8 +375,7 @@ Vector Vector::operator*(double value) const
 Vector operator*(double val, const Vector& rhs)
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
-	else res.Allocate(rhs.m_size);
+	res.Allocate(rhs.m_size);
 
 	for (size_t i = 0; i < rhs.m_size; i++)
 	{
@@ -428,17 +402,11 @@ Vector& Vector::operator*=(double val)
 
 Vector Vector::operator/(const Vector& other) const
 {
-	if constexpr (DEBUG_CHECK) assert(m_size == other.Size());
-	if constexpr (DEBUG_CHECK) assert(m_data);
-	if constexpr (DEBUG_CHECK) assert(other.m_data);
-
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{
-		if constexpr (DEBUG_CHECK) assert(other.m_data[i]);
 		res[i] = m_data[i] / other.m_data[i];
 	}
 
@@ -447,10 +415,8 @@ Vector Vector::operator/(const Vector& other) const
 
 Vector Vector::operator/(double value) const
 {
-	if constexpr (DEBUG_CHECK) assert(value);
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
-	else res.Allocate(m_size);
+	res.Allocate(m_size);
 
 	for (size_t i = 0; i < m_size; i++)
 	{
@@ -462,12 +428,10 @@ Vector Vector::operator/(double value) const
 Vector operator/(double val, const Vector& rhs)
 {
 	Vector res;
-	if constexpr (DEBUG_CHECK) assert(res.Allocate(rhs.m_size));
-	else res.Allocate(rhs.m_size);
+	res.Allocate(rhs.m_size);
 
 	for (size_t i = 0; i < rhs.m_size; i++)
 	{
-		if constexpr (DEBUG_CHECK) assert(rhs.At(i));
 		res[i] = val / rhs.At(i);
 	}
 	return std::move(res);
@@ -485,15 +449,12 @@ Vector& Vector::operator/=(double val)
 	return *this;
 }
 
-
 //============================//
 // Assignment value operators //
 //============================//
 
 Vector& Vector::operator=(double val)
 {
-	if constexpr (DEBUG_CHECK) assert(m_data);
-
 	for (size_t i = 0; i < m_size; i++)
 	{
 		m_data[i] = val;

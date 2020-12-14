@@ -1,28 +1,22 @@
-cmake_minimum_required(VERSION 3.17)
-project(SEPOLIA4)
-
-set(CMAKE_CXX_STANDARD 20)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.17)
+PROJECT(SEPOLIA4)
+SET(CMAKE_CXX_STANDARD 20)
 
 #========================#
 # BOOST library settings #
 #========================#
-
 SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/mnt/xdata/opt/boost/1.75.0/include")
 SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "/mnt/xdata/opt/boost/1.75.0/lib")
-
 FIND_PACKAGE(Boost)
 IF (Boost_FOUND)
     INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
     ADD_DEFINITIONS( "-DHAS_BOOST" )
 ENDIF()
 
-#======================#
-# BLAS/LAPACK settings #
-#======================#
-
+#===============#
+# BLAS settings #
+#===============#
 FIND_PACKAGE(BLAS REQUIRED)
-FIND_PACKAGE(LAPACK REQUIRED)
-
 if(BLAS_FOUND)
     INCLUDE_DIRECTORIES(${BLAS_INCLUDE_DIR})
     LINK_DIRECTORIES(${BLAS_LIBRARIES})
@@ -30,6 +24,10 @@ else(BLAS_FOUND)
     MESSAGE(FATAL_ERROR "BLAS NOT FOUND")
 endif(BLAS_FOUND)
 
+#=================#
+# LAPACK settings #
+#=================#
+FIND_PACKAGE(LAPACK REQUIRED)
 if(LAPACK_FOUND)
     INCLUDE_DIRECTORIES(${LAPACK_INCLUDE_DIR})
     LINK_DIRECTORIES(${LAPACK_LIBRARIES})
@@ -45,13 +43,11 @@ ADD_EXECUTABLE(SEPOLIA4 main.cpp
         List/ListTests.h
         Vector/Vector.cpp
         Vector/Vector.h
-        Vector/VectorTests.cpp
-        Vector/VectorTests.h
         Matrix/Matrix.cpp
         Matrix/Matrix.h
         Common/CommonHeaders.h
-        BoostUnitTests/VectorBoostUnitTests.cpp
-        BoostUnitTests/MatrixBoostUnitTests.cpp)
+        BoostUnitTests/VectorTests.cpp
+        BoostUnitTests/MatrixTests.cpp)
 
 TARGET_LINK_LIBRARIES(SEPOLIA4 ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES} ${BOOST_LIBRARIES})
 

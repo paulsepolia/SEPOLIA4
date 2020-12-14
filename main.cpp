@@ -1,6 +1,5 @@
 #include "BoostUblas/BoostUblasTests.h"
 #include "List/ListTests.h"
-#include "Vector/VectorTests.h"
 #include <iostream>
 
 //#include <cblas.h>
@@ -65,41 +64,5 @@ int main()
 		TEST14();
 		TEST15();
 		TEST16();
-	}
-
-	{
-		using namespace TESTS_SEPOLIA4_VECTOR;
-		std::cout << "-->> Tests -->> SEPOLIA4 -->> Vector" << std::endl;
-		TEST1();
-		TEST2();
-		TEST3();
-		TEST4();
-		TEST5();
-		TEST6();
-		TEST7();
-		TEST8();
-		TEST9();
-		TEST10();
-		TEST11();
-		TEST12();
-		TEST13();
-		TEST14();
-		TEST15();
-		TEST16();
-		TEST17();
-		TEST18();
-		TEST19();
-		TEST20();
-		TEST21();
-		TEST22();
-		TEST23();
-		TEST24();
-		TEST25();
-		TEST26();
-		TEST27();
-		TEST28();
-		TEST29();
-		TEST30();
-		TEST31();
 	}
 }

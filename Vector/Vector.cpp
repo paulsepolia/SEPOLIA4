@@ -252,6 +252,18 @@ void Vector::operator++(int)
 	++(*this);
 }
 
+Vector& Vector::operator+=(const Vector& rhs)
+{
+	*this = *this + rhs;
+	return *this;
+}
+
+Vector& Vector::operator+=(double val)
+{
+	*this = *this + val;
+	return *this;
+}
+
 //=============//
 // operator: - //
 //=============//
@@ -327,6 +339,18 @@ void Vector::operator--(int)
 	--(*this);
 }
 
+Vector& Vector::operator-=(const Vector& rhs)
+{
+	*this = *this - rhs;
+	return *this;
+}
+
+Vector& Vector::operator-=(double val)
+{
+	*this = *this - val;
+	return *this;
+}
+
 //=============//
 // operator: * //
 //=============//
@@ -373,6 +397,18 @@ Vector operator*(double val, const Vector& rhs)
 		res[i] = val * rhs.At(i);
 	}
 	return std::move(res);
+}
+
+Vector& Vector::operator*=(const Vector& rhs)
+{
+	*this = *this * rhs;
+	return *this;
+}
+
+Vector& Vector::operator*=(double val)
+{
+	*this = *this * val;
+	return *this;
 }
 
 //=============//
@@ -425,6 +461,19 @@ Vector operator/(double val, const Vector& rhs)
 	}
 	return std::move(res);
 }
+
+Vector& Vector::operator/=(const Vector& rhs)
+{
+	*this = *this / rhs;
+	return *this;
+}
+
+Vector& Vector::operator/=(double val)
+{
+	*this = *this / val;
+	return *this;
+}
+
 
 //============================//
 // Assignment value operators //

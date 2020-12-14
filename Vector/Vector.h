@@ -81,6 +81,10 @@ public:
 
 	void operator++(int);
 
+	Vector& operator+=(const Vector& rhs);
+
+	Vector& operator+=(double);
+
 	//=============//
 	// operator: - //
 	//=============//
@@ -97,6 +101,10 @@ public:
 
 	void operator--(int);
 
+	Vector& operator-=(const Vector& rhs);
+
+	Vector& operator-=(double);
+
 	//=============//
 	// operator: * //
 	//=============//
@@ -107,6 +115,10 @@ public:
 
 	friend Vector operator*(double val, const Vector& vec);
 
+	Vector& operator*=(const Vector& rhs);
+
+	Vector& operator*=(double);
+
 	//=============//
 	// operator: / //
 	//=============//
@@ -116,6 +128,10 @@ public:
 	Vector operator/(double val) const;
 
 	friend Vector operator/(double val, const Vector& vec);
+
+	Vector& operator/=(const Vector& rhs);
+
+	Vector& operator/=(double);
 
 	//============================//
 	// Assignment value operators //

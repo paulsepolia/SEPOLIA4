@@ -506,4 +506,52 @@ namespace TESTS_SEPOLIA4_VECTOR
 		--val1;
 		assert(v1 == val1);
 	}
+
+	void TEST28()
+	{
+		Vector v1(DIM);
+		double val1 = 1;
+		v1 += val1;
+		assert(v1 == val1);
+		v1 += val1;
+		assert(v1 == 2 * val1);
+		v1 += v1;
+		assert(v1 == 4 * val1);
+	}
+
+	void TEST29()
+	{
+		Vector v1(DIM);
+		double val1 = 1;
+		v1 -= val1;
+		assert(v1 == -1 * val1);
+		v1 -= val1;
+		assert(v1 == -2 * val1);
+		v1 -= v1;
+		assert(v1 == 0);
+	}
+
+	void TEST30()
+	{
+		Vector v1(DIM);
+		double val1 = 3;
+		double val2 = 4;
+		v1 = val1;
+		v1 *= val2;
+		assert(v1 == val1 * val2);
+		v1 *= v1;
+		assert(v1 == val1 * val2 * val1 * val2);
+	}
+
+	void TEST31()
+	{
+		Vector v1(DIM);
+		const double val1 = 3;
+		const double val2 = 4;
+		v1 = val1;
+		v1 /= val2;
+		assert(v1 == val1 / val2);
+		v1 /= v1;
+		assert(v1 == 1.0);
+	}
 }

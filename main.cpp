@@ -97,5 +97,9 @@ int main()
 		TEST25();
 		TEST26();
 		TEST27();
+		TEST28();
+		TEST29();
+		TEST30();
+		TEST31();
 	}
 }

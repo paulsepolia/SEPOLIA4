@@ -3,5 +3,4 @@
 
 namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 {
-
 }

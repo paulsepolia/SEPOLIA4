@@ -16,7 +16,6 @@ ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
         ../Vector/Vector.h
         ../Matrix/Matrix.cpp
         ../Matrix/Matrix.h
-        ../Common/CommonHeaders.h
         VectorTests.cpp
         MatrixTests.cpp)
 

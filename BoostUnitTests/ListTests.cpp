@@ -7,8 +7,7 @@ using namespace SEPOLIA4::CONTAINERS;
 
 namespace SEPOLIA4::BOOST_UNIT_TEST_LIST
 {
-	constexpr size_t DIM = 10000;
-	constexpr size_t DO_MAX = 10;
+	constexpr size_t DIM = 10;
 
 	BOOST_AUTO_TEST_SUITE(CONTAINER_LIST)
 
@@ -160,184 +159,164 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_LIST
 
 		BOOST_AUTO_TEST_CASE(TEST11)
 		{
-			for (size_t kk = 0; kk < DO_MAX; kk++)
-			{
-				std::vector<double> values{ 1, 2, 5, 1, 2, 4, 5 };
+			std::vector<double> values{ 1, 2, 5, 1, 2, 4, 5 };
 
-				auto list = List(values);
-				BOOST_TEST(list.Size() == 7);
-				BOOST_TEST(list.Empty() == false);
+			auto list = List(values);
+			BOOST_TEST(list.Size() == 7);
+			BOOST_TEST(list.Empty() == false);
 
-				int v = 1;
-				list.EraseAll(v);
-				list.Print();
-				BOOST_TEST(list.Size() == 5);
-				BOOST_TEST(list.Empty() == false);
+			int v = 1;
+			list.EraseAll(v);
+			list.Print();
+			BOOST_TEST(list.Size() == 5);
+			BOOST_TEST(list.Empty() == false);
 
-				v = 2;
-				list.EraseAll(v);
-				list.Print();
-				BOOST_TEST(list.Size() == 3);
-				BOOST_TEST(list.Empty() == false);
+			v = 2;
+			list.EraseAll(v);
+			list.Print();
+			BOOST_TEST(list.Size() == 3);
+			BOOST_TEST(list.Empty() == false);
 
-				v = 5;
-				list.EraseAll(v);
-				list.Print();
-				BOOST_TEST(list.Size() == 1);
-				BOOST_TEST(list.Empty() == false);
+			v = 5;
+			list.EraseAll(v);
+			list.Print();
+			BOOST_TEST(list.Size() == 1);
+			BOOST_TEST(list.Empty() == false);
 
-				v = 6;
-				list.EraseAll(v);
-				list.Print();
-				BOOST_TEST(list.Size() == 1);
-				BOOST_TEST(list.Empty() == false);
+			v = 6;
+			list.EraseAll(v);
+			list.Print();
+			BOOST_TEST(list.Size() == 1);
+			BOOST_TEST(list.Empty() == false);
 
-				v = 4;
-				list.EraseAll(v);
-				list.Print();
-				BOOST_TEST(list.Size() == 0);
-				BOOST_TEST(list.Empty() == true);
-			}
+			v = 4;
+			list.EraseAll(v);
+			list.Print();
+			BOOST_TEST(list.Size() == 0);
+			BOOST_TEST(list.Empty() == true);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST12)
 		{
-			for (size_t kk = 0; kk < DO_MAX; kk++)
-			{
-				std::vector<double> values(10, kk);
+			std::vector<double> values(10, 4);
 
-				auto list = List(values);
+			auto list = List(values);
 
-				BOOST_TEST(list.Size() == 10);
-				BOOST_TEST(list.Empty() == false);
+			BOOST_TEST(list.Size() == 10);
+			BOOST_TEST(list.Empty() == false);
 
-				list.Clear();
-				list.Print();
+			list.Clear();
+			list.Print();
 
-				BOOST_TEST(list.Size() == 0);
-				BOOST_TEST(list.Empty() == true);
-			}
+			BOOST_TEST(list.Size() == 0);
+			BOOST_TEST(list.Empty() == true);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST13)
 		{
-			{
-				for (size_t kk = 0; kk < DO_MAX; kk++)
-				{
-					std::vector<double> values({ 1, 2, 3, 4, 5 });
+			std::vector<double> values({ 1, 2, 3, 4, 5 });
 
-					auto list = List(values);
+			auto list = List(values);
 
-					list.Print();
-					list.Reverse();
+			list.Print();
+			list.Reverse();
 
-					BOOST_TEST(list.Size() == 5);
+			BOOST_TEST(list.Size() == 5);
 
-					list.Print();
-				}
-			}
+			list.Print();
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST14)
 		{
-			for (size_t kk = 0; kk < DO_MAX; kk++)
+			auto list = List();
+
+			for (size_t i = 0; i < DIM; i++)
 			{
-				auto list = List();
-
-				for (size_t i = 0; i < DIM; i++)
-				{
-					list.Insert(static_cast<double>(i));
-				}
-
-				BOOST_TEST(list.Size() == DIM);
-				BOOST_TEST(list.Empty() == false);
-				BOOST_TEST(list.FindOne(double(0)) == 0);
-				BOOST_TEST(list.FindOne(double(1)) == 1);
-				BOOST_TEST(list.FindOne(double(2)) == 2);
-				BOOST_TEST(list.FindOne(double(3)) == 3);
+				list.Insert(static_cast<double>(i));
 			}
+
+			BOOST_TEST(list.Size() == DIM);
+			BOOST_TEST(list.Empty() == false);
+			BOOST_TEST(list.FindOne(double(0)) == 0);
+			BOOST_TEST(list.FindOne(double(1)) == 1);
+			BOOST_TEST(list.FindOne(double(2)) == 2);
+			BOOST_TEST(list.FindOne(double(3)) == 3);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST15)
 		{
-			for (size_t kk = 0; kk < DO_MAX; kk++)
+			auto list = List();
+
+			for (size_t i = 0; i < DIM; i++)
 			{
-				auto list = List();
-
-				for (size_t i = 0; i < DIM; i++)
-				{
-					list.Insert(static_cast<double>(i));
-				}
-
-				BOOST_TEST(list.Size() == DIM);
-				BOOST_TEST(list.Empty() == false);
-				BOOST_TEST(list.FindAll(double(0)) == std::vector<int64_t>{ 0 });
-				BOOST_TEST(list.FindAll(double(1)) == std::vector<int64_t>{ 1 });
-				BOOST_TEST(list.FindAll(double(2)) == std::vector<int64_t>{ 2 });
-				BOOST_TEST(list.FindAll(double(DIM - 1)) == std::vector<int64_t>{ DIM - 1 });
-				BOOST_TEST(list.FindAll(double(DIM)).empty());
+				list.Insert(static_cast<double>(i));
 			}
+
+			BOOST_TEST(list.Size() == DIM);
+			BOOST_TEST(list.Empty() == false);
+			BOOST_TEST(list.FindAll(double(0)) == std::vector<int64_t>{ 0 });
+			BOOST_TEST(list.FindAll(double(1)) == std::vector<int64_t>{ 1 });
+			BOOST_TEST(list.FindAll(double(2)) == std::vector<int64_t>{ 2 });
+			BOOST_TEST(list.FindAll(double(DIM - 1)) == std::vector<int64_t>{ DIM - 1 });
+			BOOST_TEST(list.FindAll(double(DIM)).empty());
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST16)
 		{
-			for (size_t kk = 0; kk < DO_MAX; kk++)
+			auto list = List();
+
+			for (size_t i = 0; i < DIM; i++)
 			{
-				auto list = List();
-
-				for (size_t i = 0; i < DIM; i++)
-				{
-					list.Insert(static_cast<double>(0));
-				}
-
-				for (size_t i = 0; i < DIM; i++)
-				{
-					list.Insert(static_cast<double>(1));
-				}
-
-				BOOST_TEST(list.Size() == 2 * DIM);
-				BOOST_TEST(list.Empty() == false);
-
-				std::vector<int64_t> res0;
-				for (size_t i = 0; i < DIM; i++)
-				{
-					res0.push_back(i);
-				}
-				BOOST_TEST(list.FindAll(double(0)) == res0);
-
-				std::vector<int64_t> res1;
-				for (size_t i = 0; i < DIM; i++)
-				{
-					res1.push_back(DIM + i);
-				}
-				BOOST_TEST(list.FindAll(double(1)) == res1);
-				BOOST_TEST(list.FindAll(double(2)).empty());
-				BOOST_TEST(list.FindAll(double(DIM - 1)).empty());
-				BOOST_TEST(list.FindAll(double(DIM)).empty());
-
-				list.Reverse();
-				BOOST_TEST(list.FindAll(double(0)) == res1);
-				BOOST_TEST(list.FindAll(double(1)) == res0);
-
-				list.Clear();
-				BOOST_TEST(list.FindAll(double(0)).empty());
-				BOOST_TEST(list.FindAll(double(1)).empty());
-
-				for (size_t i = 0; i < DIM; i++)
-				{
-					list.Insert(static_cast<double>(0));
-				}
-
-				for (size_t i = 0; i < DIM; i++)
-				{
-					list.Insert(static_cast<double>(1));
-				}
-
-				BOOST_TEST(list.Size() == 2 * DIM);
-				BOOST_TEST(list.Empty() == false);
-				BOOST_TEST(list.FindAll(double(0)) == res0);
-				BOOST_TEST(list.FindAll(double(1)) == res1);
+				list.Insert(static_cast<double>(0));
 			}
+
+			for (size_t i = 0; i < DIM; i++)
+			{
+				list.Insert(static_cast<double>(1));
+			}
+
+			BOOST_TEST(list.Size() == 2 * DIM);
+			BOOST_TEST(list.Empty() == false);
+
+			std::vector<int64_t> res0;
+			for (size_t i = 0; i < DIM; i++)
+			{
+				res0.push_back(i);
+			}
+			BOOST_TEST(list.FindAll(double(0)) == res0);
+
+			std::vector<int64_t> res1;
+			for (size_t i = 0; i < DIM; i++)
+			{
+				res1.push_back(DIM + i);
+			}
+			BOOST_TEST(list.FindAll(double(1)) == res1);
+			BOOST_TEST(list.FindAll(double(2)).empty());
+			BOOST_TEST(list.FindAll(double(DIM - 1)).empty());
+			BOOST_TEST(list.FindAll(double(DIM)).empty());
+
+			list.Reverse();
+			BOOST_TEST(list.FindAll(double(0)) == res1);
+			BOOST_TEST(list.FindAll(double(1)) == res0);
+
+			list.Clear();
+			BOOST_TEST(list.FindAll(double(0)).empty());
+			BOOST_TEST(list.FindAll(double(1)).empty());
+
+			for (size_t i = 0; i < DIM; i++)
+			{
+				list.Insert(static_cast<double>(0));
+			}
+
+			for (size_t i = 0; i < DIM; i++)
+			{
+				list.Insert(static_cast<double>(1));
+			}
+
+			BOOST_TEST(list.Size() == 2 * DIM);
+			BOOST_TEST(list.Empty() == false);
+			BOOST_TEST(list.FindAll(double(0)) == res0);
+			BOOST_TEST(list.FindAll(double(1)) == res1);
 		}
 
 	BOOST_AUTO_TEST_SUITE_END()

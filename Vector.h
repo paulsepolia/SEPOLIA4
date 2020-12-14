@@ -62,23 +62,23 @@ public:
 
 	//  vector OPERATOR double
 
-	Vector operator+(double value) const;
+	Vector operator+(double val) const;
 
-	Vector operator-(double value) const;
+	Vector operator-(double val) const;
 
-	Vector operator*(double value) const;
+	Vector operator*(double val) const;
 
-	Vector operator/(double value) const;
+	Vector operator/(double val) const;
 
 	//  double OPERATOR type
 
-	friend Vector operator*(const Vector& vector, double value);
+	friend Vector operator*(const Vector& vec, double val);
 
-	friend Vector operator/(const Vector& vector, double value);
+	friend Vector operator/(const Vector& vec, double val);
 
-	friend Vector operator+(const Vector& vector, double value);
+	friend Vector operator+(const Vector& vec, double val);
 
-	friend Vector operator-(const Vector& vector, double value);
+	friend Vector operator-(const Vector& vec, double val);
 
 private:
 

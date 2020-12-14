@@ -196,6 +196,7 @@ Vector Vector::operator/(const Vector& other) const
 
 	Vector res;
 	if constexpr (DEBUG_CHECK) assert(res.Allocate(m_size));
+	else res.Allocate(m_size);
 
 	for (size_t i = 0; i < other.Size(); i++)
 	{

@@ -31,14 +31,26 @@ namespace SEPOLIA4::CONTAINERS
 			{
 				for (int32_t j = 0; j < NCOLS; j++)
 				{
-					operator[](static_cast<size_t>(i) * NCOLS + NROWS) = mat[i][j];
+					operator[](static_cast<size_t>(i) * NCOLS + j) = mat[i][j];
 				}
 			}
 		}
 
 		Matrix(const std::initializer_list<std::initializer_list<T>>& initMatrix)
 		{
-			Allocate(initMatrix.size(), initMatrix[0].size());
+			std::vector<std::vector<T>> mTmp;
+
+			for(const auto& el1: initMatrix)
+			{
+				std::vector<T> vTmp;
+				for(const auto& el2: el1)
+				{
+					vTmp.push_back(el2);
+				}
+				mTmp.push_back(vTmp);
+			}
+
+			Allocate(mTmp.size(), mTmp[0].size());
 			size_t idx = 0;
 			for (const auto& el1 : initMatrix)
 			{

@@ -2,6 +2,7 @@
 
 #include "../Containers/Matrix/Matrix.h"
 #include <boost/test/unit_test.hpp>
+#include <cmath>
 
 using namespace SEPOLIA4::CONTAINERS;
 
@@ -16,16 +17,16 @@ namespace std
 
 namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 {
-	constexpr int32_t NROWS = 10;
-	constexpr int32_t NCOLS = 11;
+	constexpr int32_t NROWS = 5;
+	constexpr int32_t NCOLS = 6;
 
 	BOOST_AUTO_TEST_SUITE(CONTAINER_MATRIX)
 
 		BOOST_AUTO_TEST_CASE(TEST1)
 		{
 			Matrix<double> m1;
-			BOOST_TEST(m1.NRows()  == 0);
-			BOOST_TEST(m1.NCols()  == 0);
+			BOOST_TEST(m1.NRows() == 0);
+			BOOST_TEST(m1.NCols() == 0);
 			BOOST_TEST(m1.IsDeallocated());
 
 			m1.Allocate(NROWS, NCOLS);
@@ -38,7 +39,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			{
 				for (int32_t j = 0; j < NCOLS; j++)
 				{
-					m1(i, j) = static_cast<double>(i+j);
+					m1(i, j) = static_cast<double>(i + j);
 				}
 			}
 
@@ -46,7 +47,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			{
 				for (int32_t j = 0; j < NCOLS; j++)
 				{
-					BOOST_TEST(m1.At(i, j) == static_cast<double>(i+j));
+					BOOST_TEST(m1.At(i, j) == static_cast<double>(i + j));
 				}
 			}
 
@@ -69,8 +70,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m1.Allocate(NROWS, NCOLS);
 			m2.Allocate(NROWS, NCOLS);
 
-			BOOST_TEST(m1.TotalElements() == static_cast<size_t>(NROWS)*NCOLS);
-			BOOST_TEST(m2.TotalElements() == static_cast<size_t>(NROWS)*NCOLS);
+			BOOST_TEST(m1.TotalElements() == static_cast<size_t>(NROWS) * NCOLS);
+			BOOST_TEST(m2.TotalElements() == static_cast<size_t>(NROWS) * NCOLS);
 			BOOST_TEST(m1.NRows() == NROWS);
 			BOOST_TEST(m1.NCols() == NCOLS);
 			BOOST_TEST(m1.IsAllocated());
@@ -80,7 +81,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			{
 				for (int32_t j = 0; j < NCOLS; j++)
 				{
-					m1(i, j) = static_cast<double>(i+j);
+					m1(i, j) = static_cast<double>(i + j);
 					m2(i, j) = m1.At(i, j);
 				}
 			}
@@ -89,15 +90,15 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			{
 				for (int32_t j = 0; j < NCOLS; j++)
 				{
-					BOOST_TEST(m1(i, j) == static_cast<double>(i+j));
-					BOOST_TEST(m1(i, j) == m2(i,j));
+					BOOST_TEST(m1(i, j) == static_cast<double>(i + j));
+					BOOST_TEST(m1(i, j) == m2(i, j));
 				}
 			}
 
 			BOOST_CHECK(m1 == m2);
 
-			m1(0,0) = 2;
-			m2(0,0) = 3;
+			m1(0, 0) = 2;
+			m2(0, 0) = 3;
 			BOOST_CHECK(m1 != m2);
 
 			m1.Deallocate();
@@ -109,481 +110,603 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			BOOST_TEST(m1.IsDeallocated());
 			BOOST_TEST(m2.IsDeallocated());
 		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST3)
-//		{
-//			Vector<double> v1;
-//			Vector<double> v2;
-//			v1.Allocate(DIM);
-//			v2.Allocate(DIM);
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v1[i] = static_cast<double>(i);
-//				v2[i] = static_cast<double>(i + 1);
-//			}
-//
-//			const auto v3 = v1 + v2;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(v3.At(i) == static_cast<double>(i) + static_cast<double>(i + 1));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST4)
-//		{
-//			Vector<double> v1;
-//			Vector<double> v2;
-//			v1.Allocate(DIM);
-//			v2.Allocate(DIM);
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v1[i] = static_cast<double>(i);
-//				v2[i] = static_cast<double>(i + 1);
-//			}
-//
-//			const auto v3 = v1 - v2;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(v3.At(i) == static_cast<double>(i) - static_cast<double>(i + 1));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST5)
-//		{
-//			Vector<double> v1;
-//			Vector<double> v2;
-//
-//			v1.Allocate(DIM);
-//			v2.Allocate(DIM);
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v1[i] = static_cast<double>(i);
-//				v2[i] = static_cast<double>(i + 1);
-//			}
-//
-//			const auto v3 = v1 * v2;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(v3.At(i) == static_cast<double>(i) * static_cast<double>(i + 1));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST6)
-//		{
-//			Vector<double> v1;
-//			Vector<double> v2;
-//			v1.Allocate(DIM);
-//			v2.Allocate(DIM);
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v1[i] = static_cast<double>(i);
-//				v2[i] = static_cast<double>(i + 1);
-//			}
-//
-//			const auto v3 = v1 / v2;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(v3.At(i) == static_cast<double>(i) / static_cast<double>(i + 1));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST7)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 11;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i);
-//			}
-//
-//			const auto res = v + val;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == v.At(i) + val);
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST8)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 12;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i);
-//			}
-//
-//			const auto res = v - val;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == v.At(i) - val);
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST9)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 12;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i);
-//			}
-//
-//			const auto res = v * val;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == v.At(i) * val);
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST10)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 12;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i);
-//			}
-//
-//			const auto res = v / val;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == v.At(i) / val);
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST11)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 11;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i);
-//			}
-//
-//			const auto res = val + v;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == val + v.At(i));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST12)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 12;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i);
-//			}
-//
-//			const auto res = val - v;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == val - v.At(i));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST13)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 13;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i);
-//			}
-//
-//			const auto res = val * v;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == val * v.At(i));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST14)
-//		{
-//			Vector<double> v;
-//			v.Allocate(DIM);
-//			const double val = 14;
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v[i] = static_cast<double>(i + 1);
-//			}
-//
-//			const auto res = val / v;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				BOOST_TEST(res.At(i) == val / v.At(i));
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST15)
-//		{
-//			Vector<double> v1;
-//			v1.Allocate(DIM);
-//			const double val = 10;
-//			v1 = val;
-//
-//			for (size_t i = 0; i < v1.Size(); i++)
-//			{
-//				BOOST_TEST(v1.At(i) == val);
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST16)
-//		{
-//			Vector<double> v1;
-//			v1.Allocate(DIM);
-//			const double val = 10;
-//			v1 = val;
-//
-//			Vector<double> v2(std::move(v1));
-//
-//			BOOST_TEST(v2.Size() == DIM);
-//
-//			for (size_t i = 0; i < v2.Size(); i++)
-//			{
-//				BOOST_TEST(v2.At(i) == val);
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST17)
-//		{
-//			Vector<double> v1;
-//			v1.Allocate(DIM);
-//			const double val = 10;
-//			v1 = val;
-//
-//			Vector<double> v2;
-//			v2 = std::move(v1);
-//
-//			BOOST_TEST(v2.Size() == DIM);
-//
-//			for (size_t i = 0; i < v2.Size(); i++)
-//			{
-//				BOOST_TEST(v2.At(i) == val);
-//			}
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST18)
-//		{
-//			Vector<double> v1;
-//			v1.Allocate(DIM);
-//			v1 = 10.0;
-//			auto v2 = -v1;
-//			BOOST_TEST(v1 == 10.0);
-//			BOOST_TEST(10.0 == v1);
-//			BOOST_TEST(v2 == -v1);
-//			BOOST_TEST(-v1 == v2);
-//			BOOST_TEST(v1 != 11.0);
-//			BOOST_TEST(v2 != v1);
-//			BOOST_TEST(11.0 != v1);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST19)
-//		{
-//			Vector<double> v1;
-//			v1.Allocate(DIM);
-//			const double val = 10;
-//			v1 = val;
-//			Vector<double> v2(v1);
-//
-//			BOOST_TEST(v1 == val);
-//			BOOST_TEST(val == v1);
-//			BOOST_TEST(v2 == v1);
-//			BOOST_TEST(v2 == val);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST20)
-//		{
-//			Vector<double> v1;
-//			v1.Allocate(DIM);
-//			Vector<double> v2;
-//			v2.Allocate(DIM);
-//			Vector<double> v3;
-//			v3.Allocate(DIM);
-//
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v1[i] = std::sin(i);
-//				v2[i] = std::sin(i);
-//				v3[i] = std::sin(i);
-//			}
-//
-//			BOOST_TEST(v1 == v2);
-//			BOOST_TEST(v2 == v3);
-//			BOOST_TEST(v1 == v3);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST21)
-//		{
-//			const Vector<double> v1{ 1, 2, 3, 4 };
-//			BOOST_TEST(v1.Size() == 4);
-//			BOOST_TEST(v1.At(0) == 1);
-//			BOOST_TEST(v1.At(1) == 2);
-//			BOOST_TEST(v1.At(2) == 3);
-//			BOOST_TEST(v1.At(3) == 4);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST22)
-//		{
-//			const std::vector<double> v1STL{ 1, 2, 3, 4 };
-//			const Vector<double> v1(v1STL);
-//			BOOST_TEST(v1.Size() == 4);
-//			BOOST_TEST(v1.At(0) == 1);
-//			BOOST_TEST(v1.At(1) == 2);
-//			BOOST_TEST(v1.At(2) == 3);
-//			BOOST_TEST(v1.At(3) == 4);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST23)
-//		{
-//			Vector<double> v1(DIM);
-//			BOOST_TEST(v1.Size() == DIM);
-//			const double val = 12.34;
-//			for (size_t i = 0; i < DIM; i++)
-//			{
-//				v1[i] = static_cast<double>(val);
-//			}
-//
-//			BOOST_TEST(v1 == val);
-//			BOOST_TEST(val == v1);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST24)
-//		{
-//			Vector<double> v1(DIM);
-//			Vector<double> v2(DIM);
-//			Vector<double> v3(DIM);
-//			Vector<double> v4(DIM);
-//			const double val1 = 1;
-//			v1 = val1;
-//			const double val2 = 2;
-//			v2 = val2;
-//			const double val3 = 3;
-//			v3 = val3;
-//			const double val4 = 4;
-//			v4 = val4;
-//
-//			v4 = v1 + v2 + v3 + v4;
-//			BOOST_TEST(v4 == val1 + val2 + val3 + val4);
-//
-//			v4 = val1;
-//			BOOST_TEST(val1 == v4);
-//
-//			v4 = val1 + val2 + val3 - val1 - val2 - val3;
-//			BOOST_TEST(v4 == 0);
-//
-//			v4 = val1;
-//			BOOST_TEST(val1 == v4);
-//
-//			v4 = -v1 + val1 + v2 - val2;
-//			BOOST_TEST(v4 == 0);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST25)
-//		{
-//			Vector<double> v1(DIM);
-//			Vector<double> v2(DIM);
-//			Vector<double> v3(DIM);
-//			const double val1 = 1;
-//			v1 = val1;
-//			const double val2 = 2;
-//			v2 = val2;
-//
-//			v3 = (v1 / v2) * (v2 / v1);
-//			BOOST_TEST(v3 == 1.0);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST26)
-//		{
-//			Vector<double> v1(DIM);
-//			double val1 = 1;
-//			v1 = val1;
-//			++v1;
-//			++val1;
-//			BOOST_TEST(v1 == val1);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST27)
-//		{
-//			Vector<double> v1(DIM);
-//			double val1 = 1;
-//			v1 = val1;
-//			--v1;
-//			--val1;
-//			BOOST_TEST(v1 == val1);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST28)
-//		{
-//			Vector<double> v1(DIM);
-//			double val1 = 1;
-//			v1 += val1;
-//			BOOST_TEST(v1 == val1);
-//			v1 += val1;
-//			BOOST_TEST(v1 == 2 * val1);
-//			v1 += v1;
-//			BOOST_TEST(v1 == 4 * val1);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST29)
-//		{
-//			Vector<double> v1(DIM);
-//			double val1 = 1;
-//			v1 -= val1;
-//			BOOST_TEST(v1 == -1 * val1);
-//			v1 -= val1;
-//			BOOST_TEST(v1 == -2 * val1);
-//			v1 -= v1;
-//			BOOST_TEST(v1 == 0);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST30)
-//		{
-//			Vector<double> v1(DIM);
-//			double val1 = 3;
-//			double val2 = 4;
-//			v1 = val1;
-//			v1 *= val2;
-//			BOOST_TEST(v1 == val1 * val2);
-//			v1 *= v1;
-//			BOOST_TEST(v1 == val1 * val2 * val1 * val2);
-//		}
-//
-//		BOOST_AUTO_TEST_CASE(TEST31)
-//		{
-//			Vector<double> v1(DIM);
-//			const double val1 = 3;
-//			const double val2 = 4;
-//			v1 = val1;
-//			v1 /= val2;
-//			BOOST_TEST(v1 == val1 / val2);
-//			v1 /= v1;
-//			BOOST_TEST(1.0 == v1);
-//		}
+
+		BOOST_AUTO_TEST_CASE(TEST3)
+		{
+			Matrix<double> m1;
+			Matrix<double> m2;
+			m1.Allocate(NROWS, NCOLS);
+			m2.Allocate(NROWS, NCOLS);
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m1(i, j) = static_cast<double>(i + j);
+					m2(i, j) = static_cast<double>(i + j + 1);
+				}
+			}
+
+			const auto m3 = m1 + m2;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) + static_cast<double>(i + j + 1));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST4)
+		{
+			Matrix<double> m1;
+			Matrix<double> m2;
+			m1.Allocate(NROWS, NCOLS);
+			m2.Allocate(NROWS, NCOLS);
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m1(i, j) = static_cast<double>(i + j);
+					m2(i, j) = static_cast<double>(i + j + 1);
+				}
+			}
+
+			const auto m3 = m1 - m2;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) - static_cast<double>(i + j + 1));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST5)
+		{
+			Matrix<double> m1;
+			Matrix<double> m2;
+
+			m1.Allocate(NROWS, NCOLS);
+			m2.Allocate(NROWS, NCOLS);
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m1(i, j) = static_cast<double>(i + j);
+					m2(i, j) = static_cast<double>(i + j + 1);
+				}
+			}
+
+			const auto m3 = m1 * m2;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) * static_cast<double>(i + j + 1));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST6)
+		{
+			Matrix<double> m1;
+			Matrix<double> m2;
+
+			m1.Allocate(NROWS, NCOLS);
+			m2.Allocate(NROWS, NCOLS);
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m1(i, j) = static_cast<double>(i + j);
+					m2(i, j) = static_cast<double>(i + j + 1);
+				}
+			}
+
+			const auto m3 = m1 / m2;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) / static_cast<double>(i + j + 1));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST7)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 11;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j);
+				}
+			}
+
+			const auto res = m + val;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) + val);
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST8)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 11;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j);
+				}
+			}
+
+			const auto res = m - val;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) - val);
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST9)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 11;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j);
+				}
+			}
+
+			const auto res = m * val;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) * val);
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST10)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 15;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j);
+				}
+			}
+
+			const auto res = m / val;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) / val);
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST11)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 15;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j);
+				}
+			}
+
+			const auto res = val + m;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == val + static_cast<double>(i + j));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST12)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 15;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j);
+				}
+			}
+
+			const auto res = val - m;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == val - static_cast<double>(i + j));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST13)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 15;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j);
+				}
+			}
+
+			const auto res = val * m;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == val * static_cast<double>(i + j));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST14)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 15;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m(i, j) = static_cast<double>(i + j + 1);
+				}
+			}
+
+			const auto res = val / m;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(res.At(i, j) == val / static_cast<double>(i + j + 1));
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST15)
+		{
+			Matrix<double> m;
+			m.Allocate(NROWS, NCOLS);
+			const double val = 10;
+			m = val;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(m.At(i, j) == val);
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST16)
+		{
+			Matrix<double> m1;
+			m1.Allocate(NROWS, NCOLS);
+			const double val = 10;
+			m1 = val;
+
+			Matrix<double> m2(std::move(m1));
+
+			BOOST_TEST(m2.TotalElements() == static_cast<size_t>(NROWS) * NCOLS);
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(m2.At(i, j) == val);
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST17)
+		{
+			Matrix<double> m1;
+			m1.Allocate(NROWS, NCOLS);
+			const double val = 10;
+			m1 = val;
+
+			Matrix<double> m2;
+			m2 = std::move(m1);
+
+			BOOST_TEST(m2.NRows() == NROWS);
+			BOOST_TEST(m2.NCols() == NCOLS);
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					BOOST_TEST(m2.At(i, j) == val);
+				}
+			}
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST18)
+		{
+			Matrix<double> m1;
+			m1.Allocate(NROWS, NCOLS);
+			m1 = 10.0;
+			auto m2 = -m1;
+			BOOST_TEST(m1 == 10.0);
+			BOOST_TEST(10.0 == m1);
+			BOOST_TEST(m2 == -m1);
+			BOOST_TEST(-m1 == m2);
+			BOOST_TEST(m1 != 11.0);
+			BOOST_TEST(m2 != m1);
+			BOOST_TEST(11.0 != m1);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST19)
+		{
+			Matrix<double> m1;
+			m1.Allocate(NROWS, NCOLS);
+			const double val = 10;
+			m1 = val;
+			Matrix<double> m2(m1);
+
+			BOOST_TEST(m1 == val);
+			BOOST_TEST(val == m1);
+			BOOST_TEST(m2 == m1);
+			BOOST_TEST(m2 == val);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST20)
+		{
+			Matrix<double> m1;
+			m1.Allocate(NROWS, NCOLS);
+			Matrix<double> m2;
+			m2.Allocate(NROWS, NCOLS);
+			Matrix<double> m3;
+			m3.Allocate(NROWS, NCOLS);
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					m1(i, j) = std::sin(i + j);
+					m2(i, j) = std::sin(i + j);
+					m3(i, j) = std::sin(i + j);
+				}
+			}
+
+			BOOST_TEST(m1 == m2);
+			BOOST_TEST(m2 == m3);
+			BOOST_TEST(m1 == m3);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST21)
+		{
+			const Matrix<double> mat{{ 1, 2, 3, 4 },
+									 { 2, 3, 4, 5 }};
+
+			BOOST_TEST(mat.NRows() == 2);
+			BOOST_TEST(mat.NCols() == 4);
+
+			BOOST_TEST(mat.At(0, 0) == 1);
+			BOOST_TEST(mat.At(0, 1) == 2);
+			BOOST_TEST(mat.At(0, 2) == 3);
+			BOOST_TEST(mat.At(0, 3) == 4);
+
+			BOOST_TEST(mat.At(1, 0) == 2);
+			BOOST_TEST(mat.At(1, 1) == 3);
+			BOOST_TEST(mat.At(1, 2) == 4);
+			BOOST_TEST(mat.At(1, 3) == 5);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST22)
+		{
+			const std::vector<std::vector<double>> matSTL{{ 1, 2, 3, 4 },
+														  { 2, 3, 4, 5 },
+														  { 3, 4, 5, 6 }};
+			const Matrix<double> mat(matSTL);
+			BOOST_TEST(mat.NRows() == 3);
+			BOOST_TEST(mat.NCols() == 4);
+
+			BOOST_TEST(mat.At(0, 0) == 1);
+			BOOST_TEST(mat.At(0, 1) == 2);
+			BOOST_TEST(mat.At(0, 2) == 3);
+			BOOST_TEST(mat.At(0, 3) == 4);
+
+			BOOST_TEST(mat.At(1, 0) == 2);
+			BOOST_TEST(mat.At(1, 1) == 3);
+			BOOST_TEST(mat.At(1, 2) == 4);
+			BOOST_TEST(mat.At(1, 3) == 5);
+
+			BOOST_TEST(mat.At(2, 0) == 3);
+			BOOST_TEST(mat.At(2, 1) == 4);
+			BOOST_TEST(mat.At(2, 2) == 5);
+			BOOST_TEST(mat.At(2, 3) == 6);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST23)
+		{
+			Matrix<double> mat(NROWS, NCOLS);
+			BOOST_TEST(mat.NRows() == NROWS);
+			BOOST_TEST(mat.NCols() == NCOLS);
+			const double val = 12.34;
+
+			for (int32_t i = 0; i < NROWS; i++)
+			{
+				for (int32_t j = 0; j < NCOLS; j++)
+				{
+					mat(i, j) = val;
+				}
+			}
+
+			BOOST_TEST(mat == val);
+			BOOST_TEST(val == mat);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST24)
+		{
+			Matrix<double> m1(NROWS, NCOLS);
+			Matrix<double> m2(NROWS, NCOLS);
+			Matrix<double> m3(NROWS, NCOLS);
+			Matrix<double> m4(NROWS, NCOLS);
+			const double val1 = 1;
+			m1 = val1;
+			const double val2 = 2;
+			m2 = val2;
+			const double val3 = 3;
+			m3 = val3;
+			const double val4 = 4;
+			m4 = val4;
+
+			m4 = m1 + m2 + m3 + m4;
+			BOOST_TEST(m4 == val1 + val2 + val3 + val4);
+
+			m4 = val1;
+			BOOST_TEST(val1 == m4);
+
+			m4 = val1 + val2 + val3 - val1 - val2 - val3;
+			BOOST_TEST(m4 == 0);
+
+			m4 = val1;
+			BOOST_TEST(val1 == m4);
+
+			m4 = -m1 + val1 + m2 - val2;
+			BOOST_TEST(m4 == 0);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST25)
+		{
+			Matrix<double> m1(NROWS, NCOLS);
+			Matrix<double> m2(NROWS, NCOLS);
+			Matrix<double> m3(NROWS, NCOLS);
+			const double val1 = 1;
+			m1 = val1;
+			const double val2 = 2;
+			m2 = val2;
+
+			m3 = (m1 / m2) * (m2 / m1);
+			BOOST_TEST(m3 == 1.0);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST26)
+		{
+			Matrix<double> mat(NROWS, NCOLS);
+			double val = 1;
+			mat = val;
+			++mat;
+			++val;
+			BOOST_TEST(mat == val);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST27)
+		{
+			Matrix<double> mat(NROWS, NCOLS);
+			double val = 1;
+			mat = val;
+			--mat;
+			--val;
+			BOOST_TEST(mat == val);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST28)
+		{
+			Matrix<double> mat(NROWS, NCOLS);
+			double val = 1;
+			mat += val;
+			BOOST_TEST(mat == val);
+			mat += val;
+			BOOST_TEST(mat == 2 * val);
+			mat += mat;
+			BOOST_TEST(mat == 4 * val);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST29)
+		{
+			Matrix<double> mat(NROWS, NCOLS);
+			double val = 1;
+			mat -= val;
+			BOOST_TEST(mat == -1 * val);
+			mat -= val;
+			BOOST_TEST(mat == -2 * val);
+			mat -= mat;
+			BOOST_TEST(mat == 0);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST30)
+		{
+			Matrix<double> mat(NROWS, NCOLS);
+			double val1 = 3;
+			double val2 = 4;
+			mat = val1;
+			mat *= val2;
+			BOOST_TEST(mat == val1 * val2);
+			mat *= mat;
+			BOOST_TEST(mat == val1 * val2 * val1 * val2);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST31)
+		{
+			Matrix<double> mat(NROWS, NCOLS);
+			const double val1 = 3;
+			const double val2 = 4;
+			mat = val1;
+			mat /= val2;
+			BOOST_TEST(mat == val1 / val2);
+			mat /= mat;
+			BOOST_TEST(1.0 == mat);
+		}
 
 	BOOST_AUTO_TEST_SUITE_END()
 }

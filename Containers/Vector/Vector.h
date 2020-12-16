@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include <iostream>
+#include "../DenseContainer/DenseContainer.h"
 
 namespace SEPOLIA4::CONTAINERS
 {

@@ -33,9 +33,9 @@ namespace SEPOLIA4::CONTAINERS
 
 		using DenseContainer<T>::operator=;
 
-		Matrix<T>& operator=(T val)
+		Matrix<T>& operator=(const Matrix<T>& other)
 		{
-			DenseContainer<T>::operator=(val);
+			DenseContainer<T>::operator=(other);
 			return *this;
 		}
 

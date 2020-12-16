@@ -175,7 +175,6 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 		{
 			Matrix<double> m1;
 			Matrix<double> m2;
-
 			m1.Allocate(NROWS, NCOLS);
 			m2.Allocate(NROWS, NCOLS);
 
@@ -705,6 +704,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 		BOOST_AUTO_TEST_CASE(TEST31)
 		{
 			Matrix<double> mat(NROWS, NCOLS);
+
 			const double val1 = 3;
 			const double val2 = 4;
 			mat = val1;
@@ -712,6 +712,23 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			BOOST_TEST(mat == val1 / val2);
 			mat /= mat;
 			BOOST_TEST(1.0 == mat);
+		}
+
+		BOOST_AUTO_TEST_CASE(TEST32)
+		{
+			Matrix<double> m1;
+			m1.Allocate(NROWS, NCOLS);
+			const double val = 10;
+			m1 = val;
+
+			Matrix<double> m2;
+			m2 = m1;
+
+			BOOST_TEST(m1.NRows() == NROWS);
+			BOOST_TEST(m1.NCols() == NCOLS);
+			BOOST_TEST(m2.NRows() == NROWS);
+			BOOST_TEST(m2.NCols() == NCOLS);
+			BOOST_TEST(m1 == m2);
 		}
 
 	BOOST_AUTO_TEST_SUITE_END()

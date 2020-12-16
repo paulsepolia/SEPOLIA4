@@ -128,7 +128,7 @@ namespace SEPOLIA4::CONTAINERS
 			return *this;
 		}
 
-		~DenseContainer() = default;
+		virtual ~DenseContainer() = default;
 
 		//===================//
 		// Memory management //
@@ -182,14 +182,14 @@ namespace SEPOLIA4::CONTAINERS
 			return m_data[rowIdx * static_cast<size_t>(m_ncols) + colIdx];
 		}
 
-		T& operator()(uint32_t rowIdx, uint32_t colIdx)
-		{
-			return m_data[rowIdx * static_cast<size_t>(m_ncols) + colIdx];
-		}
-
 		[[nodiscard]] const T& At(size_t idx) const
 		{
 			return m_data[idx];
+		}
+
+		virtual T& operator()(uint32_t rowIdx, uint32_t colIdx)
+		{
+			return m_data[rowIdx * static_cast<size_t>(m_ncols) + colIdx];
 		}
 
 		T& operator[](size_t idx)
@@ -286,7 +286,7 @@ namespace SEPOLIA4::CONTAINERS
 
 			for (size_t i = 0; i < res.TotalElements(); i++)
 			{
-				res[i] = val + rhs.At(i);
+				res[i] = val + rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -349,7 +349,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = val - rhs.At(i);
+				res[i] = val - rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -361,7 +361,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = -rhs.At(i);
+				res[i] = -rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -424,7 +424,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = val * rhs.At(i);
+				res[i] = val * rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -474,7 +474,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = val / rhs.At(i);
+				res[i] = val / rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -508,6 +508,8 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			return m_size;
 		}
+
+	protected:
 
 		std::unique_ptr<T[]> m_data;
 		size_t m_nrows = 0;

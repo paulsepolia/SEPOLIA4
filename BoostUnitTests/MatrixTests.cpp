@@ -708,6 +708,18 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			BOOST_TEST(1.0 == mat);
 		}
 
+		BOOST_AUTO_TEST_CASE(TEST32)
+		{
+			Matrix<double> m1(NROWS, NCOLS);
+			const double val1 = 3;
+			m1 = val1;
+			Matrix<double> m2;
+			m2 = m1;
+			BOOST_TEST(m1 == val1);
+			BOOST_TEST(m2 == val1);
+			BOOST_TEST(m1 == m2);
+		}
+
 	BOOST_AUTO_TEST_SUITE_END()
 }
 

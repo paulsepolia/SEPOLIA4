@@ -567,5 +567,17 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 			BOOST_TEST(1.0 == v1);
 		}
 
+		BOOST_AUTO_TEST_CASE(TEST32)
+		{
+			Vector<double> v1(DIM);
+			const double val1 = 3;
+			v1 = val1;
+			Vector<double> v2;
+			v2 = v1;
+			BOOST_TEST(v1 == val1);
+			BOOST_TEST(v2 == val1);
+			BOOST_TEST(v1 == v2);
+		}
+
 	BOOST_AUTO_TEST_SUITE_END()
 }

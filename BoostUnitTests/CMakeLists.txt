@@ -43,7 +43,6 @@ endif(LAPACK_FOUND)
 
 ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
         ../Containers/List/List.h
-        ../Containers/Matrix/Matrix.cpp
         ../Containers/Matrix/Matrix.h
         ../Containers/Vector/Vector.h
         BlasTests.cpp
@@ -53,4 +52,4 @@ ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
         MatrixTests.cpp
         VectorTests.cpp)
 
-TARGET_LINK_LIBRARIES(BOOST_UNIT_TESTS_RUN ${Boost_LIBRARIES} ${BLAS_LIBRARIES})
+TARGET_LINK_LIBRARIES(BOOST_UNIT_TESTS_RUN ${Boost_LIBRARIES} ${BLAS_LIBRARIES} ${Lapack_LIBRARIES})

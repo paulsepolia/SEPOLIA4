@@ -17,19 +17,19 @@ namespace SEPOLIA4::CONTAINERS
 
 		Matrix() = default;
 
-		explicit Matrix(int32_t nrows, int32_t ncols)
+		explicit Matrix(uint32_t nrows, uint32_t ncols)
 		{
 			Allocate(nrows, ncols);
 		}
 
 		explicit Matrix(const std::vector<std::vector<T>>& mat)
 		{
-			const auto NROWS = static_cast<int32_t>(mat.size());
-			const auto NCOLS = static_cast<int32_t>(mat[0].size());
+			const auto NROWS = static_cast<uint32_t>(mat.size());
+			const auto NCOLS = static_cast<uint32_t>(mat[0].size());
 			Allocate(NROWS, NCOLS);
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					operator[](static_cast<size_t>(i) * NCOLS + j) = mat[i][j];
 				}
@@ -122,7 +122,7 @@ namespace SEPOLIA4::CONTAINERS
 		// Memory management //
 		//===================//
 
-		bool Allocate(int32_t nrows, int32_t ncols)
+		bool Allocate(uint32_t nrows, uint32_t ncols)
 		{
 			try
 			{
@@ -163,12 +163,12 @@ namespace SEPOLIA4::CONTAINERS
 		// Operators to access and set elements //
 		//======================================//
 
-		[[nodiscard]] const T& At(int32_t rowIdx, int32_t colIdx) const
+		[[nodiscard]] const T& At(uint32_t rowIdx, uint32_t colIdx) const
 		{
 			return m_data[rowIdx * static_cast<size_t>(m_ncols) + colIdx];
 		}
 
-		T& operator()(int32_t rowIdx, int32_t colIdx)
+		T& operator()(uint32_t rowIdx, uint32_t colIdx)
 		{
 			return m_data[rowIdx * static_cast<size_t>(m_ncols) + colIdx];
 		}
@@ -495,12 +495,12 @@ namespace SEPOLIA4::CONTAINERS
 			return static_cast<size_t>(m_nrows) * m_ncols;
 		}
 
-		[[nodiscard]] int32_t NRows() const
+		[[nodiscard]] uint32_t NRows() const
 		{
 			return m_nrows;
 		}
 
-		[[nodiscard]] int32_t NCols() const
+		[[nodiscard]] uint32_t NCols() const
 		{
 			return m_ncols;
 		}
@@ -508,7 +508,7 @@ namespace SEPOLIA4::CONTAINERS
 	private:
 
 		std::unique_ptr<T[]> m_data;
-		int32_t m_nrows = 0;
-		int32_t m_ncols = 0;
+		uint32_t m_nrows = 0;
+		uint32_t m_ncols = 0;
 	};
 }

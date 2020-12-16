@@ -17,8 +17,8 @@ namespace std
 
 namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 {
-	constexpr int32_t NROWS = 5;
-	constexpr int32_t NCOLS = 6;
+	constexpr uint32_t NROWS = 5;
+	constexpr uint32_t NCOLS = 6;
 
 	BOOST_AUTO_TEST_SUITE(CONTAINER_MATRIX)
 
@@ -35,17 +35,17 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			BOOST_TEST(m1.NCols() == NCOLS);
 			BOOST_TEST(m1.IsAllocated());
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m1(i, j) = static_cast<double>(i + j);
 				}
 			}
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m1.At(i, j) == static_cast<double>(i + j));
 				}
@@ -77,18 +77,18 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			BOOST_TEST(m1.IsAllocated());
 			BOOST_TEST(m2.IsAllocated());
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m1(i, j) = static_cast<double>(i + j);
 					m2(i, j) = m1.At(i, j);
 				}
 			}
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m1(i, j) == static_cast<double>(i + j));
 					BOOST_TEST(m1(i, j) == m2(i, j));
@@ -118,9 +118,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m1.Allocate(NROWS, NCOLS);
 			m2.Allocate(NROWS, NCOLS);
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m1(i, j) = static_cast<double>(i + j);
 					m2(i, j) = static_cast<double>(i + j + 1);
@@ -129,9 +129,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto m3 = m1 + m2;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) + static_cast<double>(i + j + 1));
 				}
@@ -145,9 +145,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m1.Allocate(NROWS, NCOLS);
 			m2.Allocate(NROWS, NCOLS);
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m1(i, j) = static_cast<double>(i + j);
 					m2(i, j) = static_cast<double>(i + j + 1);
@@ -156,9 +156,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto m3 = m1 - m2;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) - static_cast<double>(i + j + 1));
 				}
@@ -173,9 +173,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m1.Allocate(NROWS, NCOLS);
 			m2.Allocate(NROWS, NCOLS);
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m1(i, j) = static_cast<double>(i + j);
 					m2(i, j) = static_cast<double>(i + j + 1);
@@ -184,9 +184,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto m3 = m1 * m2;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) * static_cast<double>(i + j + 1));
 				}
@@ -201,9 +201,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m1.Allocate(NROWS, NCOLS);
 			m2.Allocate(NROWS, NCOLS);
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m1(i, j) = static_cast<double>(i + j);
 					m2(i, j) = static_cast<double>(i + j + 1);
@@ -212,9 +212,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto m3 = m1 / m2;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m3.At(i, j) == static_cast<double>(i + j) / static_cast<double>(i + j + 1));
 				}
@@ -227,9 +227,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 11;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j);
 				}
@@ -237,9 +237,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = m + val;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) + val);
 				}
@@ -252,9 +252,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 11;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j);
 				}
@@ -262,9 +262,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = m - val;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) - val);
 				}
@@ -277,9 +277,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 11;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j);
 				}
@@ -287,9 +287,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = m * val;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) * val);
 				}
@@ -302,9 +302,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 15;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j);
 				}
@@ -312,9 +312,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = m / val;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == static_cast<double>(i + j) / val);
 				}
@@ -327,9 +327,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 15;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j);
 				}
@@ -337,9 +337,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = val + m;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == val + static_cast<double>(i + j));
 				}
@@ -352,9 +352,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 15;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j);
 				}
@@ -362,9 +362,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = val - m;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == val - static_cast<double>(i + j));
 				}
@@ -377,9 +377,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 15;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j);
 				}
@@ -387,9 +387,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = val * m;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == val * static_cast<double>(i + j));
 				}
@@ -402,9 +402,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			m.Allocate(NROWS, NCOLS);
 			const double val = 15;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m(i, j) = static_cast<double>(i + j + 1);
 				}
@@ -412,9 +412,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			const auto res = val / m;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(res.At(i, j) == val / static_cast<double>(i + j + 1));
 				}
@@ -428,9 +428,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			const double val = 10;
 			m = val;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m.At(i, j) == val);
 				}
@@ -448,9 +448,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 
 			BOOST_TEST(m2.TotalElements() == static_cast<size_t>(NROWS) * NCOLS);
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m2.At(i, j) == val);
 				}
@@ -470,9 +470,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			BOOST_TEST(m2.NRows() == NROWS);
 			BOOST_TEST(m2.NCols() == NCOLS);
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					BOOST_TEST(m2.At(i, j) == val);
 				}
@@ -517,9 +517,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			Matrix<double> m3;
 			m3.Allocate(NROWS, NCOLS);
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					m1(i, j) = std::sin(i + j);
 					m2(i, j) = std::sin(i + j);
@@ -583,9 +583,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
 			BOOST_TEST(mat.NCols() == NCOLS);
 			const double val = 12.34;
 
-			for (int32_t i = 0; i < NROWS; i++)
+			for (uint32_t i = 0; i < NROWS; i++)
 			{
-				for (int32_t j = 0; j < NCOLS; j++)
+				for (uint32_t j = 0; j < NCOLS; j++)
 				{
 					mat(i, j) = val;
 				}

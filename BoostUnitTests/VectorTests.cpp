@@ -421,23 +421,23 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST21)
 		{
-			Vector<double> v1{ 1, 2, 3, 4 };
+			const Vector<double> v1{ 1, 2, 3, 4 };
 			BOOST_TEST(v1.Size() == 4);
-			BOOST_TEST(v1[0] == 1);
-			BOOST_TEST(v1[1] == 2);
-			BOOST_TEST(v1[2] == 3);
-			BOOST_TEST(v1[3] == 4);
+			BOOST_TEST(v1.At(0) == 1);
+			BOOST_TEST(v1.At(1) == 2);
+			BOOST_TEST(v1.At(2) == 3);
+			BOOST_TEST(v1.At(3) == 4);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST22)
 		{
-			std::vector<double> v1STL{ 1, 2, 3, 4 };
-			Vector<double> v1(v1STL);
+			const std::vector<double> v1STL{ 1, 2, 3, 4 };
+			const Vector<double> v1(v1STL);
 			BOOST_TEST(v1.Size() == 4);
-			BOOST_TEST(v1[0] == 1);
-			BOOST_TEST(v1[1] == 2);
-			BOOST_TEST(v1[2] == 3);
-			BOOST_TEST(v1[3] == 4);
+			BOOST_TEST(v1.At(0) == 1);
+			BOOST_TEST(v1.At(1) == 2);
+			BOOST_TEST(v1.At(2) == 3);
+			BOOST_TEST(v1.At(3) == 4);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST23)

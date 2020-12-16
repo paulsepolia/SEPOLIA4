@@ -10,7 +10,8 @@ using namespace SEPOLIA4::CONTAINERS;
 
 namespace std
 {
-	ostream& operator<<(ostream& stream, const Vector& term)
+	template<typename T>
+	ostream& operator<<(ostream& stream, const Vector<T>& term)
 	{
 		return stream;
 	}
@@ -24,7 +25,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST1)
 		{
-			Vector v1;
+			Vector<double> v1;
 			BOOST_TEST(v1.Size() == 0);
 			BOOST_TEST(v1.IsDeallocated());
 
@@ -49,8 +50,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST2)
 		{
-			Vector v1;
-			Vector v2;
+			Vector<double> v1;
+			Vector<double> v2;
 
 			BOOST_TEST(v1.Size() == 0);
 			BOOST_TEST(v2.Size() == 0);
@@ -93,8 +94,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST3)
 		{
-			Vector v1;
-			Vector v2;
+			Vector<double> v1;
+			Vector<double> v2;
 			v1.Allocate(DIM);
 			v2.Allocate(DIM);
 
@@ -114,8 +115,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST4)
 		{
-			Vector v1;
-			Vector v2;
+			Vector<double> v1;
+			Vector<double> v2;
 			v1.Allocate(DIM);
 			v2.Allocate(DIM);
 
@@ -135,8 +136,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST5)
 		{
-			Vector v1;
-			Vector v2;
+			Vector<double> v1;
+			Vector<double> v2;
 
 			v1.Allocate(DIM);
 			v2.Allocate(DIM);
@@ -157,8 +158,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST6)
 		{
-			Vector v1;
-			Vector v2;
+			Vector<double> v1;
+			Vector<double> v2;
 			v1.Allocate(DIM);
 			v2.Allocate(DIM);
 
@@ -178,7 +179,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST7)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 11;
 
@@ -196,7 +197,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST8)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 12;
 
@@ -214,7 +215,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST9)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 12;
 
@@ -232,7 +233,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST10)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 12;
 
@@ -250,7 +251,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST11)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 11;
 
@@ -268,7 +269,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST12)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 12;
 
@@ -286,7 +287,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST13)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 13;
 
@@ -304,7 +305,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST14)
 		{
-			Vector v;
+			Vector<double> v;
 			v.Allocate(DIM);
 			const double val = 14;
 
@@ -322,7 +323,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST15)
 		{
-			Vector v1;
+			Vector<double> v1;
 			v1.Allocate(DIM);
 			const double val = 10;
 			v1 = val;
@@ -335,12 +336,12 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST16)
 		{
-			Vector v1;
+			Vector<double> v1;
 			v1.Allocate(DIM);
 			const double val = 10;
 			v1 = val;
 
-			Vector v2(std::move(v1));
+			Vector<double> v2(std::move(v1));
 
 			BOOST_TEST(v2.Size() == DIM);
 
@@ -352,12 +353,12 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST17)
 		{
-			Vector v1;
+			Vector<double> v1;
 			v1.Allocate(DIM);
 			const double val = 10;
 			v1 = val;
 
-			Vector v2;
+			Vector<double> v2;
 			v2 = std::move(v1);
 
 			BOOST_TEST(v2.Size() == DIM);
@@ -370,26 +371,26 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST18)
 		{
-			Vector v1;
+			Vector<double> v1;
 			v1.Allocate(DIM);
-			v1 = 10;
+			v1 = 10.0;
 			auto v2 = -v1;
-			BOOST_TEST(v1 == 10);
-			BOOST_TEST(10 == v1);
+			BOOST_TEST(v1 == 10.0);
+			BOOST_TEST(10.0 == v1);
 			BOOST_TEST(v2 == -v1);
 			BOOST_TEST(-v1 == v2);
-			BOOST_TEST(v1 != 11);
+			BOOST_TEST(v1 != 11.0);
 			BOOST_TEST(v2 != v1);
-			BOOST_TEST(11 != v1);
+			BOOST_TEST(11.0 != v1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST19)
 		{
-			Vector v1;
+			Vector<double> v1;
 			v1.Allocate(DIM);
 			const double val = 10;
 			v1 = val;
-			Vector v2(v1);
+			Vector<double> v2(v1);
 
 			BOOST_TEST(v1 == val);
 			BOOST_TEST(val == v1);
@@ -399,11 +400,11 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST20)
 		{
-			Vector v1;
+			Vector<double> v1;
 			v1.Allocate(DIM);
-			Vector v2;
+			Vector<double> v2;
 			v2.Allocate(DIM);
-			Vector v3;
+			Vector<double> v3;
 			v3.Allocate(DIM);
 
 			for (size_t i = 0; i < DIM; i++)
@@ -420,7 +421,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST21)
 		{
-			Vector v1{ 1, 2, 3, 4 };
+			Vector<double> v1{ 1, 2, 3, 4 };
 			BOOST_TEST(v1.Size() == 4);
 			BOOST_TEST(v1[0] == 1);
 			BOOST_TEST(v1[1] == 2);
@@ -431,7 +432,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 		BOOST_AUTO_TEST_CASE(TEST22)
 		{
 			std::vector<double> v1STL{ 1, 2, 3, 4 };
-			Vector v1(v1STL);
+			Vector<double> v1(v1STL);
 			BOOST_TEST(v1.Size() == 4);
 			BOOST_TEST(v1[0] == 1);
 			BOOST_TEST(v1[1] == 2);
@@ -441,7 +442,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST23)
 		{
-			Vector v1(DIM);
+			Vector<double> v1(DIM);
 			BOOST_TEST(v1.Size() == DIM);
 			const double val = 12.34;
 			for (size_t i = 0; i < DIM; i++)
@@ -455,10 +456,10 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST24)
 		{
-			Vector v1(DIM);
-			Vector v2(DIM);
-			Vector v3(DIM);
-			Vector v4(DIM);
+			Vector<double> v1(DIM);
+			Vector<double> v2(DIM);
+			Vector<double> v3(DIM);
+			Vector<double> v4(DIM);
 			const double val1 = 1;
 			v1 = val1;
 			const double val2 = 2;
@@ -486,9 +487,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST25)
 		{
-			Vector v1(DIM);
-			Vector v2(DIM);
-			Vector v3(DIM);
+			Vector<double> v1(DIM);
+			Vector<double> v2(DIM);
+			Vector<double> v3(DIM);
 			const double val1 = 1;
 			v1 = val1;
 			const double val2 = 2;
@@ -500,7 +501,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST26)
 		{
-			Vector v1(DIM);
+			Vector<double> v1(DIM);
 			double val1 = 1;
 			v1 = val1;
 			++v1;
@@ -510,7 +511,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST27)
 		{
-			Vector v1(DIM);
+			Vector<double> v1(DIM);
 			double val1 = 1;
 			v1 = val1;
 			--v1;
@@ -520,7 +521,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST28)
 		{
-			Vector v1(DIM);
+			Vector<double> v1(DIM);
 			double val1 = 1;
 			v1 += val1;
 			BOOST_TEST(v1 == val1);
@@ -532,7 +533,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST29)
 		{
-			Vector v1(DIM);
+			Vector<double> v1(DIM);
 			double val1 = 1;
 			v1 -= val1;
 			BOOST_TEST(v1 == -1 * val1);
@@ -544,7 +545,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST30)
 		{
-			Vector v1(DIM);
+			Vector<double> v1(DIM);
 			double val1 = 3;
 			double val2 = 4;
 			v1 = val1;
@@ -556,7 +557,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
 
 		BOOST_AUTO_TEST_CASE(TEST31)
 		{
-			Vector v1(DIM);
+			Vector<double> v1(DIM);
 			const double val1 = 3;
 			const double val2 = 4;
 			v1 = val1;

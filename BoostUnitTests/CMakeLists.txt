@@ -46,7 +46,6 @@ ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
         ../Containers/List/List.h
         ../Containers/Matrix/Matrix.cpp
         ../Containers/Matrix/Matrix.h
-        ../Containers/Vector/Vector.cpp
         ../Containers/Vector/Vector.h
         BlasTests.cpp
         BoostUblasTests.cpp

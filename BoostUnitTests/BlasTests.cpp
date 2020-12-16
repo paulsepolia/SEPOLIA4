@@ -165,8 +165,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 			const int32_t NCOLS = 5;
 			const size_t TOT_ELEMS = NROWS * NCOLS;
 
-			Vector A(TOT_ELEMS);
-			Vector x(NCOLS);
+			Vector<double> A(TOT_ELEMS);
+			Vector<double> x(NCOLS);
 
 			for (size_t i = 0; i < TOT_ELEMS; i++)
 			{
@@ -178,7 +178,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 				x[i] = static_cast<double>(i + 1);
 			}
 
-			Vector y(NROWS);
+			Vector<double> y(NROWS);
 			const double alpha = 1.234;
 			const double beta = 0.0;
 
@@ -201,8 +201,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 			const int32_t NCOLS = 5;
 			const size_t TOT_ELEMS = NROWS * NCOLS;
 
-			Vector A(TOT_ELEMS);
-			Vector x(NCOLS);
+			Vector<double> A(TOT_ELEMS);
+			Vector<double> x(NCOLS);
 
 			for (size_t i = 0; i < TOT_ELEMS; i++)
 			{
@@ -214,7 +214,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 				x[i] = static_cast<double>(i + 1);
 			}
 
-			Vector y(NROWS);
+			Vector<double> y(NROWS);
 			const double alpha = 1.234;
 			const double beta = 0.0;
 
@@ -223,7 +223,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 			//========//
 			cblas_dgemv(CblasRowMajor, CblasNoTrans, NROWS, NCOLS, alpha, &A[0], NCOLS, &x[0], 1, beta, &y[0], 1);
 
-			const Vector resExpected({ alpha * 55 });
+			const Vector<double> resExpected({ alpha * 55 });
 
 			for (int i = 0; i < NROWS; i++)
 			{
@@ -237,8 +237,8 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 			const int32_t NCOLS = 1;
 			const size_t TOT_ELEMS = NROWS * NCOLS;
 
-			Vector A(TOT_ELEMS);
-			Vector x(NCOLS);
+			Vector<double> A(TOT_ELEMS);
+			Vector<double> x(NCOLS);
 
 			for (size_t i = 0; i < TOT_ELEMS; i++)
 			{
@@ -250,7 +250,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 				x[i] = static_cast<double>(i + 1);
 			}
 
-			Vector y(NROWS);
+			Vector<double> y(NROWS);
 			const double alpha = 1.2345;
 			const double beta = 0.0;
 
@@ -273,9 +273,9 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 			const int32_t NCOLS = 5;
 			const size_t TOT_ELEMS = NROWS * NCOLS;
 
-			Vector A(TOT_ELEMS);
-			Vector x(NCOLS);
-			Vector y(NROWS);
+			Vector<double> A(TOT_ELEMS);
+			Vector<double> x(NCOLS);
+			Vector<double> y(NROWS);
 
 			for (size_t i = 0; i < TOT_ELEMS; i++)
 			{
@@ -294,7 +294,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_BLAS
 
 			const double alpha = 1.234;
 			const double beta = 2.345;
-			const Vector resExpected({ alpha * 55 + beta * y[0], alpha * 130 + beta * y[1],
+			const Vector<double> resExpected({ alpha * 55 + beta * y[0], alpha * 130 + beta * y[1],
 									   alpha * 205 + beta * y[2], alpha * 280 + beta * y[3] });
 
 			//========//

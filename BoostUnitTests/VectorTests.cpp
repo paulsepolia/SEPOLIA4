@@ -11,7 +11,7 @@ using namespace SEPOLIA4::CONTAINERS;
 namespace std
 {
 	template<typename T>
-	ostream& operator<<(ostream& stream, const Vector<T>& term)
+	ostream& operator<<(ostream& stream, const Vector<T>& vec)
 	{
 		return stream;
 	}

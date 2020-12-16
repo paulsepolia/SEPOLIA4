@@ -13,7 +13,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_LIST
 
 		BOOST_AUTO_TEST_CASE(TEST1)
 		{
-			auto list = List();
+			auto list = List<double>();
 
 			for (size_t i = 0; i < DIM; i++)
 			{
@@ -228,7 +228,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_LIST
 
 		BOOST_AUTO_TEST_CASE(TEST14)
 		{
-			auto list = List();
+			auto list = List<double>();
 
 			for (size_t i = 0; i < DIM; i++)
 			{
@@ -245,7 +245,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_LIST
 
 		BOOST_AUTO_TEST_CASE(TEST15)
 		{
-			auto list = List();
+			auto list = List<double>();
 
 			for (size_t i = 0; i < DIM; i++)
 			{
@@ -263,7 +263,7 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_LIST
 
 		BOOST_AUTO_TEST_CASE(TEST16)
 		{
-			auto list = List();
+			auto list = List<double>();
 
 			for (size_t i = 0; i < DIM; i++)
 			{

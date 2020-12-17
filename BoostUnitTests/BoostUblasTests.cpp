@@ -35,5 +35,41 @@ namespace SEPOLIA4::BOOST_UNIT_TEST_UBLAS
 			}
 		}
 
+		BOOST_AUTO_TEST_CASE(TEST2)
+		{
+			const int NROWS = 5;
+			const int NCOLS = 6;
+
+			ublas::matrix<double> m1(NROWS, NCOLS);
+			ublas::matrix<double> m2(NCOLS, NCOLS);
+			ublas::matrix<double> m3(NROWS, NCOLS);
+
+			for (int i = 0; i < NROWS; ++i)
+			{
+				for (int j = 0; j < NCOLS; ++j)
+				{
+					m1(i, j) = 1.0;
+				}
+			}
+
+			for (int i = 0; i < NCOLS; ++i)
+			{
+				for (int j = 0; j < NCOLS; ++j)
+				{
+					m2(i, j) = 2.0;
+				}
+			}
+
+			m3 = ublas::prod(m1, m2);
+
+			for (int i = 0; i < NROWS; ++i)
+			{
+				for (int j = 0; j < NCOLS; ++j)
+				{
+					BOOST_TEST(m3(i, j) == static_cast<double>(2 * NCOLS));
+				}
+			}
+		}
+
 	BOOST_AUTO_TEST_SUITE_END()
 }

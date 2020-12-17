@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include <initializer_list>
+#include <algorithm>
 #include "../../Common/CommonHeaders.h"
 
 namespace SEPOLIA4::CONTAINERS
@@ -187,16 +189,50 @@ namespace SEPOLIA4::CONTAINERS
 			return -1;
 		}
 
-		int EraseAll(T value)
+		void EraseAll(T value)
 		{
 			int errorCode = 0;
-
 			while (errorCode == 0)
 			{
 				errorCode = EraseOne(value);
 			}
+		}
 
-			return errorCode;
+		void EraseAll(const std::vector<T>& values)
+		{
+			for(const auto &el: values)
+			{
+				EraseAll(el);
+			}
+		}
+
+		void EraseAll(const List<T>& list)
+		{
+			if(this != &list)
+			{
+				auto headTmp = list.head;
+				while (headTmp)
+				{
+					EraseAll(headTmp->value);
+					headTmp = headTmp->next;
+				}
+			}
+			else
+			{
+				// put the values into a set
+				std::set<T> values;
+				auto headTmp = list.head;
+				while (headTmp)
+				{
+					values.insert(headTmp->value);
+					headTmp = headTmp->next;
+				}
+				// remove each value
+				for(const auto& el: values)
+				{
+					EraseAll(el);
+				}
+			}
 		}
 
 		void Clear()

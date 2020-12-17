@@ -50,6 +50,6 @@ ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
         LapackTests.cpp
         ListTests.cpp
         MatrixTests.cpp
-        VectorTests.cpp)
+        VectorTests.cpp ../Utilities/Clock.cpp ../Utilities/Clock.h)
 
 TARGET_LINK_LIBRARIES(BOOST_UNIT_TESTS_RUN ${Boost_LIBRARIES} ${BLAS_LIBRARIES} ${Lapack_LIBRARIES})

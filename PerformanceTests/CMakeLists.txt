@@ -45,6 +45,6 @@ ADD_EXECUTABLE(PERFORMANCE_TESTS_RUN
         ../Containers/List/List.h
         ../Containers/Matrix/Matrix.h
         ../Containers/Vector/Vector.h
-        UblasPerfTests.cpp)
+        UblasPerfTests.cpp ContainersPerfTests.cpp ../Utilities/Clock.cpp ../Utilities/Clock.h)
 
 TARGET_LINK_LIBRARIES(PERFORMANCE_TESTS_RUN ${Boost_LIBRARIES} ${BLAS_LIBRARIES} ${Lapack_LIBRARIES})

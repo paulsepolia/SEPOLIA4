@@ -31,32 +31,31 @@ namespace SEPOLIA4::CONTAINERS
 			{
 				for (uint32_t j = 0; j < NCOLS; j++)
 				{
-					operator[](static_cast<size_t>(i) * NCOLS + j) = mat[i][j];
+					m_data[static_cast<size_t>(i) * NCOLS + j] = mat[i][j];
 				}
 			}
 		}
 
 		Matrix(const std::initializer_list<std::initializer_list<T>>& initMatrix)
 		{
-			std::vector<std::vector<T>> mTmp;
-
+			const uint32_t NROWS = initMatrix.size();
+			uint32_t NCOLS = 0;
 			for(const auto& el1: initMatrix)
 			{
-				std::vector<T> vTmp;
 				for(const auto& el2: el1)
 				{
-					vTmp.push_back(el2);
+					NCOLS++;
 				}
-				mTmp.push_back(vTmp);
+				break;
 			}
 
-			Allocate(mTmp.size(), mTmp[0].size());
+			Allocate(NROWS, NCOLS);
 			size_t idx = 0;
 			for (const auto& el1 : initMatrix)
 			{
 				for (const auto& el2 : el1)
 				{
-					operator[](idx) = el2;
+					m_data[idx] = el2;
 					idx++;
 				}
 			}
@@ -173,20 +172,6 @@ namespace SEPOLIA4::CONTAINERS
 			return m_data[rowIdx * static_cast<size_t>(m_ncols) + colIdx];
 		}
 
-	private:
-
-		[[nodiscard]] const T& At(size_t idx) const
-		{
-			return m_data[idx];
-		}
-
-		T& operator[](size_t idx)
-		{
-			return m_data[idx];
-		}
-
-	public:
-
 		//================//
 		// Check equality //
 		//================//
@@ -248,7 +233,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				res[i] = m_data[i] + rhs.m_data[i];
+				res.m_data[i] = m_data[i] + rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -259,7 +244,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				res[i] = m_data[i] + val;
+				res.m_data[i] = m_data[i] + val;
 			}
 			return std::move(res);
 		}
@@ -269,10 +254,9 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Matrix<T> res;
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
-
 			for (size_t i = 0; i < res.TotalElements(); i++)
 			{
-				res[i] = val + rhs.At(i);
+				res.m_data[i] = val + rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -281,7 +265,7 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				operator[](i)++;
+				m_data[i]++;
 			}
 		}
 
@@ -312,7 +296,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				res[i] = m_data[i] - rhs.m_data[i];
+				res.m_data[i] = m_data[i] - rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -323,7 +307,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				res[i] = m_data[i] - val;
+				res.m_data[i] = m_data[i] - val;
 			}
 			return std::move(res);
 		}
@@ -335,7 +319,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = val - rhs.At(i);
+				res.m_data[i] = val - rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -347,7 +331,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = -rhs.At(i);
+				res.m_data[i] = -rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -356,7 +340,7 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				operator[](i)--;
+				m_data[i]--;
 			}
 		}
 
@@ -387,7 +371,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				res[i] = m_data[i] * rhs.m_data[i];
+				res.m_data[i] = m_data[i] * rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -398,7 +382,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				res[i] = m_data[i] * val;
+				res.m_data[i] = m_data[i] * val;
 			}
 			return std::move(res);
 		}
@@ -410,7 +394,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = val * rhs.At(i);
+				res.m_data[i] = val * rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -437,7 +421,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = m_data[i] / rhs.m_data[i];
+				res.m_data[i] = m_data[i] / rhs.m_data[i];
 			}
 			return std::move(res);
 		}
@@ -448,7 +432,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(m_nrows, m_ncols);
 			for (size_t i = 0; i < TotalElements(); i++)
 			{
-				res[i] = m_data[i] / val;
+				res.m_data[i] = m_data[i] / val;
 			}
 			return std::move(res);
 		}
@@ -460,7 +444,7 @@ namespace SEPOLIA4::CONTAINERS
 			res.Allocate(rhs.m_nrows, rhs.m_ncols);
 			for (size_t i = 0; i < rhs.TotalElements(); i++)
 			{
-				res[i] = val / rhs.At(i);
+				res.m_data[i] = val / rhs.m_data[i];
 			}
 			return std::move(res);
 		}

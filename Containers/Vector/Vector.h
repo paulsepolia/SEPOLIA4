@@ -25,7 +25,6 @@ namespace SEPOLIA4::CONTAINERS
 		explicit Vector(const std::vector<T>& vec)
 		{
 			Allocate(vec.size());
-
 			for (size_t i = 0; i < vec.size(); i++)
 			{
 				operator[](i) = vec[i];
@@ -35,7 +34,6 @@ namespace SEPOLIA4::CONTAINERS
 		Vector(const std::initializer_list<T>& initList)
 		{
 			Allocate(initList.size());
-
 			size_t idx = 0;
 			for (const auto& el : initList)
 			{
@@ -162,7 +160,6 @@ namespace SEPOLIA4::CONTAINERS
 		bool operator==(const Vector& rhs) const
 		{
 			if (m_size != rhs.Size()) return false;
-
 			for (size_t i = 0; i < rhs.Size(); i++)
 			{
 				if (m_data[i] != rhs.m_data[i]) return false;
@@ -213,12 +210,10 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < rhs.Size(); i++)
 			{
 				res[i] = m_data[i] + rhs.m_data[i];
 			}
-
 			return std::move(res);
 		}
 
@@ -226,7 +221,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < m_size; i++)
 			{
 				res[i] = m_data[i] + val;
@@ -239,7 +233,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(rhs.m_size);
-
 			for (size_t i = 0; i < rhs.m_size; i++)
 			{
 				res[i] = val + rhs.At(i);
@@ -280,12 +273,10 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < rhs.Size(); i++)
 			{
 				res[i] = m_data[i] - rhs.m_data[i];
 			}
-
 			return std::move(res);
 		}
 
@@ -293,7 +284,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < m_size; i++)
 			{
 				res[i] = m_data[i] - val;
@@ -306,7 +296,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(rhs.m_size);
-
 			for (size_t i = 0; i < rhs.m_size; i++)
 			{
 				res[i] = val - rhs.At(i);
@@ -319,7 +308,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(rhs.m_size);
-
 			for (size_t i = 0; i < rhs.m_size; i++)
 			{
 				res[i] = -rhs.At(i);
@@ -360,7 +348,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < rhs.Size(); i++)
 			{
 				res[i] = m_data[i] * rhs.m_data[i];
@@ -372,7 +359,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < m_size; i++)
 			{
 				res[i] = m_data[i] * val;
@@ -385,7 +371,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(rhs.m_size);
-
 			for (size_t i = 0; i < rhs.m_size; i++)
 			{
 				res[i] = val * rhs.At(i);
@@ -413,7 +398,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < rhs.Size(); i++)
 			{
 				res[i] = m_data[i] / rhs.m_data[i];
@@ -425,7 +409,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(m_size);
-
 			for (size_t i = 0; i < m_size; i++)
 			{
 				res[i] = m_data[i] / val;
@@ -438,7 +421,6 @@ namespace SEPOLIA4::CONTAINERS
 		{
 			Vector<T> res;
 			res.Allocate(rhs.m_size);
-
 			for (size_t i = 0; i < rhs.m_size; i++)
 			{
 				res[i] = val / rhs.At(i);

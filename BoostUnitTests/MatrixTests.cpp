@@ -15,7 +15,7 @@ namespace std
 	}
 }
 
-namespace SEPOLIA4::BOOST_UNIT_TEST_MATRIX
+namespace SEPOLIA4::BOOST_UNIT_TESTS
 {
 	constexpr uint32_t NROWS = 5;
 	constexpr uint32_t NCOLS = 6;

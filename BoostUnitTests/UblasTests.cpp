@@ -4,7 +4,7 @@
 #include <boost/numeric/ublas/io.hpp>
 #include <boost/test/unit_test.hpp>
 
-namespace SEPOLIA4::BOOST_UNIT_TEST_UBLAS
+namespace SEPOLIA4::BOOST_UNIT_TESTS
 {
 	using namespace boost::numeric;
 

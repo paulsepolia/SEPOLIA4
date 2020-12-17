@@ -5,7 +5,7 @@
 
 using namespace SEPOLIA4::CONTAINERS;
 
-namespace SEPOLIA4::BOOST_UNIT_TEST_LIST
+namespace SEPOLIA4::BOOST_UNIT_TESTS
 {
 	constexpr size_t DIM = 10;
 

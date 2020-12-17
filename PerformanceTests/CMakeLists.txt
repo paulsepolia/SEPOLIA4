@@ -1,6 +1,6 @@
 SET(Boost_USE_STATIC_LIBS OFF)
 SET(CMAKE_CXX_STANDARD 20)
-PROJECT(BOOST_UNIT_TESTS_RUN)
+PROJECT(PERFORMANCE_TESTS_RUN)
 
 #================#
 # BOOST settings #
@@ -41,15 +41,10 @@ endif(LAPACK_FOUND)
 # Executable settings #
 #=====================#
 
-ADD_EXECUTABLE(BOOST_UNIT_TESTS_RUN
+ADD_EXECUTABLE(PERFORMANCE_TESTS_RUN
         ../Containers/List/List.h
         ../Containers/Matrix/Matrix.h
         ../Containers/Vector/Vector.h
-        BlasTests.cpp
-        UblasTests.cpp
-        LapackTests.cpp
-        ListTests.cpp
-        MatrixTests.cpp
-        VectorTests.cpp)
+        UblasPerfTests.cpp)
 
-TARGET_LINK_LIBRARIES(BOOST_UNIT_TESTS_RUN ${Boost_LIBRARIES} ${BLAS_LIBRARIES} ${Lapack_LIBRARIES})
+TARGET_LINK_LIBRARIES(PERFORMANCE_TESTS_RUN ${Boost_LIBRARIES} ${BLAS_LIBRARIES} ${Lapack_LIBRARIES})

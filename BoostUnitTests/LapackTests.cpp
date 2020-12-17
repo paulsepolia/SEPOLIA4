@@ -2,7 +2,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-namespace SEPOLIA4::BOOST_UNIT_TEST_LAPACK
+namespace SEPOLIA4::BOOST_UNIT_TESTS
 {
 
 	BOOST_AUTO_TEST_SUITE(LAPACK_TESTS)

@@ -17,7 +17,7 @@ namespace std
 	}
 }
 
-namespace SEPOLIA4::BOOST_UNIT_TEST_VECTOR
+namespace SEPOLIA4::BOOST_UNIT_TESTS
 {
 	constexpr size_t DIM = 10;
 

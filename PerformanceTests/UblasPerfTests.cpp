@@ -48,7 +48,7 @@ namespace SEPOLIA4::PERFORMANCE_TESTS
 			{
 				for (int j = 0; j < NCOLS; ++j)
 				{
-					if(m3(i, j) != static_cast<double>(2 * NCOLS)) BOOST_TEST(false);
+					if(m3(i, j) != static_cast<double>(2 * NCOLS)) BOOST_CHECK(false);
 				}
 			}
 		}

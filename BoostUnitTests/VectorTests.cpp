@@ -26,12 +26,12 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 		BOOST_AUTO_TEST_CASE(TEST1)
 		{
 			Vector<double> v1;
-			BOOST_TEST(v1.Size() == 0);
-			BOOST_TEST(v1.IsDeallocated());
+			BOOST_CHECK(v1.Size() == 0);
+			BOOST_CHECK(v1.IsDeallocated());
 
 			v1.Allocate(DIM);
-			BOOST_TEST(v1.Size() == DIM);
-			BOOST_TEST(v1.IsAllocated());
+			BOOST_CHECK(v1.Size() == DIM);
+			BOOST_CHECK(v1.IsAllocated());
 
 			for (size_t i = 0; i < DIM; i++)
 			{
@@ -40,12 +40,12 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(v1.At(i) == static_cast<double>(i));
+				BOOST_CHECK(v1.At(i) == static_cast<double>(i));
 			}
 
 			v1.Deallocate();
-			BOOST_TEST(v1.Size() == 0);
-			BOOST_TEST(v1.IsDeallocated());
+			BOOST_CHECK(v1.Size() == 0);
+			BOOST_CHECK(v1.IsDeallocated());
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST2)
@@ -53,18 +53,18 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			Vector<double> v1;
 			Vector<double> v2;
 
-			BOOST_TEST(v1.Size() == 0);
-			BOOST_TEST(v2.Size() == 0);
-			BOOST_TEST(v1.IsDeallocated());
-			BOOST_TEST(v2.IsDeallocated());
+			BOOST_CHECK(v1.Size() == 0);
+			BOOST_CHECK(v2.Size() == 0);
+			BOOST_CHECK(v1.IsDeallocated());
+			BOOST_CHECK(v2.IsDeallocated());
 
 			v1.Allocate(DIM);
 			v2.Allocate(DIM);
 
-			BOOST_TEST(v1.Size() == DIM);
-			BOOST_TEST(v2.Size() == DIM);
-			BOOST_TEST(v1.IsAllocated());
-			BOOST_TEST(v2.IsAllocated());
+			BOOST_CHECK(v1.Size() == DIM);
+			BOOST_CHECK(v2.Size() == DIM);
+			BOOST_CHECK(v1.IsAllocated());
+			BOOST_CHECK(v2.IsAllocated());
 
 			for (size_t i = 0; i < DIM; i++)
 			{
@@ -74,8 +74,8 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(v1.At(i) == static_cast<double>(i));
-				BOOST_TEST(v1.At(i) == v2.At(i));
+				BOOST_CHECK(v1.At(i) == static_cast<double>(i));
+				BOOST_CHECK(v1.At(i) == v2.At(i));
 			}
 
 			BOOST_CHECK(v1 == v2);
@@ -86,10 +86,10 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			v1.Deallocate();
 			v2.Deallocate();
-			BOOST_TEST(v1.Size() == 0);
-			BOOST_TEST(v2.Size() == 0);
-			BOOST_TEST(v1.IsDeallocated());
-			BOOST_TEST(v2.IsDeallocated());
+			BOOST_CHECK(v1.Size() == 0);
+			BOOST_CHECK(v2.Size() == 0);
+			BOOST_CHECK(v1.IsDeallocated());
+			BOOST_CHECK(v2.IsDeallocated());
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST3)
@@ -109,7 +109,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(v3.At(i) == static_cast<double>(i) + static_cast<double>(i + 1));
+				BOOST_CHECK(v3.At(i) == static_cast<double>(i) + static_cast<double>(i + 1));
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(v3.At(i) == static_cast<double>(i) - static_cast<double>(i + 1));
+				BOOST_CHECK(v3.At(i) == static_cast<double>(i) - static_cast<double>(i + 1));
 			}
 		}
 
@@ -152,7 +152,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(v3.At(i) == static_cast<double>(i) * static_cast<double>(i + 1));
+				BOOST_CHECK(v3.At(i) == static_cast<double>(i) * static_cast<double>(i + 1));
 			}
 		}
 
@@ -173,7 +173,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(v3.At(i) == static_cast<double>(i) / static_cast<double>(i + 1));
+				BOOST_CHECK(v3.At(i) == static_cast<double>(i) / static_cast<double>(i + 1));
 			}
 		}
 
@@ -191,7 +191,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = v + val;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == v.At(i) + val);
+				BOOST_CHECK(res.At(i) == v.At(i) + val);
 			}
 		}
 
@@ -209,7 +209,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = v - val;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == v.At(i) - val);
+				BOOST_CHECK(res.At(i) == v.At(i) - val);
 			}
 		}
 
@@ -227,7 +227,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = v * val;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == v.At(i) * val);
+				BOOST_CHECK(res.At(i) == v.At(i) * val);
 			}
 		}
 
@@ -245,7 +245,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = v / val;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == v.At(i) / val);
+				BOOST_CHECK(res.At(i) == v.At(i) / val);
 			}
 		}
 
@@ -263,7 +263,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = val + v;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == val + v.At(i));
+				BOOST_CHECK(res.At(i) == val + v.At(i));
 			}
 		}
 
@@ -281,7 +281,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = val - v;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == val - v.At(i));
+				BOOST_CHECK(res.At(i) == val - v.At(i));
 			}
 		}
 
@@ -299,7 +299,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = val * v;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == val * v.At(i));
+				BOOST_CHECK(res.At(i) == val * v.At(i));
 			}
 		}
 
@@ -317,7 +317,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const auto res = val / v;
 			for (size_t i = 0; i < DIM; i++)
 			{
-				BOOST_TEST(res.At(i) == val / v.At(i));
+				BOOST_CHECK(res.At(i) == val / v.At(i));
 			}
 		}
 
@@ -330,7 +330,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (size_t i = 0; i < v1.Size(); i++)
 			{
-				BOOST_TEST(v1.At(i) == val);
+				BOOST_CHECK(v1.At(i) == val);
 			}
 		}
 
@@ -343,11 +343,11 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			Vector<double> v2(std::move(v1));
 
-			BOOST_TEST(v2.Size() == DIM);
+			BOOST_CHECK(v2.Size() == DIM);
 
 			for (size_t i = 0; i < v2.Size(); i++)
 			{
-				BOOST_TEST(v2.At(i) == val);
+				BOOST_CHECK(v2.At(i) == val);
 			}
 		}
 
@@ -361,11 +361,11 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			Vector<double> v2;
 			v2 = std::move(v1);
 
-			BOOST_TEST(v2.Size() == DIM);
+			BOOST_CHECK(v2.Size() == DIM);
 
 			for (size_t i = 0; i < v2.Size(); i++)
 			{
-				BOOST_TEST(v2.At(i) == val);
+				BOOST_CHECK(v2.At(i) == val);
 			}
 		}
 
@@ -375,13 +375,13 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			v1.Allocate(DIM);
 			v1 = 10.0;
 			auto v2 = -v1;
-			BOOST_TEST(v1 == 10.0);
-			BOOST_TEST(10.0 == v1);
-			BOOST_TEST(v2 == -v1);
-			BOOST_TEST(-v1 == v2);
-			BOOST_TEST(v1 != 11.0);
-			BOOST_TEST(v2 != v1);
-			BOOST_TEST(11.0 != v1);
+			BOOST_CHECK(v1 == 10.0);
+			BOOST_CHECK(10.0 == v1);
+			BOOST_CHECK(v2 == -v1);
+			BOOST_CHECK(-v1 == v2);
+			BOOST_CHECK(v1 != 11.0);
+			BOOST_CHECK(v2 != v1);
+			BOOST_CHECK(11.0 != v1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST19)
@@ -392,10 +392,10 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			v1 = val;
 			Vector<double> v2(v1);
 
-			BOOST_TEST(v1 == val);
-			BOOST_TEST(val == v1);
-			BOOST_TEST(v2 == v1);
-			BOOST_TEST(v2 == val);
+			BOOST_CHECK(v1 == val);
+			BOOST_CHECK(val == v1);
+			BOOST_CHECK(v2 == v1);
+			BOOST_CHECK(v2 == val);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST20)
@@ -414,44 +414,44 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 				v3[i] = std::sin(i);
 			}
 
-			BOOST_TEST(v1 == v2);
-			BOOST_TEST(v2 == v3);
-			BOOST_TEST(v1 == v3);
+			BOOST_CHECK(v1 == v2);
+			BOOST_CHECK(v2 == v3);
+			BOOST_CHECK(v1 == v3);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST21)
 		{
 			const Vector<double> v1{ 1, 2, 3, 4 };
-			BOOST_TEST(v1.Size() == 4);
-			BOOST_TEST(v1.At(0) == 1);
-			BOOST_TEST(v1.At(1) == 2);
-			BOOST_TEST(v1.At(2) == 3);
-			BOOST_TEST(v1.At(3) == 4);
+			BOOST_CHECK(v1.Size() == 4);
+			BOOST_CHECK(v1.At(0) == 1);
+			BOOST_CHECK(v1.At(1) == 2);
+			BOOST_CHECK(v1.At(2) == 3);
+			BOOST_CHECK(v1.At(3) == 4);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST22)
 		{
 			const std::vector<double> v1STL{ 1, 2, 3, 4 };
 			const Vector<double> v1(v1STL);
-			BOOST_TEST(v1.Size() == 4);
-			BOOST_TEST(v1.At(0) == 1);
-			BOOST_TEST(v1.At(1) == 2);
-			BOOST_TEST(v1.At(2) == 3);
-			BOOST_TEST(v1.At(3) == 4);
+			BOOST_CHECK(v1.Size() == 4);
+			BOOST_CHECK(v1.At(0) == 1);
+			BOOST_CHECK(v1.At(1) == 2);
+			BOOST_CHECK(v1.At(2) == 3);
+			BOOST_CHECK(v1.At(3) == 4);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST23)
 		{
 			Vector<double> v1(DIM);
-			BOOST_TEST(v1.Size() == DIM);
+			BOOST_CHECK(v1.Size() == DIM);
 			const double val = 12.34;
 			for (size_t i = 0; i < DIM; i++)
 			{
 				v1[i] = static_cast<double>(val);
 			}
 
-			BOOST_TEST(v1 == val);
-			BOOST_TEST(val == v1);
+			BOOST_CHECK(v1 == val);
+			BOOST_CHECK(val == v1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST24)
@@ -470,19 +470,19 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			v4 = val4;
 
 			v4 = v1 + v2 + v3 + v4;
-			BOOST_TEST(v4 == val1 + val2 + val3 + val4);
+			BOOST_CHECK(v4 == val1 + val2 + val3 + val4);
 
 			v4 = val1;
-			BOOST_TEST(val1 == v4);
+			BOOST_CHECK(val1 == v4);
 
 			v4 = val1 + val2 + val3 - val1 - val2 - val3;
-			BOOST_TEST(v4 == 0);
+			BOOST_CHECK(v4 == 0);
 
 			v4 = val1;
-			BOOST_TEST(val1 == v4);
+			BOOST_CHECK(val1 == v4);
 
 			v4 = -v1 + val1 + v2 - val2;
-			BOOST_TEST(v4 == 0);
+			BOOST_CHECK(v4 == 0);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST25)
@@ -496,7 +496,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			v2 = val2;
 
 			v3 = (v1 / v2) * (v2 / v1);
-			BOOST_TEST(v3 == 1.0);
+			BOOST_CHECK(v3 == 1.0);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST26)
@@ -506,7 +506,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			v1 = val1;
 			++v1;
 			++val1;
-			BOOST_TEST(v1 == val1);
+			BOOST_CHECK(v1 == val1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST27)
@@ -516,7 +516,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			v1 = val1;
 			--v1;
 			--val1;
-			BOOST_TEST(v1 == val1);
+			BOOST_CHECK(v1 == val1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST28)
@@ -524,11 +524,11 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			Vector<double> v1(DIM);
 			double val1 = 1;
 			v1 += val1;
-			BOOST_TEST(v1 == val1);
+			BOOST_CHECK(v1 == val1);
 			v1 += val1;
-			BOOST_TEST(v1 == 2 * val1);
+			BOOST_CHECK(v1 == 2 * val1);
 			v1 += v1;
-			BOOST_TEST(v1 == 4 * val1);
+			BOOST_CHECK(v1 == 4 * val1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST29)
@@ -536,11 +536,11 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			Vector<double> v1(DIM);
 			double val1 = 1;
 			v1 -= val1;
-			BOOST_TEST(v1 == -1 * val1);
+			BOOST_CHECK(v1 == -1 * val1);
 			v1 -= val1;
-			BOOST_TEST(v1 == -2 * val1);
+			BOOST_CHECK(v1 == -2 * val1);
 			v1 -= v1;
-			BOOST_TEST(v1 == 0);
+			BOOST_CHECK(v1 == 0);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST30)
@@ -550,9 +550,9 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			double val2 = 4;
 			v1 = val1;
 			v1 *= val2;
-			BOOST_TEST(v1 == val1 * val2);
+			BOOST_CHECK(v1 == val1 * val2);
 			v1 *= v1;
-			BOOST_TEST(v1 == val1 * val2 * val1 * val2);
+			BOOST_CHECK(v1 == val1 * val2 * val1 * val2);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST31)
@@ -562,9 +562,9 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			const double val2 = 4;
 			v1 = val1;
 			v1 /= val2;
-			BOOST_TEST(v1 == val1 / val2);
+			BOOST_CHECK(v1 == val1 / val2);
 			v1 /= v1;
-			BOOST_TEST(1.0 == v1);
+			BOOST_CHECK(1.0 == v1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST32)
@@ -574,9 +574,9 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			v1 = val1;
 			Vector<double> v2;
 			v2 = v1;
-			BOOST_TEST(v1 == val1);
-			BOOST_TEST(v2 == val1);
-			BOOST_TEST(v1 == v2);
+			BOOST_CHECK(v1 == val1);
+			BOOST_CHECK(v2 == val1);
+			BOOST_CHECK(v1 == v2);
 		}
 
 	BOOST_AUTO_TEST_SUITE_END()

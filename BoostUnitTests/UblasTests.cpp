@@ -30,7 +30,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			{
 				for (size_t j = 0; j < m1.size2(); j++)
 				{
-					BOOST_TEST(m1(i, j) + m2(i, j) == m3(i, j));
+					BOOST_CHECK(m1(i, j) + m2(i, j) == m3(i, j));
 				}
 			}
 		}
@@ -66,7 +66,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			{
 				for (int j = 0; j < NCOLS; ++j)
 				{
-					BOOST_TEST(m3(i, j) == static_cast<double>(2 * NCOLS));
+					BOOST_CHECK(m3(i, j) == static_cast<double>(2 * NCOLS));
 				}
 			}
 		}

@@ -131,14 +131,14 @@ namespace SEPOLIA4::PERFORMANCE_TESTS
 			{
 				for (uint32_t j = 0; j < NCOLS; j++)
 				{
-					if (mUBLAS3(i, j) != (mUBLAS1(i, j) + mUBLAS2(i, j)) * DO_MAX) BOOST_TEST(false);
+					if (mUBLAS3(i, j) != (mUBLAS1(i, j) + mUBLAS2(i, j)) * DO_MAX) BOOST_CHECK(false);
 				}
 			}
 			for (uint32_t i = 0; i < NROWS; i++)
 			{
 				for (uint32_t j = 0; j < NCOLS; j++)
 				{
-					if (mUBLAS3(i, j) != mSEP3(i, j)) BOOST_TEST(false);
+					if (mUBLAS3(i, j) != mSEP3(i, j)) BOOST_CHECK(false);
 				}
 			}
 
@@ -204,7 +204,7 @@ namespace SEPOLIA4::PERFORMANCE_TESTS
 			{
 				for (uint32_t j = 0; j < NCOLS; j++)
 				{
-					if (mUBLAS3(i, j) != -(mUBLAS1(i, j) - mUBLAS2(i, j)) * DO_MAX) BOOST_TEST(false);
+					if (mUBLAS3(i, j) != -(mUBLAS1(i, j) - mUBLAS2(i, j)) * DO_MAX) BOOST_CHECK(false);
 				}
 			}
 			for (uint32_t i = 0; i < NROWS; i++)

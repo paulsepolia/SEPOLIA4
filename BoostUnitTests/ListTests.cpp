@@ -27,15 +27,15 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 		BOOST_AUTO_TEST_CASE(TEST2)
 		{
 			auto list = List({ 1, 2, 3, 4, 5, 6 });
-			BOOST_TEST(list.Size() == 6);
+			BOOST_CHECK(list.Size() == 6);
 			for (size_t i = 0; i < DIM; i++)
 			{
 				list.Insert(static_cast<double>(i));
 			}
-			BOOST_TEST(list.Size() == 6 + DIM);
+			BOOST_CHECK(list.Size() == 6 + DIM);
 			list.Append({ 5, 6, 7, 8, 9, 10 });
-			BOOST_TEST(list.Size() == 6 + DIM + 6);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 6 + DIM + 6);
+			BOOST_CHECK(list.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST3)
@@ -44,20 +44,20 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			list.Append({ 3, 4 });
 			list.Insert(5);
 			list.Insert(6);
-			BOOST_TEST(list.Size() == 6);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 6);
+			BOOST_CHECK(list.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST4)
 		{
 			std::vector<double> values{ 1, 2 };
 			auto list = List(values);
-			BOOST_TEST(list.Size() == 2);
+			BOOST_CHECK(list.Size() == 2);
 			list.Append({ 3, 4 });
 			list.Insert(5);
 			list.Insert(6);
-			BOOST_TEST(list.Size() == 6);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 6);
+			BOOST_CHECK(list.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST5)
@@ -68,8 +68,8 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			list.Append(values2);
 			list.Insert(5);
 			list.Insert(6);
-			BOOST_TEST(list.Size() == 6);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 6);
+			BOOST_CHECK(list.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST6)
@@ -77,10 +77,10 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 			const auto list1 = List(values);
 			const auto list2 = List(list1);
-			BOOST_TEST(list1.Size() == 6);
-			BOOST_TEST(list2.Size() == 6);
-			BOOST_TEST(list1.Empty() == false);
-			BOOST_TEST(list2.Empty() == false);
+			BOOST_CHECK(list1.Size() == 6);
+			BOOST_CHECK(list2.Size() == 6);
+			BOOST_CHECK(list1.Empty() == false);
+			BOOST_CHECK(list2.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST7)
@@ -88,10 +88,10 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 			const auto list1 = List(values);
 			const auto& list2 = list1;
-			BOOST_TEST(list1.Size() == 6);
-			BOOST_TEST(list2.Size() == 6);
-			BOOST_TEST(list1.Empty() == false);
-			BOOST_TEST(list2.Empty() == false);
+			BOOST_CHECK(list1.Size() == 6);
+			BOOST_CHECK(list2.Size() == 6);
+			BOOST_CHECK(list1.Empty() == false);
+			BOOST_CHECK(list2.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST8)
@@ -99,8 +99,8 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 			auto list1 = List(values);
 			const auto list2 = List(std::move(list1));
-			BOOST_TEST(list2.Size() == 6);
-			BOOST_TEST(list2.Empty() == false);
+			BOOST_CHECK(list2.Size() == 6);
+			BOOST_CHECK(list2.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST9)
@@ -108,64 +108,64 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			std::vector<double> values{ 1, 2, 3, 4, 5, 6, 7 };
 			auto list1 = List(values);
 			const auto list2 = std::move(list1);
-			BOOST_TEST(list2.Size() == 7);
-			BOOST_TEST(list2.Empty() == false);
+			BOOST_CHECK(list2.Size() == 7);
+			BOOST_CHECK(list2.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST10)
 		{
 			std::vector<double> values{ 1, 2, 3, 4, 5, 6 };
 			auto list = List(values);
-			BOOST_TEST(list.Size() == 6);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 6);
+			BOOST_CHECK(list.Empty() == false);
 			int v = 1;
 			list.EraseOne(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 5);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 5);
+			BOOST_CHECK(list.Empty() == false);
 			v = 3;
 			list.EraseOne(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 4);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 4);
+			BOOST_CHECK(list.Empty() == false);
 			v = 6;
 			list.EraseOne(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 3);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 3);
+			BOOST_CHECK(list.Empty() == false);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST11)
 		{
 			std::vector<double> values{ 1, 2, 5, 1, 2, 4, 5 };
 			auto list = List(values);
-			BOOST_TEST(list.Size() == 7);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 7);
+			BOOST_CHECK(list.Empty() == false);
 			int v = 1;
 			list.EraseAll(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 5);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 5);
+			BOOST_CHECK(list.Empty() == false);
 			v = 2;
 			list.EraseAll(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 3);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 3);
+			BOOST_CHECK(list.Empty() == false);
 			v = 5;
 			list.EraseAll(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 1);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 1);
+			BOOST_CHECK(list.Empty() == false);
 			v = 6;
 			list.EraseAll(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 1);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 1);
+			BOOST_CHECK(list.Empty() == false);
 			v = 4;
 			list.EraseAll(v);
 			list.Print();
-			BOOST_TEST(list.Size() == 0);
-			BOOST_TEST(list.Empty() == true);
+			BOOST_CHECK(list.Size() == 0);
+			BOOST_CHECK(list.Empty() == true);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST12)
@@ -174,14 +174,14 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			auto list = List(values);
 
-			BOOST_TEST(list.Size() == 10);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 10);
+			BOOST_CHECK(list.Empty() == false);
 
 			list.Clear();
 			list.Print();
 
-			BOOST_TEST(list.Size() == 0);
-			BOOST_TEST(list.Empty() == true);
+			BOOST_CHECK(list.Size() == 0);
+			BOOST_CHECK(list.Empty() == true);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST13)
@@ -193,7 +193,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			list.Print();
 			list.Reverse();
 
-			BOOST_TEST(list.Size() == 5);
+			BOOST_CHECK(list.Size() == 5);
 
 			list.Print();
 		}
@@ -207,12 +207,12 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 				list.Insert(static_cast<double>(i));
 			}
 
-			BOOST_TEST(list.Size() == DIM);
-			BOOST_TEST(list.Empty() == false);
-			BOOST_TEST(list.FindOne(double(0)) == 0);
-			BOOST_TEST(list.FindOne(double(1)) == 1);
-			BOOST_TEST(list.FindOne(double(2)) == 2);
-			BOOST_TEST(list.FindOne(double(3)) == 3);
+			BOOST_CHECK(list.Size() == DIM);
+			BOOST_CHECK(list.Empty() == false);
+			BOOST_CHECK(list.FindOne(double(0)) == 0);
+			BOOST_CHECK(list.FindOne(double(1)) == 1);
+			BOOST_CHECK(list.FindOne(double(2)) == 2);
+			BOOST_CHECK(list.FindOne(double(3)) == 3);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST15)
@@ -224,13 +224,13 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 				list.Insert(static_cast<double>(i));
 			}
 
-			BOOST_TEST(list.Size() == DIM);
-			BOOST_TEST(list.Empty() == false);
-			BOOST_TEST(list.FindAll(double(0)) == std::vector<int64_t>{ 0 });
-			BOOST_TEST(list.FindAll(double(1)) == std::vector<int64_t>{ 1 });
-			BOOST_TEST(list.FindAll(double(2)) == std::vector<int64_t>{ 2 });
-			BOOST_TEST(list.FindAll(double(DIM - 1)) == std::vector<int64_t>{ DIM - 1 });
-			BOOST_TEST(list.FindAll(double(DIM)).empty());
+			BOOST_CHECK(list.Size() == DIM);
+			BOOST_CHECK(list.Empty() == false);
+			BOOST_CHECK(list.FindAll(double(0)) == std::vector<int64_t>{ 0 });
+			BOOST_CHECK(list.FindAll(double(1)) == std::vector<int64_t>{ 1 });
+			BOOST_CHECK(list.FindAll(double(2)) == std::vector<int64_t>{ 2 });
+			BOOST_CHECK(list.FindAll(double(DIM - 1)) == std::vector<int64_t>{ DIM - 1 });
+			BOOST_CHECK(list.FindAll(double(DIM)).empty());
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST16)
@@ -247,33 +247,33 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 				list.Insert(static_cast<double>(1));
 			}
 
-			BOOST_TEST(list.Size() == 2 * DIM);
-			BOOST_TEST(list.Empty() == false);
+			BOOST_CHECK(list.Size() == 2 * DIM);
+			BOOST_CHECK(list.Empty() == false);
 
 			std::vector<int64_t> res0;
 			for (size_t i = 0; i < DIM; i++)
 			{
 				res0.push_back(i);
 			}
-			BOOST_TEST(list.FindAll(double(0)) == res0);
+			BOOST_CHECK(list.FindAll(double(0)) == res0);
 
 			std::vector<int64_t> res1;
 			for (size_t i = 0; i < DIM; i++)
 			{
 				res1.push_back(DIM + i);
 			}
-			BOOST_TEST(list.FindAll(double(1)) == res1);
-			BOOST_TEST(list.FindAll(double(2)).empty());
-			BOOST_TEST(list.FindAll(double(DIM - 1)).empty());
-			BOOST_TEST(list.FindAll(double(DIM)).empty());
+			BOOST_CHECK(list.FindAll(double(1)) == res1);
+			BOOST_CHECK(list.FindAll(double(2)).empty());
+			BOOST_CHECK(list.FindAll(double(DIM - 1)).empty());
+			BOOST_CHECK(list.FindAll(double(DIM)).empty());
 
 			list.Reverse();
-			BOOST_TEST(list.FindAll(double(0)) == res1);
-			BOOST_TEST(list.FindAll(double(1)) == res0);
+			BOOST_CHECK(list.FindAll(double(0)) == res1);
+			BOOST_CHECK(list.FindAll(double(1)) == res0);
 
 			list.Clear();
-			BOOST_TEST(list.FindAll(double(0)).empty());
-			BOOST_TEST(list.FindAll(double(1)).empty());
+			BOOST_CHECK(list.FindAll(double(0)).empty());
+			BOOST_CHECK(list.FindAll(double(1)).empty());
 
 			for (size_t i = 0; i < DIM; i++)
 			{
@@ -285,19 +285,19 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 				list.Insert(static_cast<double>(1));
 			}
 
-			BOOST_TEST(list.Size() == 2 * DIM);
-			BOOST_TEST(list.Empty() == false);
-			BOOST_TEST(list.FindAll(double(0)) == res0);
-			BOOST_TEST(list.FindAll(double(1)) == res1);
+			BOOST_CHECK(list.Size() == 2 * DIM);
+			BOOST_CHECK(list.Empty() == false);
+			BOOST_CHECK(list.FindAll(double(0)) == res0);
+			BOOST_CHECK(list.FindAll(double(1)) == res1);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST17)
 		{
 			std::vector<double> values{ 1, 2, 3, 4, 5 };
 			List<double> list1(values);
-			BOOST_TEST(list1.Size() == 5);
+			BOOST_CHECK(list1.Size() == 5);
 			list1.EraseAll(values);
-			BOOST_TEST(list1.Empty() == true);
+			BOOST_CHECK(list1.Empty() == true);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST18)
@@ -309,14 +309,14 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 			list2.Insert(7);
 			list2.Insert(8);
 			list1.EraseAll(list2);
-			BOOST_TEST(list1.Empty() == true);
+			BOOST_CHECK(list1.Empty() == true);
 		}
 
 		BOOST_AUTO_TEST_CASE(TEST19)
 		{
 			List<double> list({1, 2, 3, 4, 5, 6});
 			list.EraseAll(list);
-			BOOST_TEST(list.Empty() == true);
+			BOOST_CHECK(list.Empty() == true);
 		}
 
 	BOOST_AUTO_TEST_SUITE_END()

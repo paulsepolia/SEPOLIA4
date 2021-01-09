@@ -43,7 +43,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected[i] == y[i]);
+				BOOST_CHECK(resExpected[i] == y[i]);
 			}
 		}
 
@@ -79,7 +79,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected[i] == y[i]);
+				BOOST_CHECK(resExpected[i] == y[i]);
 			}
 		}
 
@@ -115,7 +115,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected[i] == y[i]);
+				BOOST_CHECK(resExpected[i] == y[i]);
 			}
 		}
 
@@ -156,7 +156,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected[i] == y[i]);
+				BOOST_CHECK(resExpected[i] == y[i]);
 			}
 		}
 
@@ -192,7 +192,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 
@@ -228,7 +228,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 
@@ -264,7 +264,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 
@@ -305,7 +305,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 
@@ -344,7 +344,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 
@@ -383,7 +383,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 
@@ -422,7 +422,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 
@@ -466,7 +466,7 @@ namespace SEPOLIA4::BOOST_UNIT_TESTS
 
 			for (int i = 0; i < NROWS; i++)
 			{
-				BOOST_TEST(resExpected.At(i) == y[i]);
+				BOOST_CHECK(resExpected.At(i) == y[i]);
 			}
 		}
 

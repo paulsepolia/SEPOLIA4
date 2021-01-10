@@ -6,8 +6,8 @@ PROJECT(BOOST_UNIT_TESTS_RUN)
 # BOOST settings #
 #================#
 
-SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/mnt/xdata/opt/boost/1.75.0/include")
-SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "/mnt/xdata/opt/boost/1.75.0/lib")
+SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/opt/boost/1.70.0/include")
+SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "/opt/boost/1.70.0/lib")
 
 FIND_PACKAGE(Boost REQUIRED COMPONENTS unit_test_framework)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
